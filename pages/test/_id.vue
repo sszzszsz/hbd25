@@ -1,8 +1,8 @@
 <template>
   <div class="container">
-    <p>id : {{ id }}</p>
+    <p>json data number : {{ id }}(本来は{{ id + 1 }}個目のデータ)</p>
     <p>text : {{ text }}</p>
-    <p>
+    <p v-if="nextId <= dataLen">
       <nuxt-link
         :to="{ name: 'test-id', params: { id: nextId } }"
         class="button--green"
@@ -18,28 +18,42 @@
 export default {
   data() {
     return {
-      head: {
-        title: ''
-      },
+      dataLen: 0,
       targetData: '',
       text: ''
     }
   },
-  asyncData({ params }) {
+  async asyncData({ params }) {
+    const jsonData = await import(`~/assets/data/test.json`)
     return {
       params,
-      jsonData: require(`~/data/test.json`),
+      jsonData,
       id: Number(params.id) - 1,
       nextId: Number(params.id) + 1
     }
   },
   mounted() {
-    console.log(this.id)
-    this.dataLen = this.jsonData.length
-    this.targetData = this.jsonData[this.id]
-    this.text = this.jsonData[this.id].text
-    console.log(this.params)
+    this.setData()
   },
-  methods: {}
+  methods: {
+    setData() {
+      this.dataLen = this.jsonData.default.length
+      this.targetData = this.jsonData[this.id]
+      this.text = this.jsonData[this.id].text
+      console.log(this.id)
+      console.log(this.nextId <= this.dataLen)
+    }
+  }
 }
 </script>
+
+<style lang="scss" scoped>
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+</style>

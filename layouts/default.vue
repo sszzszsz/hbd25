@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="wrap">
     <nuxt />
   </div>
 </template>
@@ -22,6 +22,11 @@ html {
 *:after {
   box-sizing: border-box;
   margin: 0;
+}
+
+.wrap {
+  margin: 0 auto;
+  min-height: 100vh;
 }
 
 .button--green {

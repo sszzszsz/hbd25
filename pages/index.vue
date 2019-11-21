@@ -12,7 +12,7 @@
         <a href="https://nuxtjs.org/" target="_blank" class="button--green">
           Documentation
         </a>
-        <nuxt-link to="/test/1" class="button--green">test</nuxt-link>
+        <nuxt-link to="/test/" class="button--green">test</nuxt-link>
       </div>
     </div>
   </div>
