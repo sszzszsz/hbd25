@@ -1,24 +1,11 @@
 <template>
-  <div class="container">
-    <p>post</p>
+  <div>
+    <p>test</p>
     {{ post }}
-    <nuxt-link :to="{ name: 'test-id', params: { id: id } }">test</nuxt-link>
+    <nuxt-link to="/test/1/" class="button--green">test1</nuxt-link>
   </div>
 </template>
 
 <script>
-// import axios from 'axios'
-
-export default {
-  data() {
-    return {}
-  },
-  asyncData({ params }) {
-    return {
-      post: require(`~/data/test.json`),
-      param: params
-    }
-  },
-  methods: {}
-}
+export default {}
 </script>
