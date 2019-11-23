@@ -1,21 +1,23 @@
 <template>
   <div class="container">
-    <p>json data number : {{ id }}(本来は{{ id + 1 }}個目のデータ)</p>
-    <p>text : {{ text }}</p>
-    <p v-if="nextId <= dataLen">
-      <nuxt-link
-        :to="{ name: 'test-id', params: { id: nextId } }"
-        class="button--green"
-        >test{{ nextId }}</nuxt-link
-      >
-    </p>
+    <div class="inr">
+      <p>json data number : {{ id }}(本来は{{ id + 1 }}個目のデータ)</p>
+      <p>text : {{ text }}</p>
+      <p v-if="nextId <= dataLen">
+        <nuxt-link
+          :to="{ name: 'test-id', params: { id: nextId } }"
+          class="button--green"
+          >test{{ nextId }}</nuxt-link
+        >
+      </p>
+    </div>
   </div>
 </template>
 
 <script>
 // import axios from 'axios'
-
-export default {
+import Vue from 'vue'
+export default Vue.extend({
   data() {
     return {
       dataLen: 0,
@@ -44,7 +46,7 @@ export default {
       console.log(this.nextId <= this.dataLen)
     }
   }
-}
+})
 </script>
 
 <style lang="scss" scoped>
@@ -55,5 +57,9 @@ export default {
   display: block;
   width: 100%;
   height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 </style>
