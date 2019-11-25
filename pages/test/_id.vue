@@ -36,8 +36,12 @@ export default Vue.extend({
       dataLen: 0,
       targetData: '',
       text: '',
-      isScrolling: false,
       timeoutId: ''
+    }
+  },
+  computed: {
+    scrollFlag() {
+      return this.$store.state.global.scrollFlag
     }
   },
   async asyncData({ params }) {
@@ -53,12 +57,8 @@ export default Vue.extend({
     console.log('created')
   },
   mounted() {
-    console.log('mounted')
-    this.isScrolling = false
     this.setData()
     this.movePage()
-    // window.addEventListener('scroll', this.movePage)
-    // this.handleScroll()
   },
   methods: {
     setData() {
@@ -70,43 +70,35 @@ export default Vue.extend({
       const winH = window.innerHeight
       const bodyH = document.body.clientHeight
       const nextPageScroll = bodyH - winH
-      const self = this
+      const _this = this
       this.scr = window.pageYOffset
       let prevScr = 0
 
-      window.addEventListener('scroll', function() {
-        self.scr = window.pageYOffset
-        if (self.scr >= nextPageScroll && self.scr > prevScr) {
-          self.isScrolling = true
-          if (self.isScrolling) {
-            self.$router.push('/test/' + self.nextId)
+      window.addEventListener('scroll', function(event) {
+        _this.scr = window.pageYOffset
+        if (_this.scrollFlag) {
+          if (_this.scr >= nextPageScroll && _this.scr > prevScr) {
+            _this.$router.push('/test/' + _this.nextId)
+          } else if (_this.scr < prevScr) {
+            _this.scr = 0
+            // _this.scrollFlag = false
+            _this.$store.dispatch('global/writeScrollFlag', false)
+            event.preventDefault()
+            console.log('test')
           }
-        } else if (self.scr < prevScr) {
-          self.isScrolling = false
-          self.scr = 0
-          console.log('test')
+          _this.handleScroll()
         }
+
         prevScr = window.pageYOffset
-        console.log(self.scr)
+        console.log(_this.scr)
       })
     },
     handleScroll(evt, el) {
-      this.isScrolling = false
-      const self = this
-
-      window.addEventListener('scroll', function() {
-        self.isScrolling = true
-        self.movePage()
-
-        // スクロールを停止して500ms後に終了とする
-        clearTimeout(self.timeoutId)
-
-        self.timeoutId = setTimeout(function() {
-          self.isScrolling = false
-          console.log(self.isScrolling)
-        }, 500)
-        console.log(self.isScrolling)
-      })
+      // スクロールを停止して100ms後に終了とする
+      clearTimeout(this.timeoutId)
+      this.timeoutId = setTimeout(function() {
+        this.$nuxt.$store.dispatch('global/writeScrollFlag', true)
+      }, 100)
     }
   }
 })
