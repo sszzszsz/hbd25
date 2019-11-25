@@ -17,3 +17,10 @@ html {
   box-sizing: border-box;
   margin: 0;
 }
+
+body {
+  text-rendering: optimizeLegibility;
+  line-height: 1.5;
+  overflow-x: hidden;
+  overflow-y: auto;
+}

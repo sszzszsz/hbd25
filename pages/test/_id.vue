@@ -1,41 +1,36 @@
 <template>
   <main class="main">
     <div class="cont">
-      <div class="inr">
-        <p>json data number : {{ id }}(本来は{{ id + 1 }}個目のデータ)</p>
-        <p>text : {{ text }}</p>
-        <p v-if="nextId <= dataLen">
-          <nuxt-link
-            :to="{ name: 'test-id', params: { id: nextId } }"
-            class="button--green"
-            >test{{ nextId }}</nuxt-link
-          >
-        </p>
+      <heartMask />
+      <div class="txt_box">
+        <!-- <p>json data number : {{ id }}(本来は{{ id + 1 }}個目のデータ)</p> -->
+        <p class="txt_main">{{ mainText }}</p>
+        <p v-if="subText != undefined" class="txt_sub">{{ subText }}</p>
       </div>
+      <pagination :allNum="dataLen" :currentNum="id + 1" />
+      <scrollArrow />
     </div>
   </main>
 </template>
 
 <script>
-// import axios from 'axios'
 import Vue from 'vue'
-Vue.directive('scroll', {
-  inserted(el, binding) {
-    const f = function(evt) {
-      if (binding.value(evt, el)) {
-        window.removeEventListener('scroll', f)
-      }
-    }
-    window.addEventListener('scroll', f)
-  }
-})
+import heartMask from '~/components/heartMask.vue'
+import pagination from '~/components/pagination.vue'
+import scrollArrow from '~/components/scrollArrow.vue'
 
 export default Vue.extend({
+  components: {
+    heartMask,
+    pagination,
+    scrollArrow
+  },
   data() {
     return {
       dataLen: 0,
       targetData: '',
-      text: '',
+      mainText: '',
+      subText: '',
       timeoutId: ''
     }
   },
@@ -64,7 +59,8 @@ export default Vue.extend({
     setData() {
       this.dataLen = this.jsonData.default.length
       this.targetData = this.jsonData[this.id]
-      this.text = this.jsonData[this.id].text
+      this.mainText = this.jsonData[this.id].mainText
+      this.subText = this.jsonData[this.id].subText
     },
     movePage() {
       const winH = window.innerHeight
@@ -81,7 +77,6 @@ export default Vue.extend({
             _this.$router.push('/test/' + _this.nextId)
           } else if (_this.scr < prevScr) {
             _this.scr = 0
-            // _this.scrollFlag = false
             _this.$store.dispatch('global/writeScrollFlag', false)
             event.preventDefault()
             console.log('test')
@@ -105,6 +100,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
+$red: #ff5d5d;
 .main {
   position: relative;
   display: block;
@@ -125,5 +121,25 @@ export default Vue.extend({
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background: $red;
+}
+
+.txt_box {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  color: $red;
+  text-align: center;
+}
+
+.txt_main {
+  font-weight: 600;
+  font-size: 5vmin;
+}
+
+.txt_sub {
+  font-weight: 400;
+  font-size: 3.5vmin;
+  margin-top: 8px;
 }
 </style>
