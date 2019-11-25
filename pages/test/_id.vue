@@ -100,7 +100,6 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-$red: #ff5d5d;
 .main {
   position: relative;
   display: block;
