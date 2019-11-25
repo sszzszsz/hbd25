@@ -50,11 +50,15 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
+    '@nuxtjs/style-resources',
     'nuxt-webfontloader'
   ],
+  styleResources: {
+    sass: ['~/assets/scss/_mixin.scss']
+  },
   webfontloader: {
     google: {
-      families: ['Sawarabi+Gothic']
+      families: ['Sawarabi+Gothic', 'Libre+Baskerville']
     }
   },
   /*
