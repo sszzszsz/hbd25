@@ -1,3 +1,7 @@
+import path from 'path'
+// const StylelintPlugin = require('stylelint-webpack-plugin')
+import StylelintPlugin from 'stylelint-webpack-plugin'
+
 export default {
   mode: 'universal',
   /*
@@ -41,7 +45,8 @@ export default {
    */
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module'
+    '@nuxtjs/eslint-module',
+    '@nuxtjs/stylelint-module'
   ],
   /*
    ** Nuxt.js modules
@@ -54,7 +59,7 @@ export default {
     'nuxt-webfontloader'
   ],
   styleResources: {
-    sass: ['~/assets/scss/_mixin.scss']
+    scss: ['~/assets/scss/mixin.scss']
   },
   webfontloader: {
     google: {
@@ -85,6 +90,23 @@ export default {
           loader: 'eslint-loader',
           exclude: /(node_modules)/
         })
+        // Run styleLint(npm run devに影響があるためコメントアウト)
+        config.plugins.push(
+          new StylelintPlugin({
+            files: ['**/*.vue', '**/*.scss']
+          })
+        )
+      }
+
+      // import alias
+      config.resolve.alias.Sass = path.resolve(__dirname, './assets/scss/')
+      config.resolve.alias.Images = path.resolve(__dirname, './assets/img/')
+      config.resolve.alias['~'] = path.resolve(__dirname)
+      config.resolve.alias['@'] = path.resolve(__dirname)
+    },
+    terser: {
+      terserOptions: {
+        compress: { drop_console: true }
       }
     }
   }

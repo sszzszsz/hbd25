@@ -32,9 +32,12 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .mask {
+
   &_box {
     width: 95%;
+    max-width: 600px;
   }
+
   &_path {
     fill: #fff;
   }

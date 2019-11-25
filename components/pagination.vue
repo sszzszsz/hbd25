@@ -27,6 +27,7 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .pagination {
+
   &_box {
     position: absolute;
     bottom: 15px;
@@ -34,9 +35,10 @@ export default Vue.extend({
     display: flex;
     align-items: center;
     font-size: 3.5vmin;
-    font-family: 'Libre Baskerville', serif;
+    font-family: "Libre Baskerville", serif;
     color: #fff;
   }
+
   &_hyphen {
     display: inline-block;
     width: 20px;
