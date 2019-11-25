@@ -65,7 +65,7 @@ export default Vue.extend({
     movePage() {
       const winH = window.innerHeight
       const bodyH = document.body.clientHeight
-      const nextPageScroll = bodyH - winH
+      const nextPageScroll = bodyH - winH - 10
       const _this = this
       this.scr = window.pageYOffset
       let prevScr = 0
@@ -113,7 +113,6 @@ export default Vue.extend({
   position: fixed;
   top: 0;
   left: 0;
-  display: block;
   width: 100%;
   height: 100%;
   display: flex;
