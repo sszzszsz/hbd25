@@ -42,6 +42,7 @@ export default Vue.extend({
       tsPoint: 0,
       tePoint: 0,
       mwDeltaY: 0,
+      pageAddFlag: true,
       touchStartTest: '',
       touchEndTest: ''
     }
@@ -83,9 +84,11 @@ export default Vue.extend({
       this.touchEndTest = 'touchEndTest：' + event.changedTouches[0].clientY
       this.tePoint = event.changedTouches[0].clientY
       if (this.tsPoint - this.tePoint > 50) {
-        this.$router.push('/test/' + this.nextId)
+        this.pageAddFlag = true
+        this.moveNextPage(this.pageAddFlag)
       } else if (this.tePoint - this.tsPoint > 50) {
-        this.$router.push('/test/' + String(this.id))
+        this.pageAddFlag = false
+        this.moveNextPage(this.pageAddFlag)
       }
     },
     mouseWheel() {
@@ -94,19 +97,24 @@ export default Vue.extend({
         _this.mwDeltaY = e.deltaY
         console.log(e.deltaY)
         if (_this.mwDeltaY > 0) {
-          _this.$router.push('/test/' + _this.nextId)
+          _this.pageAddFlag = true
+          _this.moveNextPage(_this.pageAddFlag)
         } else if (_this.mwDeltaY < 0) {
-          _this.$router.push('/test/' + String(_this.id))
+          _this.pageAddFlag = false
+          _this.moveNextPage(_this.pageAddFlag)
         }
       })
     },
-    handleScroll(evt, el) {
-      // スクロールを停止して100ms後に終了とする
-      clearTimeout(this.timeoutId)
-      this.timeoutId = setTimeout(function() {
-        this.$router.push('/test/' + this.nextId)
-        this.$nuxt.$store.dispatch('global/writeScrollFlag', true)
-      }, 100)
+    moveNextPage(flag) {
+      if (flag === true) {
+        this.nextId > this.dataLen
+          ? this.$router.push('/test/1/')
+          : this.$router.push('/test/' + this.nextId)
+      } else {
+        this.nextId >= 0
+          ? this.$router.push('/test/' + this.dataLen)
+          : this.$router.push('/test/' + this.nextId)
+      }
     }
   }
 })
