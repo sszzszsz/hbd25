@@ -13,6 +13,11 @@
       </div>
       <pagination :allNum="dataLen" :currentNum="targetId + 1" />
       <scrollArrow />
+      <div class="link">
+        <nuxt-link :to="{ name: 'test-id', params: { id: nextId } }">
+          next
+        </nuxt-link>
+      </div>
       <div class="debug">
         <p>touchStart:{{ tsPoint }}</p>
         <p>touchEnd:{{ tePoint }}</p>
@@ -36,8 +41,9 @@ export default Vue.extend({
   },
   data() {
     return {
+      id: this.$route.params.id,
       targetId: 0,
-      nextId: 0,
+      nextId: Number(this.$route.params.id) + 1,
       dataLen: 0,
       targetData: '',
       mainText: '',
@@ -63,8 +69,8 @@ export default Vue.extend({
     // ルート変更に反応する...
     // next() を呼び出すのを忘れないでください
     console.log('beforeRouteUpdate:', to, from)
-    this.targetId = Number(from.params.id) - 1
-    this.nextId = Number(from.params.id) + 1
+    this.targetId = Number(to.params.id) - 1
+    this.nextId = Number(to.params.id) + 1
     next()
   },
   async asyncData({ params }) {
@@ -112,47 +118,47 @@ export default Vue.extend({
       }
     },
     mouseWheel() {
-      const _this = this
+      document.addEventListener('wheel', this.test, { passive: false })
+    },
+    test(e) {
       let deltaY = 0
       let prevDeltaY = 0
       let pageAddFlag = true
-
-      document.addEventListener(
-        'wheel',
-        function(e) {
-          deltaY = e.deltaY
-          if (deltaY > prevDeltaY) {
-            console.log(deltaY - prevDeltaY)
-            // マウス用
-            if (deltaY > 100) {
-              pageAddFlag = true
-              _this.moveNextPage(pageAddFlag)
-              e.preventDefault()
-            }
-            // トラックパッド用
-            if (deltaY - prevDeltaY < 10) {
-              pageAddFlag = true
-              _this.moveNextPage(pageAddFlag)
-              e.preventDefault()
-            }
-          } else if (deltaY < prevDeltaY) {
-            if (deltaY - prevDeltaY > 10) {
-              pageAddFlag = false
-              _this.moveNextPage(pageAddFlag)
-            }
-          }
-          prevDeltaY = deltaY
-        },
-        { passive: false }
-      )
+      if (e !== undefined) {
+        deltaY = e.deltaY
+      }
+      if (deltaY > prevDeltaY) {
+        console.log(deltaY - prevDeltaY)
+        // マウス用
+        if (deltaY > 100) {
+          pageAddFlag = true
+          this.moveNextPage(pageAddFlag)
+          e.preventDefault()
+        }
+        // トラックパッド用
+        if (deltaY - prevDeltaY < 10) {
+          pageAddFlag = true
+          this.moveNextPage(pageAddFlag)
+          e.preventDefault()
+        }
+      } else if (deltaY < prevDeltaY) {
+        if (deltaY - prevDeltaY > 10) {
+          pageAddFlag = false
+          this.moveNextPage(pageAddFlag)
+        }
+      }
+      prevDeltaY = deltaY
     },
     moveNextPage(flag) {
       // 増えるとき
       if (flag === true) {
-        const nextId = String(this.nextId)
+        // const nextId = String(this.nextId)
         this.nextId > this.dataLen
           ? this.$router.push({ path: `/test/1` })
-          : this.$router.push({ path: `/test/${nextId}` })
+          : this.$router.push({
+              name: 'test-id',
+              params: { id: Number(this.$route.params.id) + 1 }
+            })
       } else {
         this.targetId === 0
           ? this.$router.push('/test/' + this.dataLen)
