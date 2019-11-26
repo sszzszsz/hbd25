@@ -7,7 +7,9 @@
     <div class="cont">
       <heartMask />
       <div class="txt_box">
-        <p>{{ touchStartTest }}{{ touchEndTest }}</p>
+        <p>touchStart:{{ tsPoint }}</p>
+        <p>touchEnd:{{ tePoint }}</p>
+        <p>mouse whell:{{ mwDeltaY }}</p>
         <!-- <p>json data number : {{ id }}(本来は{{ id + 1 }}個目のデータ)</p> -->
         <!-- <p class="txt_main">{{ mainText }}</p>
         <p v-if="subText != undefined" class="txt_sub">{{ subText }}</p> -->
@@ -37,6 +39,9 @@ export default Vue.extend({
       mainText: '',
       subText: '',
       timeoutId: '',
+      tsPoint: 0,
+      tePoint: 0,
+      mwDeltaY: 0,
       touchStartTest: '',
       touchEndTest: ''
     }
@@ -57,56 +62,49 @@ export default Vue.extend({
   },
   created() {
     console.log('created')
+    this.setData()
   },
   mounted() {
-    this.setData()
-    this.movePage()
+    window.setTimeout(this.mouseWheel, 1000)
+    // this.mouseWheel()
   },
   methods: {
-    touchStart(event) {
-      console.log('touch start', event.touches[0].clientY)
-      this.touchStartTest = 'touchStartTest：' + event.touches[0].clientY
-    },
-    touchEnd(event) {
-      console.log('touch end', event.changedTouches[0].clientY)
-      this.touchEndTest = 'touchEndTest：' + event.changedTouches[0].clientY
-    },
     setData() {
       this.dataLen = this.jsonData.default.length
       this.targetData = this.jsonData[this.id]
       this.mainText = this.jsonData[this.id].mainText
       this.subText = this.jsonData[this.id].subText
     },
-    movePage() {
-      const winH = window.innerHeight
-      const bodyH = document.body.clientHeight
-      const nextPageScroll = bodyH - winH - 10
+    touchStart(event) {
+      this.touchStartTest = 'touchStartTest：' + event.touches[0].clientY
+      this.tsPoint = event.touches[0].clientY
+    },
+    touchEnd(event) {
+      this.touchEndTest = 'touchEndTest：' + event.changedTouches[0].clientY
+      this.tePoint = event.changedTouches[0].clientY
+      if (this.tsPoint - this.tePoint > 50) {
+        this.$router.push('/test/' + this.nextId)
+      } else if (this.tePoint - this.tsPoint > 50) {
+        this.$router.push('/test/' + String(this.id))
+      }
+    },
+    mouseWheel() {
       const _this = this
-      this.scr = window.pageYOffset
-      let prevScr = 0
-
-      window.addEventListener('scroll', function(event) {
-        _this.scr = window.pageYOffset
-        if (_this.scrollFlag) {
-          if (_this.scr >= nextPageScroll && _this.scr > prevScr) {
-            _this.$router.push('/test/' + _this.nextId)
-          } else if (_this.scr < prevScr) {
-            _this.scr = 0
-            _this.$store.dispatch('global/writeScrollFlag', false)
-            event.preventDefault()
-            console.log('test')
-          }
-          _this.handleScroll()
+      document.addEventListener('wheel', function(e) {
+        _this.mwDeltaY = e.deltaY
+        console.log(e.deltaY)
+        if (_this.mwDeltaY > 0) {
+          _this.$router.push('/test/' + _this.nextId)
+        } else if (_this.mwDeltaY < 0) {
+          _this.$router.push('/test/' + String(_this.id))
         }
-
-        prevScr = window.pageYOffset
-        console.log(_this.scr)
       })
     },
     handleScroll(evt, el) {
       // スクロールを停止して100ms後に終了とする
       clearTimeout(this.timeoutId)
       this.timeoutId = setTimeout(function() {
+        this.$router.push('/test/' + this.nextId)
         this.$nuxt.$store.dispatch('global/writeScrollFlag', true)
       }, 100)
     }
