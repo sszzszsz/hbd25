@@ -4,18 +4,20 @@
     @touchend="touchEnd($event)"
     class="main"
   >
-    <div class="cont">
+    <div ref="colorCont" class="cont">
       <heartMask />
-      <div class="txt_box">
-        <p>touchStart:{{ tsPoint }}</p>
-        <p>touchEnd:{{ tePoint }}</p>
-        <p>mouse whell:{{ mwDeltaY }}</p>
+      <div ref="colorTxt" class="txt_box">
         <!-- <p>json data number : {{ id }}(本来は{{ id + 1 }}個目のデータ)</p> -->
-        <!-- <p class="txt_main">{{ mainText }}</p>
-        <p v-if="subText != undefined" class="txt_sub">{{ subText }}</p> -->
+        <p class="txt_main">{{ mainText }}</p>
+        <p v-if="subText != undefined" class="txt_sub">{{ subText }}</p>
       </div>
       <pagination :allNum="dataLen" :currentNum="id + 1" />
       <scrollArrow />
+      <div class="debug">
+        <p>touchStart:{{ tsPoint }}</p>
+        <p>touchEnd:{{ tePoint }}</p>
+        <p>mouse whell:{{ mwDeltaY }}</p>
+      </div>
     </div>
   </main>
 </template>
@@ -43,6 +45,7 @@ export default Vue.extend({
       tePoint: 0,
       mwDeltaY: 0,
       pageAddFlag: true,
+      mainColor: '',
       touchStartTest: '',
       touchEndTest: ''
     }
@@ -53,7 +56,7 @@ export default Vue.extend({
     }
   },
   async asyncData({ params }) {
-    const jsonData = await import(`~/assets/data/test.json`)
+    const jsonData = await import(`~/assets/data/point.json`)
     return {
       params,
       jsonData,
@@ -68,6 +71,7 @@ export default Vue.extend({
   mounted() {
     window.setTimeout(this.mouseWheel, 1000)
     // this.mouseWheel()
+    this.makeColor()
   },
   methods: {
     setData() {
@@ -115,6 +119,16 @@ export default Vue.extend({
           ? this.$router.push('/test/' + this.dataLen)
           : this.$router.push('/test/' + this.nextId)
       }
+    },
+    makeColor() {
+      const MAX = this.dataLen
+      // HSLカラーを算出
+      const hue = (360 / MAX) * this.id
+      this.mainColor = 'hsl(' + hue + ', 50%, 25%)'
+      console.log(this.mainColor)
+      const bgColor = 'hsla(' + hue + ', 60%, 80%, 0.5)'
+      this.$refs.colorCont.style.backgroundColor = bgColor
+      this.$refs.colorTxt.style.color = this.mainColor
     }
   }
 })
@@ -138,14 +152,14 @@ export default Vue.extend({
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background: $red;
+  background: $white;
 }
 
 .txt_box {
   position: absolute;
   top: 50%;
   width: 100%;
-  color: $red;
+  color: $white;
   text-align: center;
 }
 
@@ -158,5 +172,10 @@ export default Vue.extend({
   font-weight: 400;
   font-size: 3.5vmin;
   margin-top: 8px;
+}
+.debug {
+  position: absolute;
+  bottom: 0;
+  font-size: 10px;
 }
 </style>
