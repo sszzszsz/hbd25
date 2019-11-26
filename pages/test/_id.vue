@@ -105,8 +105,6 @@ export default Vue.extend({
   display: block;
   height: 100vh;
   height: calc(var(--vh, 1vh) * 100);
-  padding-bottom: 50px;
-  box-sizing: content-box;
 }
 
 .cont {

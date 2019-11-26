@@ -8,7 +8,6 @@
 
 <style lang="scss" scoped>
 .scrollArrow {
-
   &_box {
     position: absolute;
     bottom: 15px;
@@ -31,7 +30,6 @@
   $DELAY: $i * 0.4s;
 
   @include keyframes(upDaown#{$i}) {
-
     0% {
       transform: translateY(0) rotate(45deg);
     }
