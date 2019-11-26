@@ -6,7 +6,8 @@ export const state = () => ({
   loadingEnd: false,
   gNaviOpen: false,
   pageTransition: 1,
-  scrollFlag: true
+  scrollFlag: true,
+  pageParam: 0
 })
 
 // 状態を変更する処理は mutationとしてexportする
@@ -31,6 +32,9 @@ export const mutations = {
   },
   setScrollFlag(state, value) {
     state.scrollFlag = value
+  },
+  setPageParam(state, value) {
+    state.pageParam = value
   }
 }
 
@@ -57,5 +61,8 @@ export const actions = {
   },
   writeScrollFlag(context, value) {
     context.commit('setScrollFlag', value)
+  },
+  writePageParam(context, value) {
+    context.commit('setPageParam', value)
   }
 }

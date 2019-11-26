@@ -11,7 +11,7 @@
         <p class="txt_main">{{ mainText }}</p>
         <p v-if="subText != undefined" class="txt_sub">{{ subText }}</p>
       </div>
-      <pagination :allNum="dataLen" :currentNum="id + 1" />
+      <pagination :allNum="dataLen" :currentNum="targetId + 1" />
       <scrollArrow />
       <div class="debug">
         <p>touchStart:{{ tsPoint }}</p>
@@ -36,6 +36,8 @@ export default Vue.extend({
   },
   data() {
     return {
+      targetId: 0,
+      nextId: 0,
       dataLen: 0,
       targetData: '',
       mainText: '',
@@ -44,7 +46,6 @@ export default Vue.extend({
       tsPoint: 0,
       tePoint: 0,
       mwDeltaY: 0,
-      pageAddFlag: true,
       mainColor: '',
       touchStartTest: '',
       touchEndTest: ''
@@ -53,15 +54,24 @@ export default Vue.extend({
   computed: {
     scrollFlag() {
       return this.$store.state.global.scrollFlag
+    },
+    pageParam() {
+      return this.$store.state.global.pageParam
     }
+  },
+  beforeRouteUpdate(to, from, next) {
+    // ルート変更に反応する...
+    // next() を呼び出すのを忘れないでください
+    console.log('beforeRouteUpdate:', to, from)
+    this.targetId = Number(from.params.id) - 1
+    this.nextId = Number(from.params.id) + 1
+    next()
   },
   async asyncData({ params }) {
     const jsonData = await import(`~/assets/data/point.json`)
     return {
       params,
-      jsonData,
-      id: Number(params.id) - 1,
-      nextId: Number(params.id) + 1
+      jsonData
     }
   },
   created() {
@@ -69,16 +79,22 @@ export default Vue.extend({
     this.setData()
   },
   mounted() {
-    window.setTimeout(this.mouseWheel, 1000)
-    // this.mouseWheel()
-    this.makeColor()
+    // window.setTimeout(this.mouseWheel, 1000)
+    console.log('mounted')
+    this.$nextTick(() => {
+      this.mouseWheel()
+      this.makeColor()
+    })
   },
   methods: {
     setData() {
+      console.log('setData')
+      this.targetId = Number(this.params.id) - 1
+      this.nextId = Number(this.params.id) + 1
       this.dataLen = this.jsonData.default.length
-      this.targetData = this.jsonData[this.id]
-      this.mainText = this.jsonData[this.id].mainText
-      this.subText = this.jsonData[this.id].subText
+      this.targetData = this.jsonData[this.targetId]
+      this.mainText = this.jsonData[this.targetId].mainText
+      this.subText = this.jsonData[this.targetId].subText
     },
     touchStart(event) {
       this.touchStartTest = 'touchStartTest：' + event.touches[0].clientY
@@ -88,44 +104,67 @@ export default Vue.extend({
       this.touchEndTest = 'touchEndTest：' + event.changedTouches[0].clientY
       this.tePoint = event.changedTouches[0].clientY
       if (this.tsPoint - this.tePoint > 50) {
-        this.pageAddFlag = true
-        this.moveNextPage(this.pageAddFlag)
+        const pageAddFlag = true
+        this.moveNextPage(pageAddFlag)
       } else if (this.tePoint - this.tsPoint > 50) {
-        this.pageAddFlag = false
-        this.moveNextPage(this.pageAddFlag)
+        const pageAddFlag = false
+        this.moveNextPage(pageAddFlag)
       }
     },
     mouseWheel() {
       const _this = this
-      document.addEventListener('wheel', function(e) {
-        _this.mwDeltaY = e.deltaY
-        console.log(e.deltaY)
-        if (_this.mwDeltaY > 0) {
-          _this.pageAddFlag = true
-          _this.moveNextPage(_this.pageAddFlag)
-        } else if (_this.mwDeltaY < 0) {
-          _this.pageAddFlag = false
-          _this.moveNextPage(_this.pageAddFlag)
-        }
-      })
+      let deltaY = 0
+      let prevDeltaY = 0
+      let pageAddFlag = true
+
+      document.addEventListener(
+        'wheel',
+        function(e) {
+          deltaY = e.deltaY
+          if (deltaY > prevDeltaY) {
+            console.log(deltaY - prevDeltaY)
+            // マウス用
+            if (deltaY > 100) {
+              pageAddFlag = true
+              _this.moveNextPage(pageAddFlag)
+              e.preventDefault()
+            }
+            // トラックパッド用
+            if (deltaY - prevDeltaY < 10) {
+              pageAddFlag = true
+              _this.moveNextPage(pageAddFlag)
+              e.preventDefault()
+            }
+          } else if (deltaY < prevDeltaY) {
+            if (deltaY - prevDeltaY > 10) {
+              pageAddFlag = false
+              _this.moveNextPage(pageAddFlag)
+            }
+          }
+          prevDeltaY = deltaY
+        },
+        { passive: false }
+      )
     },
     moveNextPage(flag) {
+      // 増えるとき
       if (flag === true) {
+        const nextId = String(this.nextId)
         this.nextId > this.dataLen
-          ? this.$router.push('/test/1/')
-          : this.$router.push('/test/' + this.nextId)
+          ? this.$router.push({ path: `/test/1` })
+          : this.$router.push({ path: `/test/${nextId}` })
       } else {
-        this.nextId >= 0
+        this.targetId === 0
           ? this.$router.push('/test/' + this.dataLen)
-          : this.$router.push('/test/' + this.nextId)
+          : this.$router.push('/test/' + this.targetId)
       }
     },
     makeColor() {
       const MAX = this.dataLen
       // HSLカラーを算出
-      const hue = (360 / MAX) * this.id
+      const hue = (360 / MAX) * this.targetId
       this.mainColor = 'hsl(' + hue + ', 50%, 25%)'
-      console.log(this.mainColor)
+      // console.log(this.mainColor)
       const bgColor = 'hsla(' + hue + ', 60%, 80%, 0.5)'
       this.$refs.colorCont.style.backgroundColor = bgColor
       this.$refs.colorTxt.style.color = this.mainColor
