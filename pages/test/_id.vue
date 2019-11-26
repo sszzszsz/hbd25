@@ -1,11 +1,16 @@
 <template>
-  <main class="main">
+  <main
+    @touchstart="touchStart($event)"
+    @touchend="touchEnd($event)"
+    class="main"
+  >
     <div class="cont">
       <heartMask />
       <div class="txt_box">
+        <p>{{ touchStartTest }}{{ touchEndTest }}</p>
         <!-- <p>json data number : {{ id }}(本来は{{ id + 1 }}個目のデータ)</p> -->
-        <p class="txt_main">{{ mainText }}</p>
-        <p v-if="subText != undefined" class="txt_sub">{{ subText }}</p>
+        <!-- <p class="txt_main">{{ mainText }}</p>
+        <p v-if="subText != undefined" class="txt_sub">{{ subText }}</p> -->
       </div>
       <pagination :allNum="dataLen" :currentNum="id + 1" />
       <scrollArrow />
@@ -31,7 +36,9 @@ export default Vue.extend({
       targetData: '',
       mainText: '',
       subText: '',
-      timeoutId: ''
+      timeoutId: '',
+      touchStartTest: '',
+      touchEndTest: ''
     }
   },
   computed: {
@@ -56,6 +63,14 @@ export default Vue.extend({
     this.movePage()
   },
   methods: {
+    touchStart(event) {
+      console.log('touch start', event.touches[0].clientY)
+      this.touchStartTest = 'touchStartTest：' + event.touches[0].clientY
+    },
+    touchEnd(event) {
+      console.log('touch end', event.changedTouches[0].clientY)
+      this.touchEndTest = 'touchEndTest：' + event.changedTouches[0].clientY
+    },
     setData() {
       this.dataLen = this.jsonData.default.length
       this.targetData = this.jsonData[this.id]
