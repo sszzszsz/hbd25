@@ -56,6 +56,7 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     '@nuxtjs/style-resources',
+    'nuxt-user-agent',
     'nuxt-webfontloader'
   ],
   styleResources: {

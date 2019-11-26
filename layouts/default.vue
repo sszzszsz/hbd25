@@ -1,5 +1,14 @@
 <template>
-  <div :class="[this.$route.name]" class="wrap">
+  <div
+    :class="[
+      this.$route.name,
+      [$ua.browser() == 'Internet Explorer' ? 'IE' : $ua.browser()],
+      [$ua.isFromPc() == true ? 'PC' : null],
+      [$ua.isFromTablet() == true ? 'TB' : null],
+      [$ua.isFromSmartphone() == true ? 'SP' : null]
+    ]"
+    class="wrap"
+  >
     <nuxt />
   </div>
 </template>
@@ -11,12 +20,17 @@ export default Vue.extend({
   data() {
     return {
       ipadFlag: false,
-      ua: '',
+      browser: '',
       classList: ''
     }
   },
   created() {
+    this.browser = this.$ua.browser()
+    if (this.browser === 'Internet Explorer') {
+      this.browser = 'IE'
+    }
     this.$store.dispatch('global/writePageName', this.$route.name)
+    this.$store.dispatch('global/writeBrowser', this.browser)
   },
   mounted() {
     this.getVh()
