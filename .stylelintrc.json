@@ -6,7 +6,7 @@
   "rules": {
     "scss/at-rule-no-unknown": true,
     "indentation": 2,
-    "string-quotes": "double",
+    "string-quotes": "single",
     "color-hex-case": "lower",
     "color-hex-length": "short",
     "color-named": "never",
@@ -23,7 +23,6 @@
     "font-family-name-quotes": "always-unless-keyword",
     "comment-whitespace-inside": "always",
     "comment-empty-line-before": "always",
-    "rule-empty-line-before": "always",
     "selector-pseudo-element-colon-notation": "single",
     "selector-pseudo-class-parentheses-space-inside": "never",
     "media-feature-parentheses-space-inside": "never",
