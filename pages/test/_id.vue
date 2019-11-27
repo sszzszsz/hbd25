@@ -1,9 +1,10 @@
 <template>
   <main
+    class="main"
     @touchstart="touchStart($event)"
     @touchend="touchEnd($event)"
-    class="main"
   >
+    <mousePointer />
     <div ref="colorCont" class="cont">
       <heartMask />
       <div ref="colorTxt" class="txt_box">
@@ -11,10 +12,19 @@
         <p class="txt_main">{{ mainText }}</p>
         <p v-if="subText != undefined" class="txt_sub">{{ subText }}</p>
       </div>
-      <pagination :allNum="dataLen" :currentNum="targetId + 1" />
+      <pagination :all-num="dataLen" :current-num="targetId + 1" />
       <scrollArrow />
-      <div class="link">
-        <nuxt-link :to="{ name: 'test-id', params: { id: nextId } }">
+      <div class="link_box">
+        <nuxt-link
+          :to="{ name: 'test-id', params: { id: prevId } }"
+          class="link_item"
+        >
+          prev
+        </nuxt-link>
+        <nuxt-link
+          :to="{ name: 'test-id', params: { id: nextId } }"
+          class="link_item"
+        >
           next
         </nuxt-link>
       </div>
@@ -32,18 +42,21 @@ import Vue from 'vue'
 import heartMask from '~/components/heartMask.vue'
 import pagination from '~/components/pagination.vue'
 import scrollArrow from '~/components/scrollArrow.vue'
+import mousePointer from '~/components/mousePointer.vue'
 
 export default Vue.extend({
   components: {
     heartMask,
     pagination,
-    scrollArrow
+    scrollArrow,
+    mousePointer
   },
   data() {
     return {
       id: this.$route.params.id,
       targetId: 0,
       nextId: Number(this.$route.params.id) + 1,
+      prevId: Number(this.$route.params.id) - 1,
       dataLen: 0,
       targetData: '',
       mainText: '',
@@ -55,14 +68,6 @@ export default Vue.extend({
       mainColor: '',
       touchStartTest: '',
       touchEndTest: ''
-    }
-  },
-  computed: {
-    scrollFlag() {
-      return this.$store.state.global.scrollFlag
-    },
-    pageParam() {
-      return this.$store.state.global.pageParam
     }
   },
   beforeRouteUpdate(to, from, next) {
@@ -85,10 +90,8 @@ export default Vue.extend({
     this.setData()
   },
   mounted() {
-    // window.setTimeout(this.mouseWheel, 1000)
     console.log('mounted')
     this.$nextTick(() => {
-      this.mouseWheel()
       this.makeColor()
     })
   },
@@ -115,54 +118,6 @@ export default Vue.extend({
       } else if (this.tePoint - this.tsPoint > 50) {
         const pageAddFlag = false
         this.moveNextPage(pageAddFlag)
-      }
-    },
-    mouseWheel() {
-      document.addEventListener('wheel', this.test, { passive: false })
-    },
-    test(e) {
-      let deltaY = 0
-      let prevDeltaY = 0
-      let pageAddFlag = true
-      if (e !== undefined) {
-        deltaY = e.deltaY
-      }
-      if (deltaY > prevDeltaY) {
-        console.log(deltaY - prevDeltaY)
-        // マウス用
-        if (deltaY > 100) {
-          pageAddFlag = true
-          this.moveNextPage(pageAddFlag)
-          e.preventDefault()
-        }
-        // トラックパッド用
-        if (deltaY - prevDeltaY < 10) {
-          pageAddFlag = true
-          this.moveNextPage(pageAddFlag)
-          e.preventDefault()
-        }
-      } else if (deltaY < prevDeltaY) {
-        if (deltaY - prevDeltaY > 10) {
-          pageAddFlag = false
-          this.moveNextPage(pageAddFlag)
-        }
-      }
-      prevDeltaY = deltaY
-    },
-    moveNextPage(flag) {
-      // 増えるとき
-      if (flag === true) {
-        // const nextId = String(this.nextId)
-        this.nextId > this.dataLen
-          ? this.$router.push({ path: `/test/1` })
-          : this.$router.push({
-              name: 'test-id',
-              params: { id: Number(this.$route.params.id) + 1 }
-            })
-      } else {
-        this.targetId === 0
-          ? this.$router.push('/test/' + this.dataLen)
-          : this.$router.push('/test/' + this.targetId)
       }
     },
     makeColor() {
@@ -202,7 +157,7 @@ export default Vue.extend({
 
 .txt_box {
   position: absolute;
-  top: 50%;
+  top: 40%;
   width: 100%;
   color: $white;
   text-align: center;
@@ -217,6 +172,19 @@ export default Vue.extend({
   font-weight: 400;
   font-size: 3.5vmin;
   margin-top: 8px;
+}
+
+.link_box {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: table;
+  z-index: 100;
+}
+.link_item {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
 }
 .debug {
   position: absolute;
