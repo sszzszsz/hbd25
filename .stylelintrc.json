@@ -20,7 +20,6 @@
     "declaration-colon-space-after": "always",
     "number-leading-zero": "always",
     "function-url-quotes": "always",
-    "font-family-name-quotes": "always-unless-keyword",
     "comment-whitespace-inside": "always",
     "comment-empty-line-before": "always",
     "selector-pseudo-element-colon-notation": "single",
