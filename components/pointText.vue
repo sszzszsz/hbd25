@@ -1,0 +1,86 @@
+<template>
+  <div ref="colorTxt" class="txt_box">
+    <!-- <p>json data number : {{ id }}(本来は{{ id + 1 }}個目のデータ)</p> -->
+    <p ref="main" class="txt_main">
+      <span v-html="mainTxt" />
+    </p>
+    <p v-if="sub != undefined" class="txt_sub">
+      <span v-html="subTxt" />
+    </p>
+  </div>
+</template>
+
+<script>
+import Vue from 'vue'
+export default Vue.extend({
+  props: {
+    main: {
+      type: String || undefined,
+      default: 0
+    },
+    sub: {
+      type: [String, Number],
+      default: 0
+    },
+    color: {
+      type: String,
+      default: ''
+    }
+  },
+  data() {
+    return {
+      mainTxt: '',
+      subTxt: ''
+    }
+  },
+  mounted() {
+    console.log('point text')
+    this.$refs.colorTxt.style.color = this.color
+    this.setBr()
+  },
+  methods: {
+    setBr() {
+      const mainFlag = this.main.match(/\|/) != null
+      if (mainFlag) {
+        this.mainTxt = this.main.replace('|', '<br>')
+      } else {
+        this.mainTxt = this.main
+      }
+
+      const subFlag = this.sub.match(/\|/) != null
+      if (subFlag) {
+        this.subTxt = this.sub.replace('|', '<br>')
+      } else {
+        this.subTxt = this.sub
+      }
+    }
+  }
+})
+</script>
+
+<style lang="scss" scoped>
+.txt_box {
+  position: absolute;
+  top: 40%;
+  width: 100%;
+  color: $white;
+  text-align: center;
+}
+
+.txt_main {
+  font-weight: 600;
+  font-size: 5vmin;
+  @include desktop {
+    font-size: 30px;
+  }
+}
+
+.txt_sub {
+  font-weight: 400;
+  font-size: 3.5vmin;
+  margin-top: 8px;
+  @include desktop {
+    font-size: 20px;
+  }
+}
+</style>

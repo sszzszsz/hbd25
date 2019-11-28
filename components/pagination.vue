@@ -1,7 +1,7 @@
 <template>
-  <div class="pagination_box">
+  <div ref="p_box" class="pagination_box">
     <span class="pagination_current">{{ currentNum }}</span>
-    <span class="pagination_hyphen" />
+    <span ref="p_hyphen" class="pagination_hyphen" />
     <span class="pagination_all">{{ allNum }}</span>
   </div>
 </template>
@@ -17,10 +17,19 @@ export default Vue.extend({
     currentNum: {
       type: Number,
       default: 0
+    },
+    color: {
+      type: String,
+      default: ''
     }
   },
   data() {
     return {}
+  },
+  mounted() {
+    console.log('page nation')
+    this.$refs.p_box.style.color = this.color
+    this.$refs.p_hyphen.style.background = this.color
   }
 })
 </script>
@@ -40,7 +49,8 @@ export default Vue.extend({
 
   &_hyphen {
     display: inline-block;
-    width: 20px;
+    min-width: 20px;
+    width: 5vw;
     height: 1px;
     margin: 0 5px;
     background: #fff;

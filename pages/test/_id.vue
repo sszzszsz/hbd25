@@ -1,19 +1,18 @@
 <template>
   <main
-    class="main"
     @touchstart="touchStart($event)"
     @touchend="touchEnd($event)"
+    class="main"
   >
-    <mousePointer />
-    <div ref="colorCont" class="cont">
-      <heartMask />
-      <div ref="colorTxt" class="txt_box">
-        <!-- <p>json data number : {{ id }}(本来は{{ id + 1 }}個目のデータ)</p> -->
-        <p class="txt_main">{{ mainText }}</p>
-        <p v-if="subText != undefined" class="txt_sub">{{ subText }}</p>
-      </div>
-      <pagination :all-num="dataLen" :current-num="targetId + 1" />
-      <scrollArrow />
+    <div class="cont">
+      <heartMask :color="mainColor" />
+      <pointText :color="mainColor" :main="mainText" :sub="subText" />
+      <pagination
+        :color="mainColor"
+        :all-num="dataLen"
+        :current-num="targetId + 1"
+      />
+      <scrollArrow :color="mainColor" />
       <div class="link_box">
         <nuxt-link
           :to="{ name: 'test-id', params: { id: prevId } }"
@@ -42,14 +41,14 @@ import Vue from 'vue'
 import heartMask from '~/components/heartMask.vue'
 import pagination from '~/components/pagination.vue'
 import scrollArrow from '~/components/scrollArrow.vue'
-import mousePointer from '~/components/mousePointer.vue'
+import pointText from '~/components/pointText.vue'
 
 export default Vue.extend({
   components: {
     heartMask,
+    pointText,
     pagination,
-    scrollArrow,
-    mousePointer
+    scrollArrow
   },
   data() {
     return {
@@ -86,18 +85,14 @@ export default Vue.extend({
     }
   },
   created() {
-    console.log('created')
     this.setData()
+    this.makeColor()
   },
   mounted() {
     console.log('mounted')
-    this.$nextTick(() => {
-      this.makeColor()
-    })
   },
   methods: {
     setData() {
-      console.log('setData')
       this.targetId = Number(this.params.id) - 1
       this.nextId = Number(this.params.id) + 1
       this.dataLen = this.jsonData.default.length
@@ -120,15 +115,24 @@ export default Vue.extend({
         this.moveNextPage(pageAddFlag)
       }
     },
+    moveNextPage(flag) {
+      // 増えるとき
+      if (flag === true) {
+        const nextId = String(this.nextId)
+        this.nextId > this.dataLen
+          ? this.$router.push({ path: `/test/1` })
+          : this.$router.push({ path: `/test/${nextId}` })
+      } else {
+        this.targetId === 0
+          ? this.$router.push('/test/' + this.dataLen)
+          : this.$router.push('/test/' + this.targetId)
+      }
+    },
     makeColor() {
       const MAX = this.dataLen
       // HSLカラーを算出
       const hue = (360 / MAX) * this.targetId
       this.mainColor = 'hsl(' + hue + ', 50%, 25%)'
-      // console.log(this.mainColor)
-      const bgColor = 'hsla(' + hue + ', 60%, 80%, 0.5)'
-      this.$refs.colorCont.style.backgroundColor = bgColor
-      this.$refs.colorTxt.style.color = this.mainColor
     }
   }
 })
@@ -155,25 +159,6 @@ export default Vue.extend({
   background: $white;
 }
 
-.txt_box {
-  position: absolute;
-  top: 40%;
-  width: 100%;
-  color: $white;
-  text-align: center;
-}
-
-.txt_main {
-  font-weight: 600;
-  font-size: 5vmin;
-}
-
-.txt_sub {
-  font-weight: 400;
-  font-size: 3.5vmin;
-  margin-top: 8px;
-}
-
 .link_box {
   position: absolute;
   width: 100%;
@@ -185,7 +170,15 @@ export default Vue.extend({
   display: table-cell;
   vertical-align: middle;
   text-align: center;
+  text-indent: -9999px;
 }
+.SP,
+.TB {
+  .link_box {
+    display: none;
+  }
+}
+
 .debug {
   position: absolute;
   bottom: 0;
