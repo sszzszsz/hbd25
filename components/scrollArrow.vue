@@ -1,11 +1,31 @@
 <template>
   <div class="scrollArrow_box">
-    <span class="scrollArrow_item" />
-    <span class="scrollArrow_item" />
-    <span class="scrollArrow_item" />
+    <span ref="arrow" class="scrollArrow_item" />
+    <span ref="arrow" class="scrollArrow_item" />
+    <span ref="arrow" class="scrollArrow_item" />
   </div>
 </template>
-
+<script>
+import Vue from 'vue'
+export default Vue.extend({
+  props: {
+    color: {
+      type: String,
+      default: ''
+    }
+  },
+  data() {
+    return {}
+  },
+  mounted() {
+    console.log('scrollArrow')
+    const arrows = document.querySelectorAll('.scrollArrow_item')
+    for (let i = 0; i < arrows.length; i++) {
+      arrows[i].style.borderColor = this.color
+    }
+  }
+})
+</script>
 <style lang="scss" scoped>
 .scrollArrow {
   &_box {
