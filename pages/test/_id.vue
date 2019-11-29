@@ -5,50 +5,65 @@
     class="main"
   >
     <div class="cont">
-      <heartMask :color="mainColor" />
-      <pointText :color="mainColor" :main="mainText" :sub="subText" />
-      <pagination
-        :color="mainColor"
-        :all-num="dataLen"
-        :current-num="targetId + 1"
-      />
-      <scrollArrow :color="mainColor" />
-      <div class="link_box">
-        <nuxt-link
-          :to="{ name: 'test-id', params: { id: prevId } }"
-          class="link_item"
-        >
-          prev
-        </nuxt-link>
-        <nuxt-link
-          :to="{ name: 'test-id', params: { id: nextId } }"
-          class="link_item"
-        >
-          next
-        </nuxt-link>
+      <div ref="border_deco" class="border_deco_box">
+        <span class="border_top" />
+        <span class="border_right" />
       </div>
-      <div class="debug">
-        <p>touchStart:{{ tsPoint }}</p>
-        <p>touchEnd:{{ tePoint }}</p>
-        <p>mouse whell:{{ mwDeltaY }}</p>
+      <div class="border_deco_box">
+        <span class="border_left" />
+        <span class="border_bottom" />
+      </div>
+      <div ref="inr" class="inr">
+        <heartMask :color="mainColor" />
+        <pointText :color="mainColor" :main="mainText" :sub="subText" />
+        <pagination
+          :color="mainColor"
+          :all-num="dataLen"
+          :current-num="targetId + 1"
+        />
+        <scrollArrow :color="mainColor" />
+        <div @mousemove="changeText($event)" class="link_box">
+          <nuxt-link
+            :to="{ name: 'test-id', params: { id: prevId } }"
+            class="link_item link_item-prev"
+          >
+            PREV
+          </nuxt-link>
+          <nuxt-link
+            :to="{ name: 'test-id', params: { id: nextId } }"
+            class="link_item link_item-next"
+          >
+            NEXT
+          </nuxt-link>
+        </div>
+        <!-- <div class="debug">
+          <p>touchStart:{{ tsPoint }}</p>
+          <p>touchEnd:{{ tePoint }}</p>
+          <p>mouse whell:{{ mwDeltaY }}</p>
+        </div> -->
       </div>
     </div>
+    <mousePointer :pointer-txt="linkTxt" />
   </main>
 </template>
 
 <script>
 import Vue from 'vue'
+// import { TweenMax } from 'gsap'
+
 import heartMask from '~/components/heartMask.vue'
 import pagination from '~/components/pagination.vue'
 import scrollArrow from '~/components/scrollArrow.vue'
 import pointText from '~/components/pointText.vue'
+import mousePointer from '~/components/mousePointer.vue'
 
 export default Vue.extend({
   components: {
     heartMask,
     pointText,
     pagination,
-    scrollArrow
+    scrollArrow,
+    mousePointer
   },
   data() {
     return {
@@ -65,6 +80,7 @@ export default Vue.extend({
       tePoint: 0,
       mwDeltaY: 0,
       mainColor: '',
+      linkTxt: 'NEXT',
       touchStartTest: '',
       touchEndTest: ''
     }
@@ -88,6 +104,7 @@ export default Vue.extend({
   },
   mounted() {
     console.log('mounted')
+    this.setColor()
   },
   methods: {
     setData() {
@@ -135,6 +152,15 @@ export default Vue.extend({
       // HSLカラーを算出
       const hue = (360 / MAX) * this.targetId
       this.mainColor = 'hsl(' + hue + ', 50%, 25%)'
+    },
+    setColor() {
+      const borderItem = document.querySelectorAll('.border_deco_box span')
+      borderItem.forEach((element) => {
+        element.style.background = this.mainColor
+      })
+    },
+    changeText(event) {
+      this.linkTxt = event.toElement.textContent
     }
   }
 })
@@ -154,13 +180,63 @@ export default Vue.extend({
   left: 0;
   width: 100%;
   height: 100%;
+  background: #fff;
+  padding: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-image: url('../../assets/img/bg_paper.jpg');
+}
+.border_deco_box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: calc(100% - 0px);
+  height: calc(100% - 0px);
+  span {
+    display: block;
+    position: absolute;
+    background: #000;
+  }
+}
+.border_top {
+  width: 100%;
+  height: 5px;
+  top: 10px;
+  left: 0;
+}
+.border_right {
+  width: 5px;
+  height: 100%;
+  top: 0;
+  right: 10px;
 }
 
+.border_bottom {
+  width: 100%;
+  height: 5px;
+  bottom: 10px;
+  left: 0;
+}
+.border_left {
+  width: 5px;
+  height: 100%;
+  top: 0;
+  left: 10px;
+}
+
+.inr {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px;
+  z-index: 2;
+}
 .link_box {
   position: absolute;
   width: 100%;

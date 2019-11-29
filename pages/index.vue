@@ -23,7 +23,7 @@ export default Vue.extend({
 })
 </script>
 
-<style>
+<style lang="scss" scoped>
 .main {
   padding: 10px;
   background: #fd0127;

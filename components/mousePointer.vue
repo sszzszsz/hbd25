@@ -3,8 +3,8 @@
     <div ref="cursor" class="cursor_small" />
     <div ref="stalker" class="cursor_stalker">
       <p class="cursor_txt">
-        <span class="cursor_action">click</span>
-        <span class="cursor_action">next</span>
+        <span class="cursor_action">CLICK</span>
+        <span v-html="pointerTxt" class="cursor_action" />
       </p>
     </div>
   </div>
@@ -16,6 +16,12 @@ import Vue from 'vue'
 import { TweenMax } from 'gsap'
 
 export default Vue.extend({
+  props: {
+    pointerTxt: {
+      type: String,
+      default: ''
+    }
+  },
   data() {
     return {
       cursor: '',
@@ -95,8 +101,8 @@ export default Vue.extend({
     position: fixed;
     // top: -20px;
     // left: -20px;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     border: 1px solid $red;
     border-radius: 50%;
     transform: translate(0, 0);
