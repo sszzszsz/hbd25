@@ -30,8 +30,8 @@ export default Vue.extend({
 .scrollArrow {
   &_box {
     position: absolute;
-    bottom: 15px;
-    left: 15px;
+    bottom: 20px;
+    left: 20px;
     z-index: 10;
   }
 

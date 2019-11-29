@@ -10,18 +10,13 @@
     class="wrap"
   >
     <nuxt />
-    <mousePointer />
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
-import mousePointer from '~/components/mousePointer.vue'
 
 export default Vue.extend({
-  components: {
-    mousePointer
-  },
   data() {
     return {
       ipadFlag: false,
