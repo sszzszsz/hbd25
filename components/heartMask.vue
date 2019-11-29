@@ -52,6 +52,10 @@ export default Vue.extend({
   &_box {
     width: 100%;
     max-height: 80%;
+    @include tablet {
+      width: 96%;
+      margin: 0 auto;
+    }
   }
   &_svg {
     width: 100%;

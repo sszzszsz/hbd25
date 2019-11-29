@@ -70,9 +70,7 @@ export default Vue.extend({
     }
   },
   beforeRouteUpdate(to, from, next) {
-    // ルート変更に反応する...
-    // next() を呼び出すのを忘れないでください
-    console.log('beforeRouteUpdate:', to, from)
+    // ルート変更に反応する
     this.targetId = Number(to.params.id) - 1
     this.nextId = Number(to.params.id) + 1
     next()
@@ -93,9 +91,14 @@ export default Vue.extend({
   },
   methods: {
     setData() {
-      this.targetId = Number(this.params.id) - 1
-      this.nextId = Number(this.params.id) + 1
       this.dataLen = this.jsonData.default.length
+      this.targetId = Number(this.params.id) - 1
+      this.nextId =
+        Number(this.params.id) + 1 > this.dataLen
+          ? 1
+          : Number(this.params.id) + 1
+      this.prevId =
+        Number(this.params.id) - 1 < 1 ? 100 : Number(this.params.id) - 1
       this.targetData = this.jsonData[this.targetId]
       this.mainText = this.jsonData[this.targetId].mainText
       this.subText = this.jsonData[this.targetId].subText
@@ -118,10 +121,9 @@ export default Vue.extend({
     moveNextPage(flag) {
       // 増えるとき
       if (flag === true) {
-        const nextId = String(this.nextId)
         this.nextId > this.dataLen
           ? this.$router.push({ path: `/test/1` })
-          : this.$router.push({ path: `/test/${nextId}` })
+          : this.$router.push({ path: `/test/${this.nextId}` })
       } else {
         this.targetId === 0
           ? this.$router.push('/test/' + this.dataLen)
@@ -156,7 +158,7 @@ export default Vue.extend({
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background: $white;
+  background-image: url('../../assets/img/bg_paper.jpg');
 }
 
 .link_box {
