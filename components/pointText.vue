@@ -12,15 +12,17 @@
 
 <script>
 import Vue from 'vue'
+import { TweenMax } from 'gsap'
+
 export default Vue.extend({
   props: {
     main: {
-      type: String || undefined,
-      default: 0
+      type: String,
+      default: ''
     },
     sub: {
-      type: [String, Number],
-      default: 0
+      type: String,
+      default: ''
     },
     color: {
       type: String,
@@ -37,6 +39,18 @@ export default Vue.extend({
     console.log('point text')
     this.$refs.colorTxt.style.color = this.color
     this.setBr()
+    TweenMax.fromTo(
+      '.txt_main',
+      0.3,
+      { opacity: 0, y: 5 },
+      { opacity: 1, y: 0, delay: 0.25 }
+    )
+    TweenMax.fromTo(
+      '.txt_sub',
+      0.3,
+      { opacity: 0, y: 5 },
+      { opacity: 1, y: 0, delay: 0.5 }
+    )
   },
   methods: {
     setBr() {
@@ -47,11 +61,13 @@ export default Vue.extend({
         this.mainTxt = this.main
       }
 
-      const subFlag = this.sub.match(/\|/) != null
-      if (subFlag) {
-        this.subTxt = this.sub.replace('|', '<br>')
-      } else {
-        this.subTxt = this.sub
+      if (this.sub !== null) {
+        const subFlag = this.sub.match(/\|/) != null
+        if (subFlag) {
+          this.subTxt = this.sub.replace('|', '<br>')
+        } else {
+          this.subTxt = this.sub
+        }
       }
     }
   }
@@ -65,11 +81,15 @@ export default Vue.extend({
   width: 100%;
   color: $white;
   text-align: center;
+  @include tablet {
+    top: 45vh;
+    width: 72%;
+  }
 }
 
 .txt_main {
   font-weight: 600;
-  font-size: 5vmin;
+  font-size: 4.6vmin;
   @include desktop {
     font-size: 30px;
   }
