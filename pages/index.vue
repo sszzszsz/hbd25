@@ -1,50 +1,55 @@
 <template>
-  <div class="container">
-    <div>
+  <main class="main">
+    <mousePointer />
+    <div class="cont">
       <h1 class="title">
-        test
+        test100
       </h1>
-      <h2 class="subtitle">
-        My excellent Nuxt.js project
-      </h2>
       <div class="links">
-        <a href="https://nuxtjs.org/" target="_blank" class="button--green">
-          Documentation
-        </a>
         <nuxt-link to="/test/" class="button--green">test</nuxt-link>
       </div>
     </div>
-  </div>
+  </main>
 </template>
 
-<script></script>
+<script>
+import Vue from 'vue'
+import mousePointer from '~/components/mousePointer.vue'
+
+export default Vue.extend({
+  components: {
+    mousePointer
+  }
+})
+</script>
 
 <style>
-.container {
+.main {
+  padding: 10px;
+  background: #fd0127;
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+}
+.cont {
   margin: 0 auto;
-  min-height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
+  height: 100%;
+  background: #fd0127;
+  border: 5px solid #fff;
+  padding: 10px;
+  color: #fff;
 }
 
 .title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
   display: block;
   font-weight: 300;
   font-size: 100px;
-  color: #35495e;
+  color: #fff;
   letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
 }
 
 .links {
