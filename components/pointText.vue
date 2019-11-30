@@ -41,13 +41,13 @@ export default Vue.extend({
     this.setBr()
     TweenMax.fromTo(
       '.txt_main',
-      0.3,
+      0.5,
       { opacity: 0, y: 5 },
-      { opacity: 1, y: 0, delay: 0.25 }
+      { opacity: 1, y: 0, delay: 0.5 }
     )
     TweenMax.fromTo(
       '.txt_sub',
-      0.3,
+      0.5,
       { opacity: 0, y: 5 },
       { opacity: 1, y: 0, delay: 0.5 }
     )
@@ -93,7 +93,7 @@ export default Vue.extend({
   font-size: 4.6vmin;
   opacity: 0;
   @include desktop {
-    font-size: 30px;
+    font-size: 26px;
   }
 }
 

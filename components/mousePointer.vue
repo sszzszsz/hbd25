@@ -27,26 +27,37 @@ export default Vue.extend({
       cursor: '',
       stalker: '',
       mouse: {
-        x: 0,
-        y: 0,
-        prevX: 0,
-        prevY: 0
+        x: this.$store.state.global.mX,
+        y: this.$store.state.global.mY,
+        prevX: this.$store.state.global.mX,
+        prevY: this.$store.state.global.mY
       }
     }
   },
   mounted() {
     // const cursorR = 20 // カーソルの半径
+    console.log('mouse pointer')
     this.cursor = this.$refs.cursor
     this.stalker = this.$refs.stalker
     const self = this
-    // 上記のdivタグをマウスに追従させる処理
+
+    TweenMax.set(this.cursor, {
+      x: this.mouse.x,
+      y: this.mouse.y
+    })
+    TweenMax.set(this.stalker, {
+      left: this.mouse.x,
+      top: this.mouse.y
+    })
+
     document.addEventListener('mousemove', function(e) {
       self.mouseMove(e)
     })
     this.moveStalker()
   },
   methods: {
-    mouseMove(e) {
+    mouseMove(event) {
+      const e = event
       this.mouse.x = e.clientX
       this.mouse.y = e.clientY
       TweenMax.set(this.cursor, {
@@ -56,6 +67,8 @@ export default Vue.extend({
 
       this.mouse.prevX = e.clientX
       this.mouse.prevY = e.clientY
+      this.$store.dispatch('global/writemX', this.mouse.prevX)
+      this.$store.dispatch('global/writemY', this.mouse.prevY)
     },
     moveStalker() {
       const self = this
