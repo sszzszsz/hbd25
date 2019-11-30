@@ -205,12 +205,14 @@ export default Vue.extend({
   height: 5px;
   top: 10px;
   left: 0;
+  @include animation(lineAniT 0.4s linear 0.2s both);
 }
 .border_right {
   width: 5px;
   height: 100%;
   top: 0;
   right: 10px;
+  @include animation(lineAniR 0.4s linear 0.2s both);
 }
 
 .border_bottom {
@@ -218,12 +220,47 @@ export default Vue.extend({
   height: 5px;
   bottom: 10px;
   left: 0;
+  transform: rotate(180deg);
+  @include animation(lineAniB 0.4s linear 0.2s both);
 }
 .border_left {
   width: 5px;
   height: 100%;
   top: 0;
   left: 10px;
+  @include animation(lineAniL 0.4s linear 0.2s both);
+}
+@include keyframes(lineAniT) {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 0%;
+  }
+}
+@include keyframes(lineAniB) {
+  0% {
+    left: 100%;
+  }
+  100% {
+    left: 0%;
+  }
+}
+@include keyframes(lineAniL) {
+  0% {
+    top: -100%;
+  }
+  100% {
+    top: 0%;
+  }
+}
+@include keyframes(lineAniR) {
+  0% {
+    top: 100%;
+  }
+  100% {
+    top: 0%;
+  }
 }
 
 .inr {
