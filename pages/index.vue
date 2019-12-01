@@ -6,7 +6,7 @@
         test100
       </h1>
       <div class="links">
-        <nuxt-link to="/test/" class="button--green">test</nuxt-link>
+        <nuxt-link to="/test/1" class="button--green">test</nuxt-link>
       </div>
     </div>
   </main>
@@ -38,7 +38,7 @@ export default Vue.extend({
   align-items: center;
   text-align: center;
   height: 100%;
-  background: #fd0127;
+  background: #fff;
   border: 5px solid #fff;
   padding: 10px;
   color: #fff;
@@ -48,7 +48,7 @@ export default Vue.extend({
   display: block;
   font-weight: 300;
   font-size: 100px;
-  color: #fff;
+  color: #fd0127;
   letter-spacing: 1px;
 }
 

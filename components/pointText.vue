@@ -79,7 +79,7 @@ export default Vue.extend({
   position: absolute;
   top: 40%;
   width: 100%;
-  max-width: 1000px;
+  max-width: 800px;
   color: $white;
   text-align: center;
   @include tablet {
@@ -89,7 +89,7 @@ export default Vue.extend({
 }
 
 .txt_main {
-  font-weight: 600;
+  font-weight: 500;
   font-size: 4.6vmin;
   opacity: 0;
   @include desktop {
@@ -99,7 +99,7 @@ export default Vue.extend({
 
 .txt_sub {
   font-weight: 400;
-  font-size: 3.5vmin;
+  font-size: 3.4vmin;
   margin-top: 8px;
   opacity: 0;
   @include desktop {
