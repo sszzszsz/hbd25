@@ -1,395 +1,502 @@
 [
   {
-    "mainText": "一緒にいて落ち着く"
+    "mainText": "一緒にいて落ち着く",
+    "subText": "",
+    "bgFile": "1.jpg"
   },
   {
-    "mainText": "素でいられる"
+    "mainText": "素でいられる",
+    "subText": "",
+    "bgFile": "IMG_0935.JPG"
   },
   {
     "mainText": "ベタベタしても怒んない",
-    "subText": "お互い様ね"
+    "subText": "お互い様ね",
+    "bgFile": ""
   },
   {
     "mainText": "基本的に私に対して甘々",
-    "subText": "ゲームしてるとき以外"
+    "subText": "ゲームしてるとき以外",
+    "bgFile": ""
   },
   {
-    "mainText": "私のわりとどうでもいい話を聞いてくれる"
+    "mainText": "私のわりとどうでもいい話を|聞いてくれる",
+    "subText": "",
+    "bgFile": ""
   },
   {
-    "mainText": "アニメとか映画とか一緒に見れる"
+    "mainText": "アニメとか映画とか一緒に見れる",
+    "subText": "",
+    "bgFile": ""
   },
   {
-    "mainText": "アニメとか漫画とかの話ができるし|劇場版にも付き合ってくれる"
+    "mainText": "アニメとか漫画とかの話ができるし|劇場版にも付き合ってくれる",
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "ご飯をいっぱい食べる",
-    "subText": "だから作りすぎてしまうところもあるので|無理して食べきらなくていいよ"
+    "subText": "だから作りすぎてしまうところもあるので|無理して食べきらなくていいよ",
+    "bgFile": ""
   },
   {
-    "mainText": "一口ちょうだいって言ったらくれる"
+    "mainText": "一口ちょうだいって言ったらくれる",
+    "subText": "",
+    "bgFile": ""
   },
   {
-    "mainText": "私が食べきれない分を食べてくれる"
+    "mainText": "私が食べきれない分を食べてくれる",
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "ご飯を作ってくれる",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "普通に料理ができる",
-    "subText": ""
+    "subText": "レシピに忠実だもんね",
+    "bgFile": ""
   },
   {
     "mainText": "掃除とか洗濯やってくれる",
-    "subText": ""
+    "subText": "たまに帰ってくると綺麗になってるよね",
+    "bgFile": ""
   },
   {
     "mainText": "掃除をやたら丁寧にやってくれる（笑）",
-    "subText": ""
+    "subText": "え、そこも？みたいなところ",
+    "bgFile": ""
   },
   {
     "mainText": "下着が届く",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "下着に限らず色々届く",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "お母さんに優しい",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "おばあちゃんにも優しい",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "私のお母さんとか|桃とも仲良くやってくれてる",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "わりと甘いもの好き！",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "甘いもの買ってくれる",
-    "subText": "太ったとか言う癖に..."
+    "subText": "太ったとか言う癖に...",
+    "bgFile": ""
   },
   {
     "mainText": "生クリーム食べてくれる",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "カレーが好き",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "仕事の話をしてくれるし聞いてくれる",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "仕事頑張ってる",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "機械に強め",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "器用！",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "運転も上手",
-    "subText": "地図読めなくてごめんなさい"
+    "subText": "地図読めなくてごめんなさい",
+    "bgFile": ""
   },
   {
     "mainText": "車でアニソンを流してくれる",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "なんでもいいって言っても嫌な顔しない",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "なんでもいいって言ったのに|えーとか文句言っても怒んない",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "ここ行きたいとか|あれ見たいとか付き合ってくれる",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "一緒に浴衣着て花火大会に行ってくれる",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "肌白い",
-    "subText": "羨ましい"
+    "subText": "羨ましい",
+    "bgFile": ""
   },
   {
     "mainText": "素直なところ",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "子供っぽいところもある",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "大きい犬みたい",
-    "subText": "何度も言ってるけど褒めてます"
+    "subText": "何度も言ってるけど褒めてます",
+    "bgFile": ""
   },
   {
-    "mainText": "笑ったときにちょっとくしゃっとする感じ",
-    "subText": ""
+    "mainText": "笑ったときに|ちょっとくしゃっとする感じ",
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "肌モチモチって言う",
-    "subText": "これからも頑張ります"
+    "subText": "これからも頑張ります",
+    "bgFile": ""
   },
   {
     "mainText": "鼻高い",
-    "subText": "羨ましい"
+    "subText": "羨ましい",
+    "bgFile": ""
   },
   {
     "mainText": "というか普通に顔が整っている",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "毛が濃くない",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "パックしたりスクラブしたり謎な女子力",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "そしてその感想を教えてくれる（笑）",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "意外と几帳面",
-    "subText": "いつも雑ですみません"
+    "subText": "いつも雑ですみません",
+    "bgFile": ""
   },
   {
     "mainText": "靴とかジーパンとか|変わらないものはいいもの好き",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "そういうこだわりがあるところ",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "でも、一緒に買い物行くと|私が気に入った方を選ぶとこ",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "お揃いっぽいのを嫌がらない",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "朝まで飲んでも怒らない",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "そして朝まで飲んだりしない",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "浮気の欠片もない",
-    "subText": "気づいてないだけかしら？"
+    "subText": "気づいてないだけかしら？",
+    "bgFile": ""
   },
   {
     "mainText": "朝行くときにちゅーしてくれる",
-    "subText": "最近してくれなーーい"
+    "subText": "最近してくれなーーい",
+    "bgFile": ""
   },
   {
     "mainText": "寝顔が気持ちよさそう",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "というか寝顔が美人",
-    "subText": "悔しい…潰れてるときもあるけど（笑）"
+    "subText": "悔しい…潰れてるときもあるけど（笑）",
+    "bgFile": ""
   },
   {
     "mainText": "一緒に寝ると暖かい",
-    "subText": "冬はありがとう…"
+    "subText": "冬はありがとう…",
+    "bgFile": ""
   },
   {
     "mainText": "寝るとき腕に抱きつかせてくれる",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "寝言で私の名前を呼ぶとこ",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "ビール好きになってくれた！",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "ビール一杯で赤くなる",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "酔っぱらうと甘えたになるとこ",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "魚捌いたり焼いたりしてくれる",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "魚も肉も好き！",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "ギャンブルしない",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "終電逃すと迎えにきてくれる",
-    "subText": "懐かしい…"
+    "subText": "懐かしい…",
+    "bgFile": ""
   },
   {
     "mainText": "仕事が遅くなると心配してくれる",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "遅く帰ってきたとき、起こさないようしても|私が布団に行くと起きて抱きしめてくれるとこ",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "重いものを持ってくれる",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "ささくれむいたりとか|虫刺されを掻くのを|速攻で阻止しに来る",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "LINEをマメに返してくれる",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "スーパーとかご飯とか|お金を多く出してくれる",
-    "subText": "お金はあまり気にしなくていいからね！"
+    "subText": "お金はあまり気にしなくていいからね！",
+    "bgFile": ""
   },
   {
     "mainText": "ケチじゃない",
-    "subText": "とだけ言っておきます（笑）"
+    "subText": "とだけ言っておきます（笑）",
+    "bgFile": ""
   },
   {
     "mainText": "たまに大好きって言ってくれる",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "意外とヤキモチ妬きなとこ",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "耳が弱いとこ",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "ベットで手伸ばすと起こしてくれる",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "抱っこして運んでくれる",
-    "subText": "たまに嫌なときもある"
+    "subText": "たまに嫌なときもある",
+    "bgFile": ""
   },
   {
     "mainText": "ちょっと変態っぽいとこ",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "友達に私を紹介してくれる",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "嫌いなもの入れても食べはしないけど|入れてもいいところ",
-    "subText": "私が食べたいんだもん！"
+    "subText": "私が食べたいんだもん！",
+    "bgFile": ""
   },
   {
     "mainText": "遠出するとき張り切って準備してくれる",
-    "subText": "心配だから早く寝てね（笑）"
+    "subText": "心配だから早く寝てね（笑）",
+    "bgFile": ""
   },
   {
     "mainText": "温泉行った時の浴衣姿",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "腰骨の上あたり（？）",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "手繋いで歩くのを嫌がらない",
-    "subText": ""
-  },
-  {
-    "mainText": "指が私より長くて華奢",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "毎年誕生日付近にいくディズニー！",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
+  },
+  {
+    "mainText": "あと、プールも好き！",
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "喧嘩して私が泣き出しても|途中で放置しないでいてくれること",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "虫を退治してくれる",
-    "subText": "ありがたや…"
+    "subText": "ありがたや…",
+    "bgFile": ""
   },
   {
     "mainText": "お気に入りのものを長く使うところ",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "勧誘とかをキッパリ断ってくれる",
-    "subText": "ありがたや…"
+    "subText": "ありがたや…",
+    "bgFile": ""
   },
   {
     "mainText": "目の色が綺麗",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "人混みで私が紛れると探してくれる",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "気取らないところ",
-    "subText": "たまに気取ってくれてもいいよ（笑）"
+    "subText": "たまに気取ってくれてもいいよ（笑）",
+    "bgFile": ""
   },
   {
-    "mainText": "ご飯作らなくても気にしない",
-    "subText": ""
+    "mainText": "次は一緒に住もうって|言ってくれたこと",
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "たまに歳取ったら〜って|話をできるところ",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "特になんの約束もしてないけど|休みの日は一緒にいてくれる",
-    "subText": ""
+    "subText": "",
+    "bgFile": ""
   },
   {
     "mainText": "私があまり名前を呼ばないことを|気にしないでいてくれる",
-    "subText": "ごめんね、なんか"
+    "subText": "ごめんね、なんか",
+    "bgFile": ""
   },
   {
     "mainText": "ふざけて嫌い～って言うと|好き！っていってくるとこ",
-    "subText": "（笑）"
+    "subText": "（笑）",
+    "bgFile": ""
   },
   {
     "mainText": "えっちする？って聞いてくるところ",
-    "subText": "なんと答えていいかわからない（笑）"
+    "subText": "なんと答えていいかわからない（笑）",
+    "bgFile": ""
   },
   {
     "mainText": "私に愛想尽かさず|好きでいてくれるところ",
-    "subText": "これからもよろしくお願いします。"
+    "subText": "これからもよろしくお願いします。",
+    "bgFile": ""
   }
 ]

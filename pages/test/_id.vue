@@ -4,16 +4,22 @@
     @touchend="touchEnd($event)"
     class="main"
   >
-    <div class="cont">
-      <div ref="border_deco" class="border_deco_box">
+    <div ref="cont" class="cont">
+      <div ref="test" class="test">
+        <!-- <img :src="imgRender(bgFile)" /> -->
+      </div>
+      <!-- <div ref="border_deco" class="border_deco_box">
         <span class="border_top" />
         <span class="border_right" />
       </div>
       <div class="border_deco_box">
         <span class="border_left" />
         <span class="border_bottom" />
-      </div>
+      </div> -->
       <div ref="inr" class="inr">
+        <p class="ttl">
+          <span>HAPPY BIRTHDAY 2019</span>
+        </p>
         <heartMask :color="mainColor" />
         <pointText :color="mainColor" :main="mainText" :sub="subText" />
         <pagination
@@ -49,7 +55,7 @@
 
 <script>
 import Vue from 'vue'
-// import { TweenMax } from 'gsap'
+import { TweenMax } from 'gsap'
 
 import heartMask from '~/components/heartMask.vue'
 import pagination from '~/components/pagination.vue'
@@ -75,6 +81,7 @@ export default Vue.extend({
       targetData: '',
       mainText: '',
       subText: '',
+      bgFile: '',
       timeoutId: '',
       tsPoint: 0,
       tePoint: 0,
@@ -105,6 +112,9 @@ export default Vue.extend({
   mounted() {
     console.log('mounted')
     this.setColor()
+    TweenMax.to('.test', 0.5, {
+      scale: 1
+    })
   },
   methods: {
     setData() {
@@ -119,6 +129,7 @@ export default Vue.extend({
       this.targetData = this.jsonData[this.targetId]
       this.mainText = this.jsonData[this.targetId].mainText
       this.subText = this.jsonData[this.targetId].subText
+      this.bgFile = this.jsonData[this.targetId].bgFile
     },
     touchStart(event) {
       this.touchStartTest = 'touchStartTest：' + event.touches[0].clientY
@@ -151,16 +162,24 @@ export default Vue.extend({
       const MAX = this.dataLen
       // HSLカラーを算出
       const hue = (360 / MAX) * this.targetId
-      this.mainColor = 'hsl(' + hue + ', 50%, 25%)'
+      this.mainColor = 'hsl(' + hue + ', 50%, 50%)'
     },
     setColor() {
-      const borderItem = document.querySelectorAll('.border_deco_box span')
-      borderItem.forEach((element) => {
-        element.style.background = this.mainColor
-      })
+      this.$refs.cont.style.borderColor = this.mainColor
+      // const borderItem = document.querySelectorAll('.border_deco_box span')
+      // borderItem.forEach((element) => {
+      //   element.style.background = this.mainColor
+      // })
+      if (this.bgFile !== '') {
+        this.$refs.cont.style.backgroundImage =
+          'url(' + this.imgRender(this.bgFile) + ')'
+      }
     },
     changeText(event) {
       this.linkTxt = event.toElement.textContent
+    },
+    imgRender(filename) {
+      return require(`@/assets/img/${filename}`)
     }
   }
 })
@@ -180,12 +199,21 @@ export default Vue.extend({
   left: 0;
   width: 100%;
   height: 100%;
-  background: #fff;
-  padding: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  border: 10px solid #fff;
+  background-position: center;
+  background-size: cover;
+}
+.test {
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: absolute;
+  z-index: 1;
+  overflow: hidden;
 }
 .border_deco_box {
   position: absolute;
@@ -200,68 +228,6 @@ export default Vue.extend({
     background: #000;
   }
 }
-.border_top {
-  width: 100%;
-  height: 5px;
-  top: 10px;
-  left: 0;
-  @include animation(lineAniT 0.4s linear 0.2s both);
-}
-.border_right {
-  width: 5px;
-  height: 100%;
-  top: 0;
-  right: 10px;
-  @include animation(lineAniR 0.4s linear 0.2s both);
-}
-
-.border_bottom {
-  width: 100%;
-  height: 5px;
-  bottom: 10px;
-  left: 0;
-  transform: rotate(180deg);
-  @include animation(lineAniB 0.4s linear 0.2s both);
-}
-.border_left {
-  width: 5px;
-  height: 100%;
-  top: 0;
-  left: 10px;
-  @include animation(lineAniL 0.4s linear 0.2s both);
-}
-@include keyframes(lineAniT) {
-  0% {
-    left: -100%;
-  }
-  100% {
-    left: 0%;
-  }
-}
-@include keyframes(lineAniB) {
-  0% {
-    left: 100%;
-  }
-  100% {
-    left: 0%;
-  }
-}
-@include keyframes(lineAniL) {
-  0% {
-    top: -100%;
-  }
-  100% {
-    top: 0%;
-  }
-}
-@include keyframes(lineAniR) {
-  0% {
-    top: 100%;
-  }
-  100% {
-    top: 0%;
-  }
-}
 
 .inr {
   position: relative;
@@ -272,7 +238,30 @@ export default Vue.extend({
   align-items: center;
   flex-direction: column;
   padding: 10px;
-  z-index: 2;
+  z-index: 20;
+  background: rgba(255, 255, 255, 0.6);
+}
+.ttl {
+  width: 100%;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 5vw;
+  -webkit-text-stroke: 1px #bf5740;
+  color: transparent;
+  letter-spacing: 3px;
+  &:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: #000;
+  }
+  @include tablet {
+    font-size: 20px;
+    text-align: center;
+    position: absolute;
+    top: 5vh;
+    left: 0;
+  }
 }
 .link_box {
   position: absolute;
