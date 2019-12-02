@@ -6,7 +6,13 @@
     class="main"
   >
     <div ref="cont" class="cont">
-      <div ref="test" class="test">
+      <div
+        ref="bgBox"
+        :class="[
+          bgRotate == 90 ? 'rotate90' : bgRotate == 180 ? 'rotate180' : ''
+        ]"
+        class="bgBox"
+      >
         <!-- <img :src="imgRender(bgFile)" /> -->
       </div>
       <!-- <div ref="border_deco" class="border_deco_box">
@@ -41,11 +47,6 @@
             NEXT
           </nuxt-link>
         </div>
-        <!-- <div class="debug">
-          <p>touchStart:{{ tsPoint }}</p>
-          <p>touchEnd:{{ tePoint }}</p>
-          <p>mouse whell:{{ mwDeltaY }}</p>
-        </div> -->
       </div>
     </div>
     <mousePointer :pointer-txt="linkTxt" />
@@ -81,6 +82,7 @@ export default Vue.extend({
       mainText: '',
       subText: '',
       bgFile: '',
+      bgRotate: 0,
       timeoutId: '',
       tsPoint: 0,
       tePoint: 0,
@@ -129,6 +131,7 @@ export default Vue.extend({
       this.mainText = this.jsonData[this.targetId].mainText
       this.subText = this.jsonData[this.targetId].subText
       this.bgFile = this.jsonData[this.targetId].bgFile
+      this.bgRotate = this.jsonData[this.targetId].bgRotate
     },
     touchStart(event) {
       this.touchStartTest = 'touchStartTest：' + event.touches[0].clientY
@@ -166,7 +169,7 @@ export default Vue.extend({
     setColor() {
       this.$refs.main.style.setProperty('--base-color', this.mainColor)
       if (this.bgFile !== '') {
-        this.$refs.cont.style.backgroundImage =
+        this.$refs.bgBox.style.backgroundImage =
           'url(' + this.imgRender(this.bgFile) + ')'
       }
     },
@@ -202,14 +205,29 @@ export default Vue.extend({
   border: 10px solid var(--base-color);
   background-position: center;
   background-size: cover;
+  overflow: hidden;
 }
-.test {
+.bgBox {
   width: 100%;
   height: 100%;
   display: block;
   position: absolute;
   z-index: 1;
   overflow: hidden;
+  background-position: center;
+  background-size: cover;
+
+  &.rotate90 {
+    transform: rotate(90deg);
+    height: 100vw;
+  }
+  &.rotate180 {
+    transform: rotate(180deg);
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
 }
 .border_deco_box {
   position: absolute;
