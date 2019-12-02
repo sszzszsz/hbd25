@@ -3,10 +3,10 @@
     <mousePointer />
     <div class="cont">
       <h1 class="title">
-        test100
+        point100
       </h1>
       <div class="links">
-        <nuxt-link to="/test/1" class="button--green">test</nuxt-link>
+        <nuxt-link to="/point/1" class="button--green">point</nuxt-link>
       </div>
     </div>
   </main>

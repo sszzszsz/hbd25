@@ -35,13 +35,13 @@
         <scrollArrow />
         <div @mousemove="changeText($event)" class="link_box">
           <nuxt-link
-            :to="{ name: 'test-id', params: { id: prevId } }"
+            :to="{ name: 'point-id', params: { id: prevId } }"
             class="link_item link_item-prev"
           >
             PREV
           </nuxt-link>
           <nuxt-link
-            :to="{ name: 'test-id', params: { id: nextId } }"
+            :to="{ name: 'point-id', params: { id: nextId } }"
             class="link_item link_item-next"
           >
             NEXT
@@ -152,12 +152,12 @@ export default Vue.extend({
       // 増えるとき
       if (flag === true) {
         this.nextId > this.dataLen
-          ? this.$router.push({ path: `/test/1` })
-          : this.$router.push({ path: `/test/${this.nextId}` })
+          ? this.$router.push({ path: `/point/1` })
+          : this.$router.push({ path: `/point/${this.nextId}` })
       } else {
         this.targetId === 0
-          ? this.$router.push('/test/' + this.dataLen)
-          : this.$router.push('/test/' + this.targetId)
+          ? this.$router.push('/point/' + this.dataLen)
+          : this.$router.push('/point/' + this.targetId)
       }
     },
     makeColor() {
