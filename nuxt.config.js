@@ -73,6 +73,16 @@ export default {
    */
   axios: {},
   /*
+   ** generate
+   */
+  generate: {
+    routes(callback) {
+      const pontPosts = require('./assets/data/point.json')
+      const pointRoutes = pontPosts.map((post) => `/point/${post.id}`)
+      callback(null, [...pointRoutes])
+    }
+  },
+  /*
    ** Build configuration
    */
   build: {
