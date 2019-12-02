@@ -23,10 +23,6 @@ export default Vue.extend({
     sub: {
       type: String,
       default: ''
-    },
-    color: {
-      type: String,
-      default: ''
     }
   },
   data() {
@@ -80,7 +76,7 @@ export default Vue.extend({
   top: 40%;
   width: 100%;
   max-width: 800px;
-  color: $white;
+  color: var(--base-color);
   text-align: center;
   transform: translateY(5vw);
   @include tablet {
