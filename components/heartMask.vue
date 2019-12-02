@@ -9,6 +9,10 @@
       xml:space="preserve"
       class="mask_svg pc"
     >
+      <filter id="drop-shadow">
+        <!-- 図形の影をSourceAlphaで取得、ぼかす-->
+        <feGaussianBlur in="SourceAlpha" stdDeviation="10" />
+      </filter>
       <g>
         <path
           ref="mask_path"
@@ -60,11 +64,12 @@ export default Vue.extend({
 .mask {
   &_box {
     width: 100%;
-    max-height: 700px;
-    transform: translateY(5vw);
+    max-height: calc(100% - 6vw);
+    transform: translateY(3.5vw);
     @include tablet {
       width: 100%;
       margin: 0 auto;
+      transform: translateY(7vh);
     }
   }
   &_svg {
@@ -87,11 +92,12 @@ export default Vue.extend({
   }
 
   &_path {
-    fill: none;
+    // fill: none;
     stroke: var(--base-color);
     stroke-width: 2;
     stroke-linecap: round;
     stroke-linejoin: round;
+    fill: rgba(222, 222, 222, 0.5);
   }
 }
 </style>

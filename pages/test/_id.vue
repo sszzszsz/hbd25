@@ -19,16 +19,14 @@
       </div> -->
       <div ref="inr" class="inr">
         <p ref="ttl" class="ttl">
-          <span>HAPPY BIRTHDAY<br />2019</span>
+          <span>HAPPY</span>
+          <span>BIRTHDAY</span>
+          <span>2019</span>
         </p>
-        <heartMask :color="mainColor" />
-        <pointText :color="mainColor" :main="mainText" :sub="subText" />
-        <pagination
-          :color="mainColor"
-          :all-num="dataLen"
-          :current-num="targetId + 1"
-        />
-        <scrollArrow :color="mainColor" />
+        <heartMask />
+        <pointText :main="mainText" :sub="subText" />
+        <pagination :all-num="dataLen" :current-num="targetId + 1" />
+        <scrollArrow />
         <div @mousemove="changeText($event)" class="link_box">
           <nuxt-link
             :to="{ name: 'test-id', params: { id: prevId } }"
@@ -201,7 +199,7 @@ export default Vue.extend({
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  border: 10px solid #fff;
+  border: 10px solid var(--base-color);
   background-position: center;
   background-size: cover;
 }
@@ -240,9 +238,14 @@ export default Vue.extend({
 }
 
 .ttl {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
   width: 100%;
+  height: 100%;
   font-family: 'Libre Baskerville', serif;
-  font-size: 5vw;
+  font-size: 22vmin;
   -webkit-text-stroke: 1px var(--base-color);
   color: transparent;
   letter-spacing: 3px;
@@ -250,15 +253,18 @@ export default Vue.extend({
   top: 0;
   left: 10px;
   overflow: hidden;
+  text-align: center;
+  opacity: 0.5;
   &:after {
     content: '';
-    display: block;
+    // display: block;
     width: 100%;
     height: 1px;
-    background: #000;
+    // background: #000;
   }
   @include tablet {
-    font-size: 20px;
+    font-size: 9vw;
+    height: auto;
     text-align: center;
     position: absolute;
     top: 5vh;
