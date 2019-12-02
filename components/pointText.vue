@@ -82,6 +82,7 @@ export default Vue.extend({
   max-width: 800px;
   color: $white;
   text-align: center;
+  transform: translateY(5vw);
   @include tablet {
     top: 45vh;
     width: 72%;

@@ -37,10 +37,10 @@ export default Vue.extend({
 
   &_item {
     display: block;
-    width: 10px;
-    height: 10px;
-    border-right: 1px solid #fff;
-    border-bottom: 1px solid #fff;
+    width: 15px;
+    height: 15px;
+    border-right: 1px solid $white;
+    border-bottom: 1px solid $white;
     transform: rotate(45deg);
     margin-bottom: 2px;
   }

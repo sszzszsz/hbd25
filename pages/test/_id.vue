@@ -1,5 +1,6 @@
 <template>
   <main
+    ref="main"
     @touchstart="touchStart($event)"
     @touchend="touchEnd($event)"
     class="main"
@@ -17,8 +18,8 @@
         <span class="border_bottom" />
       </div> -->
       <div ref="inr" class="inr">
-        <p class="ttl">
-          <span>HAPPY BIRTHDAY 2019</span>
+        <p ref="ttl" class="ttl">
+          <span>HAPPY BIRTHDAY<br />2019</span>
         </p>
         <heartMask :color="mainColor" />
         <pointText :color="mainColor" :main="mainText" :sub="subText" />
@@ -165,11 +166,7 @@ export default Vue.extend({
       this.mainColor = 'hsl(' + hue + ', 50%, 50%)'
     },
     setColor() {
-      this.$refs.cont.style.borderColor = this.mainColor
-      // const borderItem = document.querySelectorAll('.border_deco_box span')
-      // borderItem.forEach((element) => {
-      //   element.style.background = this.mainColor
-      // })
+      this.$refs.main.style.setProperty('--base-color', this.mainColor)
       if (this.bgFile !== '') {
         this.$refs.cont.style.backgroundImage =
           'url(' + this.imgRender(this.bgFile) + ')'
@@ -191,6 +188,7 @@ export default Vue.extend({
   display: block;
   height: 100vh;
   height: calc(var(--vh, 1vh) * 100);
+  --base-color: $white;
 }
 
 .cont {
@@ -237,17 +235,21 @@ export default Vue.extend({
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 10px;
   z-index: 20;
   background: rgba(255, 255, 255, 0.6);
 }
+
 .ttl {
   width: 100%;
   font-family: 'Libre Baskerville', serif;
   font-size: 5vw;
-  -webkit-text-stroke: 1px #bf5740;
+  -webkit-text-stroke: 1px var(--base-color);
   color: transparent;
   letter-spacing: 3px;
+  position: absolute;
+  top: 0;
+  left: 10px;
+  overflow: hidden;
   &:after {
     content: '';
     display: block;
