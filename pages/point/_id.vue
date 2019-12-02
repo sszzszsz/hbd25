@@ -55,7 +55,7 @@
 
 <script>
 import Vue from 'vue'
-import { TweenMax } from 'gsap'
+import * as TweenMax from 'gsap/umd/TweenMax'
 
 import heartMask from '~/components/heartMask.vue'
 import pagination from '~/components/pagination.vue'
