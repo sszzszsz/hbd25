@@ -97,7 +97,7 @@ export default Vue.extend({
     stroke-width: 2;
     stroke-linecap: round;
     stroke-linejoin: round;
-    fill: rgba(222, 222, 222, 0.5);
+    fill: rgba(255, 255, 255, 0.8);
   }
 }
 </style>
