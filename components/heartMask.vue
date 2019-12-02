@@ -1,13 +1,13 @@
 <template>
   <div class="mask_box">
     <svg
-      ref="mask_svg"
+      ref="mask_svg_pc"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       xmlns:xlink="http://www.w3.org/1999/xlink"
       viewBox="0 0 800 700"
       xml:space="preserve"
-      class="mask_svg"
+      class="mask_svg pc"
     >
       <g>
         <path
@@ -18,27 +18,40 @@
         />
       </g>
     </svg>
+    <svg
+      ref="mask_svg_sp"
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      viewBox="0 0 800 800"
+      xml:space="preserve"
+      class="mask_svg sp"
+    >
+      <g>
+        <path
+          ref="mask_path"
+          class="mask_path"
+          d="M386.49,201.52c0,0,21.71-103.42,112.35-131.51s234.92,15.32,246.41,173.64
+	C756.75,401.97,571.67,542.42,524.38,582S428.62,696.9,420.96,716.06c-7.66,19.15-5.11,10.21-5.11,10.21s-131.51-143-222.16-247.69
+	S71.13,279.41,115.82,200.25s195.34-155.76,276.92,26.65c0,0,7.3-7.46,9-11.83c12.68-32.74,34.55-170.58,247.77-133.56
+	c195.4,33.93,29.75,333.2-15.32,371.54c-45.07,38.34-222.16,209.39-229.82,278.33c0,0-124.7-142.46-197.9-214.5
+	S21.34,322.82,66.03,210.46s236.5-121.48,328.43,21.52c0,0-38.6-105.79,35.45-151.75s208.11-7.66,273.23,93.2
+	s-29.37,181.3-84.27,291.1c-54.9,109.8-188.96,214.5-196.62,274.5c0,0-122.57-168.53-183.85-215.77S20.06,311.32,60.92,184.92
+	c15.4-47.64,157.74-149.22,275.78-49.79c43.34,36.51,53.62,60.01,53.62,60.01"
+        />
+      </g>
+    </svg>
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
 export default Vue.extend({
-  props: {
-    color: {
-      type: String,
-      default: ''
-    }
-  },
   data() {
-    return {
-      path: ''
-    }
+    return {}
   },
   mounted() {
     console.log('heart mask')
-    this.path = this.$refs.mask_path
-    this.path.style.stroke = this.color
   }
 })
 </script>
@@ -47,7 +60,8 @@ export default Vue.extend({
 .mask {
   &_box {
     width: 100%;
-    max-height: 90%;
+    max-height: 700px;
+    transform: translateY(5vw);
     @include tablet {
       width: 100%;
       margin: 0 auto;
@@ -56,11 +70,26 @@ export default Vue.extend({
   &_svg {
     width: 100%;
     height: 100%;
+    &.sp {
+      display: none;
+    }
+    &.pc {
+      display: block;
+    }
+    @include tablet {
+      &.sp {
+        display: block;
+      }
+      &.pc {
+        display: none;
+      }
+    }
   }
 
   &_path {
     fill: none;
-    stroke-width: 2.4073;
+    stroke: var(--base-color);
+    stroke-width: 2;
     stroke-linecap: round;
     stroke-linejoin: round;
   }

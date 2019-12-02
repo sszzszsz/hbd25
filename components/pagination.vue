@@ -17,10 +17,6 @@ export default Vue.extend({
     currentNum: {
       type: Number,
       default: 0
-    },
-    color: {
-      type: String,
-      default: ''
     }
   },
   data() {
@@ -28,8 +24,6 @@ export default Vue.extend({
   },
   mounted() {
     console.log('page nation')
-    this.$refs.p_box.style.color = this.color
-    this.$refs.p_hyphen.style.background = this.color
   }
 })
 </script>
@@ -44,7 +38,10 @@ export default Vue.extend({
     align-items: center;
     font-size: 3.5vmin;
     font-family: 'Libre Baskerville', serif;
-    color: #fff;
+    color: var(--base-color);
+    @include tablet {
+      font-size: 5vmin;
+    }
   }
 
   &_hyphen {
@@ -53,7 +50,7 @@ export default Vue.extend({
     width: 5vw;
     height: 1px;
     margin: 0 5px;
-    background: #fff;
+    background: var(--base-color);
   }
 }
 </style>
