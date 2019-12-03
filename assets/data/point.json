@@ -44,7 +44,7 @@
   {
     "id": "7",
     "mainText": "アニメとか漫画とかの話ができるし|劇場版にも付き合ってくれる",
-    "subText": "",
+    "subText": "鬼滅の刃見に行こうね！",
     "bgFile": "IMG_7076.jpg",
     "bgRotate": 0
   },
@@ -93,7 +93,7 @@
   {
     "id": "14",
     "mainText": "掃除をやたら丁寧にやってくれる（笑）",
-    "subText": "え、そこまで？みたいなところ",
+    "subText": "え、そこまで？みたいなところまで",
     "bgFile": "IMG_0048.JPG",
     "bgRotate": 90
   },
@@ -127,7 +127,7 @@
   },
   {
     "id": "19",
-    "mainText": "私のお母さんとか|桃とも仲良くやってくれてる",
+    "mainText": "私の母とか桃とも|仲良くやってくれてる",
     "subText": "",
     "bgFile": "IMG_7925.jpg",
     "bgRotate": 90
@@ -155,7 +155,7 @@
   },
   {
     "id": "23",
-    "mainText": "カレーが好き",
+    "mainText": "カレー好き",
     "subText": "",
     "bgFile": "IMG_1008.JPG",
     "bgRotate": 0
@@ -177,7 +177,7 @@
   {
     "id": "26",
     "mainText": "機械に強め",
-    "subText": "",
+    "subText": "引っ越しの時とか色々ありがとう",
     "bgFile": "IMG_5112.jpg",
     "bgRotate": 90
   },
@@ -204,7 +204,7 @@
   },
   {
     "id": "30",
-    "mainText": "なんでもいいって言っても嫌な顔しない",
+    "mainText": "なんでもいいって言っても|嫌な顔しない",
     "subText": "",
     "bgFile": "IMG_9960.JPG",
     "bgRotate": 90
@@ -225,8 +225,8 @@
   },
   {
     "id": "33",
-    "mainText": "一緒に浴衣着て花火大会に行ってくれる",
-    "subText": "",
+    "mainText": "一緒に浴衣を着て|花火大会に行ってくれる",
+    "subText": "浴衣も着付けてくれる！",
     "bgFile": "IMG_0190.JPG",
     "bgRotate": 0
   },
@@ -274,7 +274,7 @@
   },
   {
     "id": "40",
-    "mainText": "鼻高い",
+    "mainText": "鼻が高い",
     "subText": "羨ましい",
     "bgFile": "IMG_1297.JPG",
     "bgRotate": 90
@@ -295,7 +295,7 @@
   },
   {
     "id": "43",
-    "mainText": "パックしたりスクラブしたり謎な女子力",
+    "mainText": "パックしたりスクラブしたり|謎な女子力",
     "subText": "",
     "bgFile": "IMG_9859.JPG",
     "bgRotate": 90
@@ -330,7 +330,7 @@
   },
   {
     "id": "48",
-    "mainText": "でも、一緒に買い物行くと|私が気に入った方を選ぶとこ",
+    "mainText": "でも、一緒に買い物行くと|私の意見も聞いてくれる",
     "subText": "",
     "bgFile": "IMG_2688.jpg",
     "bgRotate": 0
@@ -352,14 +352,14 @@
   {
     "id": "51",
     "mainText": "そして朝まで飲んだりしない",
-    "subText": "",
+    "subText": "たまには行ってきなね！",
     "bgFile": "IMG_7443.jpg",
     "bgRotate": 0
   },
   {
     "id": "52",
     "mainText": "浮気の欠片もない",
-    "subText": "気づいてないだけかしら？",
+    "subText": "気づいてないだけかしら？笑",
     "bgFile": "IMG_1471.jpg",
     "bgRotate": 0
   },
@@ -407,7 +407,7 @@
   },
   {
     "id": "59",
-    "mainText": "ビール好きになってくれた！",
+    "mainText": "ビールを好きになってくれた！",
     "subText": "",
     "bgFile": "IMG_2097.JPG",
     "bgRotate": 90
@@ -428,7 +428,7 @@
   },
   {
     "id": "62",
-    "mainText": "魚捌いたり焼いたりしてくれる",
+    "mainText": "魚を捌いたり|焼いたりしてくれる",
     "subText": "",
     "bgFile": "IMG_2284.jpg",
     "bgRotate": 0
@@ -449,7 +449,7 @@
   },
   {
     "id": "65",
-    "mainText": "終電逃すと迎えにきてくれる",
+    "mainText": "終電を逃すと迎えにきてくれる",
     "subText": "懐かしい…",
     "bgFile": "IMG_1413.jpg",
     "bgRotate": 0
@@ -526,7 +526,7 @@
   },
   {
     "id": "76",
-    "mainText": "ベットで手伸ばすと起こしてくれる",
+    "mainText": "ベットで手を伸ばすと|起こしてくれる",
     "subText": "",
     "bgFile": "IMG_9285.JPG",
     "bgRotate": 0
@@ -561,7 +561,7 @@
   },
   {
     "id": "81",
-    "mainText": "遠出するとき張り切って準備してくれる",
+    "mainText": "遠出するとき|張り切って準備してくれる",
     "subText": "心配だから早く寝てね（笑）",
     "bgFile": "IMG_2567.jpg",
     "bgRotate": 0
@@ -583,13 +583,13 @@
   {
     "id": "84",
     "mainText": "手繋いで歩くのを嫌がらない",
-    "subText": "手つながないと先にどんどん行っちゃうよね…",
+    "subText": "手繋がないとどんどん先に行っちゃう!",
     "bgFile": "IMG_3714.jpg",
     "bgRotate": 0
   },
   {
     "id": "85",
-    "mainText": "毎年誕生日付近にいくディズニー！",
+    "mainText": "毎年誕生日付近にいく|ディズニー！",
     "subText": "",
     "bgFile": "IMG_1383.jpg",
     "bgRotate": 0
@@ -617,14 +617,14 @@
   },
   {
     "id": "89",
-    "mainText": "お気に入りのものを長く使うところ",
+    "mainText": "お気に入りのものを|長く使うところ",
     "subText": "",
     "bgFile": "IMG_6855.jpg",
     "bgRotate": 0
   },
   {
     "id": "90",
-    "mainText": "勧誘とかをキッパリ断ってくれる",
+    "mainText": "勧誘とかを|キッパリ断ってくれる",
     "subText": "ありがたや…",
     "bgFile": "IMG_3721.JPG",
     "bgRotate": 90
@@ -638,7 +638,7 @@
   },
   {
     "id": "92",
-    "mainText": "スーツにあってる",
+    "mainText": "スーツも似合ってる",
     "subText": "",
     "bgFile": "",
     "bgRotate": 0
