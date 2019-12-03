@@ -5,8 +5,8 @@
       <h1 class="title">
         point100
       </h1>
-      <div class="links">
-        <nuxt-link to="/point/1" class="button--green">point</nuxt-link>
+      <div class="link">
+        <nuxt-link to="/point/1" class="link_item">point</nuxt-link>
       </div>
     </div>
   </main>
@@ -26,7 +26,7 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .main {
   padding: 10px;
-  background: #fd0127;
+  background: hsla(0, 50%, 50%, 1);
   height: 100vh;
   height: calc(var(--vh, 1vh) * 100);
 }
@@ -39,7 +39,6 @@ export default Vue.extend({
   text-align: center;
   height: 100%;
   background: #fff;
-  border: 5px solid #fff;
   padding: 10px;
   color: #fff;
 }
@@ -48,11 +47,23 @@ export default Vue.extend({
   display: block;
   font-weight: 300;
   font-size: 100px;
-  color: #fd0127;
+  color: hsla(0, 50%, 50%, 1);
   letter-spacing: 1px;
 }
 
-.links {
-  padding-top: 15px;
+.link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-indent: -9999px;
+  z-index: 2;
+
+  &_item {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
 }
 </style>

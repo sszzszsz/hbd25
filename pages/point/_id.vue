@@ -15,22 +15,16 @@
       >
         <!-- <img :src="imgRender(bgFile)" /> -->
       </div>
-      <!-- <div ref="border_deco" class="border_deco_box">
-        <span class="border_top" />
-        <span class="border_right" />
-      </div>
-      <div class="border_deco_box">
-        <span class="border_left" />
-        <span class="border_bottom" />
-      </div> -->
       <div ref="inr" class="inr">
         <p ref="ttl" class="ttl">
           <span>HAPPY</span>
           <span>BIRTHDAY</span>
           <span>2019</span>
         </p>
-        <heartMask />
-        <pointText :main="mainText" :sub="subText" />
+        <div class="main_content">
+          <pointText :main="mainText" :sub="subText" />
+          <heartMask />
+        </div>
         <pagination :all-num="dataLen" :current-num="targetId + 1" />
         <scrollArrow />
         <div @mousemove="changeText($event)" class="link_box">
@@ -70,6 +64,12 @@ export default Vue.extend({
     pagination,
     scrollArrow,
     mousePointer
+  },
+  head() {
+    return {
+      title: '好きなところ' + this.id
+      // titleTemplate: '', hide titleTemplate
+    }
   },
   data() {
     return {
@@ -165,9 +165,11 @@ export default Vue.extend({
       // HSLカラーを算出
       const hue = (360 / MAX) * this.targetId
       this.mainColor = 'hsl(' + hue + ', 50%, 50%)'
+      this.mainOpacityColor = 'hsla(' + hue + ', 50%, 50%, 0.1)'
     },
     setColor() {
-      this.$refs.main.style.setProperty('--base-color', this.mainColor)
+      this.$refs.main.style.setProperty('--main-color', this.mainColor)
+      this.$refs.main.style.setProperty('--main-color-a', this.mainOpacityColor)
       if (this.bgFile !== '') {
         this.$refs.bgBox.style.backgroundImage =
           'url(' + this.imgRender(this.bgFile) + ')'
@@ -189,7 +191,7 @@ export default Vue.extend({
   display: block;
   height: 100vh;
   height: calc(var(--vh, 1vh) * 100);
-  --base-color: $white;
+  --main-color: $white;
 }
 
 .cont {
@@ -202,7 +204,7 @@ export default Vue.extend({
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  border: 10px solid var(--base-color);
+  border: 10px solid var(--main-color);
   background-position: center;
   background-size: cover;
   overflow: hidden;
@@ -218,31 +220,24 @@ export default Vue.extend({
   background-size: cover;
 
   &.rotate90 {
-    transform: rotate(90deg);
-    height: 100vw;
+    // transform: rotate(90deg);
+    // height: 100vw;
+    @include tablet {
+      transform: rotate(0);
+      height: 100%;
+    }
   }
   &.rotate180 {
-    transform: rotate(180deg);
+    // transform: rotate(180deg);
+    @include tablet {
+      transform: rotate(0);
+    }
   }
   img {
     max-width: 100%;
     height: auto;
   }
 }
-.border_deco_box {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  width: calc(100% - 0px);
-  height: calc(100% - 0px);
-  span {
-    display: block;
-    position: absolute;
-    background: #000;
-  }
-}
-
 .inr {
   position: relative;
   width: 100%;
@@ -252,7 +247,7 @@ export default Vue.extend({
   align-items: center;
   flex-direction: column;
   z-index: 20;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.5);
 }
 
 .ttl {
@@ -264,7 +259,7 @@ export default Vue.extend({
   height: 100%;
   font-family: 'Libre Baskerville', serif;
   font-size: 22vmin;
-  -webkit-text-stroke: 1px var(--base-color);
+  -webkit-text-stroke: 1px var(--main-color);
   color: transparent;
   letter-spacing: 3px;
   position: absolute;
@@ -272,22 +267,21 @@ export default Vue.extend({
   left: 10px;
   overflow: hidden;
   text-align: center;
-  opacity: 0.5;
-  &:after {
-    content: '';
-    // display: block;
-    width: 100%;
-    height: 1px;
-    // background: #000;
-  }
+  opacity: 0.7;
   @include tablet {
+    position: static;
+    opacity: 1;
+    color: var(--main-color);
     font-size: 9vw;
     height: auto;
     text-align: center;
-    position: absolute;
-    top: 5vh;
-    left: 0;
   }
+}
+.main_content {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
 }
 .link_box {
   position: absolute;

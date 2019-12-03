@@ -39,8 +39,8 @@ export default Vue.extend({
     display: block;
     width: 15px;
     height: 15px;
-    border-right: 1px solid $white;
-    border-bottom: 1px solid $white;
+    border-right: 1px solid var(--main-color);
+    border-bottom: 1px solid var(--main-color);
     transform: rotate(45deg);
     margin-bottom: 2px;
   }

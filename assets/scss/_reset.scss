@@ -101,6 +101,9 @@ nav,
 section {
   display: block;
 }
+ol, ul {
+  list-style: none;
+}
 
 nav ul {
   list-style: none;

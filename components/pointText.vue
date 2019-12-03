@@ -73,10 +73,13 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .txt_box {
   position: absolute;
-  top: 40%;
+  top: 31%;
+  left: 0;
+  right: 0;
+  margin: auto;
   width: 100%;
   max-width: 800px;
-  color: var(--base-color);
+  color: var(--main-color);
   text-align: center;
   transform: translateY(5vw);
   @include tablet {
