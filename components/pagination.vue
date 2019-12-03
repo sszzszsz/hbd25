@@ -38,7 +38,7 @@ export default Vue.extend({
     align-items: center;
     font-size: 3.5vmin;
     font-family: 'Libre Baskerville', serif;
-    color: var(--base-color);
+    color: var(--main-color);
     @include tablet {
       font-size: 5vmin;
     }
@@ -50,7 +50,7 @@ export default Vue.extend({
     width: 5vw;
     height: 1px;
     margin: 0 5px;
-    background: var(--base-color);
+    background: var(--main-color);
   }
 }
 </style>

@@ -121,6 +121,7 @@ export default Vue.extend({
     z-index: 999;
   }
   &_txt {
+    width: 100%;
     font-size: 10px;
     text-align: center;
     line-height: 1.2;

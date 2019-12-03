@@ -64,12 +64,14 @@ export default Vue.extend({
 .mask {
   &_box {
     width: 100%;
-    max-height: calc(100% - 6vw);
-    transform: translateY(3.5vw);
+    height: 87%;
+    max-height: 700px;
+    max-width: 800px;
+    margin: 0 auto;
     @include tablet {
       width: 100%;
       margin: 0 auto;
-      transform: translateY(7vh);
+      transform: translateY(0);
     }
   }
   &_svg {
@@ -93,7 +95,7 @@ export default Vue.extend({
 
   &_path {
     // fill: none;
-    stroke: var(--base-color);
+    stroke: var(--main-color);
     stroke-width: 2;
     stroke-linecap: round;
     stroke-linejoin: round;
