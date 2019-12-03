@@ -119,7 +119,6 @@ export default {
       config.resolve.alias.Images = path.resolve(__dirname, './assets/img/')
       config.resolve.alias['~'] = path.resolve(__dirname)
       config.resolve.alias['@'] = path.resolve(__dirname)
-      console.log(config)
     },
     terser: {
       terserOptions: {

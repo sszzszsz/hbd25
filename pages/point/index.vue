@@ -8,23 +8,27 @@
             v-for="point in pointData"
             v-bind:key="point.id"
             :data-parallax="[
-              Number(point.id) % 2 == 0
-                ? 'js-2'
+              Number(point.id) % 3 == 2
+                ? '1.3'
                 : Number(point.id) % 3 == 0
-                ? 'js-3'
-                : ''
+                ? '2'
+                : '1'
             ]"
             class="point_item js-scroll"
           >
             <div class="point_item_inr">
-              <p v-html="point.mainText" class="point_txt" />
-              <span>
+              <div class="point_item_svg">
+                <img src="~/assets/img/heart.svg" alt="" />
+              </div>
+              <div class="point_box">
                 <nuxt-link
                   :to="{ name: 'point-id', params: { id: point.id } }"
                   class="point_btn"
-                  >point{{ point.id }}</nuxt-link
                 >
-              </span>
+                  <p>すきなところ {{ point.id }}</p>
+                  <p v-html="point.mainText" class="point_txt" />
+                </nuxt-link>
+              </div>
             </div>
           </li>
         </ul>
@@ -36,6 +40,7 @@
 
 <script>
 import Vue from 'vue'
+import TweenMax from 'gsap/umd/TweenMax'
 import pontJson from '~/assets/data/point.json'
 import mousePointer from '~/components/mousePointer.vue'
 
@@ -60,10 +65,15 @@ export default Vue.extend({
     console.log('point')
     this.setJsonData()
     const scrollArea = document.getElementById('scrollArea')
+    this.scrollItem = document.querySelectorAll('.js-scroll')
+    const _this = this
+    console.log(_this.scrollItem)
     scrollArea.addEventListener(
       'scroll',
       function() {
+        _this.scr = scrollArea.scrollTop
         console.log(scrollArea.scrollTop)
+        _this.scrollAni()
       },
       { passive: true }
     )
@@ -78,8 +88,14 @@ export default Vue.extend({
     },
     handleScroll(evt, el) {},
     scrollAni() {
-      const scrollItem = document.querySelectorAll('.js-scroll')
-      console.log(scrollItem)
+      for (let i = 0; i < this.scrollItem.length; i++) {
+        const targetParallax = this.scrollItem[i].getAttribute('data-parallax')
+        const transrateY = Number(targetParallax) * -(this.scr * 0.1)
+        TweenMax.set(this.scrollItem[i], {
+          y: transrateY
+        })
+        console.log(transrateY)
+      }
     }
   }
 })
@@ -107,19 +123,33 @@ export default Vue.extend({
   &_item {
     position: relative;
     display: flex;
-    height: 20vh;
-    // opacity: 0;
+    justify-content: center;
     &:nth-child(3n - 1) {
-      justify-content: center;
+      justify-content: flex-start;
     }
     &:nth-child(3n) {
       justify-content: flex-end;
     }
     &_inr {
-      display: inline-block;
+      position: relative;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
       padding: 10px;
       text-align: center;
+      width: 30vw;
+      height: 24vw;
     }
+    &_svg {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: auto;
+    }
+  }
+  &_btn {
+    color: hsla(0, 50%, 50%, 1);
+    text-decoration: none;
   }
 }
 </style>

@@ -73,37 +73,47 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .txt_box {
   position: absolute;
-  top: 31%;
   left: 0;
   right: 0;
   margin: auto;
   width: 100%;
+  height: 100%;
   max-width: 800px;
   color: var(--main-color);
   text-align: center;
-  transform: translateY(5vw);
+  z-index: 10;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   @include tablet {
-    top: 45vh;
     width: 72%;
   }
 }
 
 .txt_main {
   font-weight: 500;
-  font-size: 4.6vmin;
+  font-size: 3vw;
   opacity: 0;
   @include desktop {
     font-size: 26px;
+  }
+  @include tablet {
+    font-size: 5vw;
   }
 }
 
 .txt_sub {
   font-weight: 400;
-  font-size: 3.4vmin;
-  margin-top: 8px;
+  font-size: 2vw;
+  margin-top: 1em;
   opacity: 0;
   @include desktop {
     font-size: 20px;
+  }
+  @include tablet {
+    font-size: 3vw;
   }
 }
 </style>
