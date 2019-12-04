@@ -35,18 +35,8 @@ export default Vue.extend({
     console.log('point text')
     this.$refs.colorTxt.style.color = this.color
     this.setBr()
-    TweenMax.fromTo(
-      '.txt_main',
-      0.5,
-      { opacity: 0, y: 5 },
-      { opacity: 1, y: 0, delay: 0.5 }
-    )
-    TweenMax.fromTo(
-      '.txt_sub',
-      0.5,
-      { opacity: 0, y: 5 },
-      { opacity: 1, y: 0, delay: 0.5 }
-    )
+    TweenMax.fromTo('.txt_main', 0.5, { opacity: 0, y: 5 }, { opacity: 1, y: 0, delay: 0.5 })
+    TweenMax.fromTo('.txt_sub', 0.5, { opacity: 0, y: 5 }, { opacity: 1, y: 0, delay: 0.5 })
   },
   methods: {
     setBr() {

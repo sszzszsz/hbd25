@@ -7,12 +7,9 @@
           <li
             v-for="point in pointData"
             v-bind:key="point.id"
+            :class="{ active: isVisible }"
             :data-parallax="[
-              Number(point.id) % 3 == 2
-                ? '1.3'
-                : Number(point.id) % 3 == 0
-                ? '2'
-                : '1'
+              Number(point.id) % 3 == 2 ? '1.3' : Number(point.id) % 3 == 0 ? '2' : '1'
             ]"
             class="point_item js-scroll"
           >
@@ -21,10 +18,7 @@
                 <img src="~/assets/img/heart.svg" alt="" />
               </div>
               <div class="point_box">
-                <nuxt-link
-                  :to="{ name: 'point-id', params: { id: point.id } }"
-                  class="point_btn"
-                >
+                <nuxt-link :to="{ name: 'point-id', params: { id: point.id } }" class="point_btn">
                   <p>すきなところ {{ point.id }}</p>
                   <p v-html="point.mainText" class="point_txt" />
                 </nuxt-link>
@@ -43,11 +37,13 @@ import Vue from 'vue'
 import TweenMax from 'gsap/umd/TweenMax'
 import pontJson from '~/assets/data/point.json'
 import mousePointer from '~/components/mousePointer.vue'
+import scroll from '~/mixins/scroll'
 
 export default Vue.extend({
   components: {
     mousePointer
   },
+  mixins: [scroll],
   head() {
     return {
       title: '好きなところ100 一覧'
@@ -57,7 +53,8 @@ export default Vue.extend({
     return {
       pointData: pontJson,
       pontTxtList: [],
-      linkTxt: 'SCROLL'
+      linkTxt: 'SCROLL',
+      isVisible: false
     }
   },
   created() {},
@@ -67,13 +64,12 @@ export default Vue.extend({
     const scrollArea = document.getElementById('scrollArea')
     this.scrollItem = document.querySelectorAll('.js-scroll')
     const _this = this
-    console.log(_this.scrollItem)
     scrollArea.addEventListener(
       'scroll',
       function() {
         _this.scr = scrollArea.scrollTop
         console.log(scrollArea.scrollTop)
-        _this.scrollAni()
+        // _this.scrollAni()
       },
       { passive: true }
     )
@@ -86,7 +82,6 @@ export default Vue.extend({
         this.pointData.splice()
       }
     },
-    handleScroll(evt, el) {},
     scrollAni() {
       for (let i = 0; i < this.scrollItem.length; i++) {
         const targetParallax = this.scrollItem[i].getAttribute('data-parallax')
@@ -96,6 +91,13 @@ export default Vue.extend({
         })
         console.log(transrateY)
       }
+    },
+    test(evt, el) {
+      console.log(window.scrollY)
+      if (window.scrollY > 50) {
+        el.setAttribute('style', 'opacity: 1; transform: translate3d(0, -10px, 0)')
+      }
+      return window.scrollY > 100
     }
   }
 })
@@ -107,7 +109,7 @@ export default Vue.extend({
   height: calc(var(--vh, 1vh) * 100);
   padding: 10px;
   border: 10px solid;
-  border-color: hsla(0, 50%, 50%, 1);
+  border-color: $red;
 }
 .cont {
   height: 100%;
@@ -124,6 +126,11 @@ export default Vue.extend({
     position: relative;
     display: flex;
     justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in;
+    &.in_view {
+      opacity: 1;
+    }
     &:nth-child(3n - 1) {
       justify-content: flex-start;
     }
@@ -148,7 +155,7 @@ export default Vue.extend({
     }
   }
   &_btn {
-    color: hsla(0, 50%, 50%, 1);
+    color: $red;
     text-decoration: none;
   }
 }

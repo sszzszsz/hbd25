@@ -26,7 +26,7 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .main {
   padding: 10px;
-  background: hsla(0, 50%, 50%, 1);
+  background: $red;
   height: 100vh;
   height: calc(var(--vh, 1vh) * 100);
 }
@@ -47,7 +47,7 @@ export default Vue.extend({
   display: block;
   font-weight: 300;
   font-size: 100px;
-  color: hsla(0, 50%, 50%, 1);
+  color: $red;
   letter-spacing: 1px;
 }
 
