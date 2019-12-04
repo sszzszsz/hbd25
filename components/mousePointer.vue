@@ -111,11 +111,9 @@ export default Vue.extend({
     align-items: center;
     pointer-events: none;
     position: fixed;
-    // top: -20px;
-    // left: -20px;
-    width: 50px;
-    height: 50px;
-    border: 1px solid $red;
+    width: 60px;
+    height: 60px;
+    border: 1px solid var(--main-color);
     border-radius: 50%;
     transform: translate(0, 0);
     z-index: 999;
@@ -127,6 +125,7 @@ export default Vue.extend({
     line-height: 1.2;
     font-family: 'Libre Baskerville', serif;
     letter-spacing: -0.1px;
+    color: var(--main-color);
   }
 }
 

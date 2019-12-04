@@ -24,15 +24,13 @@
           <nuxt-link
             :to="{ name: 'point-id', params: { id: prevId } }"
             class="link_item link_item-prev"
+            >PREV</nuxt-link
           >
-            PREV
-          </nuxt-link>
           <nuxt-link
             :to="{ name: 'point-id', params: { id: nextId } }"
             class="link_item link_item-next"
+            >NEXT</nuxt-link
           >
-            NEXT
-          </nuxt-link>
         </div>
       </div>
     </div>
@@ -246,7 +244,7 @@ export default Vue.extend({
   width: 100%;
   height: 100%;
   font-family: 'Libre Baskerville', serif;
-  font-size: 22vmin;
+  font-size: 13vmax;
   -webkit-text-stroke: 1px var(--main-color);
   color: transparent;
   letter-spacing: 3px;
