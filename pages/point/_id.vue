@@ -1,16 +1,9 @@
 <template>
-  <main
-    ref="main"
-    @touchstart="touchStart($event)"
-    @touchend="touchEnd($event)"
-    class="main"
-  >
+  <main ref="main" @touchstart="touchStart($event)" @touchend="touchEnd($event)" class="main">
     <div ref="cont" class="cont">
       <div
         ref="bgBox"
-        :class="[
-          bgRotate == 90 ? 'rotate90' : bgRotate == 180 ? 'rotate180' : ''
-        ]"
+        :class="[bgRotate == 90 ? 'rotate90' : bgRotate == 180 ? 'rotate180' : '']"
         class="bgBox"
       >
         <!-- <img :src="imgRender(bgFile)" /> -->
@@ -18,8 +11,8 @@
       <div ref="inr" class="inr">
         <p ref="ttl" class="ttl">
           <span>HAPPY</span>
+          <span>25th</span>
           <span>BIRTHDAY</span>
-          <span>2019</span>
         </p>
         <div class="main_content">
           <pointText :main="mainText" :sub="subText" />
@@ -121,12 +114,8 @@ export default Vue.extend({
     setData() {
       this.dataLen = this.jsonData.default.length
       this.targetId = Number(this.params.id) - 1
-      this.nextId =
-        Number(this.params.id) + 1 > this.dataLen
-          ? 1
-          : Number(this.params.id) + 1
-      this.prevId =
-        Number(this.params.id) - 1 < 1 ? 100 : Number(this.params.id) - 1
+      this.nextId = Number(this.params.id) + 1 > this.dataLen ? 1 : Number(this.params.id) + 1
+      this.prevId = Number(this.params.id) - 1 < 1 ? 100 : Number(this.params.id) - 1
       this.targetData = this.jsonData[this.targetId]
       this.mainText = this.jsonData[this.targetId].mainText
       this.subText = this.jsonData[this.targetId].subText
@@ -171,8 +160,7 @@ export default Vue.extend({
       this.$refs.main.style.setProperty('--main-color', this.mainColor)
       this.$refs.main.style.setProperty('--main-color-a', this.mainOpacityColor)
       if (this.bgFile !== '') {
-        this.$refs.bgBox.style.backgroundImage =
-          'url(' + this.imgRender(this.bgFile) + ')'
+        this.$refs.bgBox.style.backgroundImage = 'url(' + this.imgRender(this.bgFile) + ')'
       }
     },
     changeText(event) {
