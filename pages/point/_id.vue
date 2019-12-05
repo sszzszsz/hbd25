@@ -1,6 +1,6 @@
 <template>
-  <main ref="main" @touchstart="touchStart($event)" @touchend="touchEnd($event)" class="main">
-    <div ref="cont" class="cont">
+  <main ref="main" class="main">
+    <div ref="cont" @touchstart="touchStart($event)" @touchend="touchEnd($event)" class="cont">
       <div
         ref="bgBox"
         :class="[bgRotate == 90 ? 'rotate90' : bgRotate == 180 ? 'rotate180' : '']"
@@ -35,6 +35,7 @@
       </div>
     </div>
     <mousePointer :pointer-txt="linkTxt" />
+    <navi />
   </main>
 </template>
 
@@ -47,6 +48,7 @@ import pagination from '~/components/pagination.vue'
 import scrollArrow from '~/components/scrollArrow.vue'
 import pointText from '~/components/pointText.vue'
 import mousePointer from '~/components/mousePointer.vue'
+import navi from '~/components/navi.vue'
 
 export default Vue.extend({
   components: {
@@ -54,7 +56,8 @@ export default Vue.extend({
     pointText,
     pagination,
     scrollArrow,
-    mousePointer
+    mousePointer,
+    navi
   },
   head() {
     return {
@@ -178,6 +181,7 @@ export default Vue.extend({
   height: 100vh;
   height: calc(var(--vh, 1vh) * 100);
   --main-color: $white;
+  // background-image: repeating-linear-gradient(45deg, var(--main-color) 0px 15px, #fff 15px 30px);
 }
 
 .cont {
@@ -191,8 +195,6 @@ export default Vue.extend({
   align-items: center;
   flex-direction: column;
   border: 10px solid var(--main-color);
-  background-position: center;
-  background-size: cover;
   overflow: hidden;
 }
 .bgBox {
@@ -204,6 +206,7 @@ export default Vue.extend({
   overflow: hidden;
   background-position: center;
   background-size: cover;
+  background-color: #fff;
 
   &.rotate90 {
     // transform: rotate(90deg);
@@ -282,6 +285,7 @@ export default Vue.extend({
   text-align: center;
   text-indent: -9999px;
 }
+
 .SP,
 .TB {
   .link_box {
