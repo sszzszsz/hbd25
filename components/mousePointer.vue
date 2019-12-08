@@ -4,7 +4,7 @@
     <div ref="stalker" class="cursor_stalker">
       <p class="cursor_txt">
         <span class="cursor_action">CLICK</span>
-        <span v-html="pointerTxt" class="cursor_action" />
+        <span ref="target" v-html="pointerTxt" class="cursor_action cursor_target" />
       </p>
     </div>
   </div>
@@ -52,6 +52,9 @@ export default Vue.extend({
     document.addEventListener('mousemove', function(e) {
       self.mouseMove(e)
     })
+    document.removeEventListener('mousemove', function(e) {
+      self.mouseMove(e)
+    })
     this.moveStalker()
   },
   methods: {
@@ -92,6 +95,9 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .cursor {
   pointer-events: none;
+  @include tablet {
+    display: none;
+  }
   &_small {
     pointer-events: none;
     position: fixed;
@@ -126,12 +132,18 @@ export default Vue.extend({
     font-family: 'Libre Baskerville', serif;
     letter-spacing: -0.1px;
     color: var(--main-color);
+    z-index: 999;
   }
 }
 
 .SP,
 .TB {
   .cursor {
+    display: none;
+  }
+}
+.navOpen {
+  .cursor_target {
     display: none;
   }
 }

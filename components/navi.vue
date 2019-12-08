@@ -1,63 +1,48 @@
 <template>
-  <main ref="nav" class="nav">
-    <div class="nav_cont">
+  <nav class="nav">
+    <div id="menu" @click="toglleMenu($event)" :class="{ open: menuFlag }" class="menu-c">
+      <span />
+    </div>
+    <div :class="{ is_active: menuFlag }" class="nav_cont">
       <div id="scrollArea" class="nav_inr">
-        <span @click="closeNav($event)">閉じる</span>
-        <ul class="pointlist">
-          <li class="point_item js-scroll">TOP</li>
-          <li
-            v-for="point in pointData"
-            v-bind:key="point.id"
-            :class="{ active: isVisible }"
-            class="point_item js-scroll"
-          >
+        <ul class="point_list">
+          <li v-for="point in pontTxtList" v-bind:key="point.id" class="point_item">
             <div class="point_item_inr">
-              <div class="point_item_svg">
-                <img src="~/assets/img/heart.svg" alt="" />
-              </div>
               <div class="point_box">
                 <nuxt-link :to="{ name: 'point-id', params: { id: point.id } }" class="point_btn">
                   <p class="point_num">すきなところ {{ point.id }}</p>
-                  <p v-html="point.mainText" class="point_txt" />
+                  <p v-html="point.text" class="point_txt" />
                 </nuxt-link>
               </div>
             </div>
           </li>
         </ul>
-        <mousePointer :pointer-txt="linkTxt" />
       </div>
+      <nuxt-link to="/" class="link_top">TOP</nuxt-link>
     </div>
-  </main>
+  </nav>
 </template>
 
 <script>
 import Vue from 'vue'
 import TweenMax from 'gsap/umd/TweenMax'
-import pointJson from '~/assets/data/point.json'
-import mousePointer from '~/components/mousePointer.vue'
+import pontJson from '~/assets/data/point.json'
 import scroll from '~/mixins/scroll'
 
 export default Vue.extend({
-  components: {
-    mousePointer
-  },
   mixins: [scroll],
-  head() {
-    return {
-      title: '好きなところ100 一覧'
-    }
-  },
   data() {
     return {
-      pointData: pointJson,
+      pointData: pontJson,
       pontTxtList: [],
-      linkTxt: 'SCROLL',
-      isVisible: false
+      linkTxt: '',
+      isVisible: false,
+      menuFlag: false
     }
   },
   created() {},
   mounted() {
-    console.log('navi')
+    console.log('point')
     this.setJsonData()
     const scrollArea = document.getElementById('scrollArea')
     this.scrollItem = document.querySelectorAll('.js-scroll')
@@ -73,10 +58,24 @@ export default Vue.extend({
   },
   methods: {
     setJsonData() {
+      let pointItem = {}
       for (let i = 0; i < this.pointData.length; i++) {
-        const targetTxt = this.pointData[i].mainText.replace('|', '<br>')
-        this.pointData[i].mainText = targetTxt
-        this.pointData.splice()
+        const targetTxt = this.pointData[i].mainText.replace('|', '')
+        pointItem.text = targetTxt
+        pointItem.id = i + 1
+        // this.pontTxtList[i].id = i + 1
+        // this.pointData.splice()
+        this.pontTxtList.push(pointItem)
+        pointItem = {}
+      }
+    },
+    toglleMenu(event) {
+      if (this.menuFlag) {
+        this.menuFlag = false
+        this.$store.dispatch('global/writeGNaviOpen', false)
+      } else {
+        this.menuFlag = true
+        this.$store.dispatch('global/writeGNaviOpen', true)
       }
     },
     scrollAni() {
@@ -88,11 +87,6 @@ export default Vue.extend({
         })
         console.log(transrateY)
       }
-    },
-    closeNav(event) {
-      TweenMax.to('.nav', 0.5, {
-        opacity: 0
-      })
     },
     test(evt, el) {
       console.log(window.scrollY)
@@ -106,34 +100,123 @@ export default Vue.extend({
 </script>
 <style lang="scss" scoped>
 .nav {
-  position: fixed;
-  width: 100%;
-  height: 100vh;
-  height: calc(var(--vh, 1vh) * 100);
-  padding: 10px;
-  border: 10px solid;
-  border-color: $red;
-  background: #fff;
+  position: absolute;
+  height: 0;
+  &_cont {
+    width: 100vw;
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
+    border: 10px solid;
+    border-color: var(--main-color);
+    overflow: hidden;
+    background: #fff;
+    transform: translateX(-125%);
+    transition: transform 0.5s ease-in-out;
+    // border-bottom-right-radius: 50%;
+    &.is_active {
+      transform: translateX(0);
+    }
+  }
+  &_inr {
+    width: calc(100% + 17px);
+    height: 100%;
+    padding-right: 17px;
+    overflow-y: scroll;
+  }
+}
+
+/* menu icon */
+$body: #6e8282;
+$back: #fff;
+$btn_back: #e73f3f;
+$cardback: #e8ebeb;
+$navbar: #57c7aa;
+
+/* margins */
+
+$line-w: 25px;
+$line-h: 2px;
+$line-p: -6px;
+$line-p2: 6px;
+
+/* mixins */
+
+#menu {
+  position: absolute;
+  cursor: pointer;
+  margin: 20px;
+  width: 50px;
+  height: 50px;
+  right: 0;
+  top: 0;
+  background: var(--main-color);
+  @include transition(all 0.2s);
+  z-index: 100;
+  border-radius: 50%;
+}
+.line {
+  margin: 20px auto;
+  width: 30px;
+  height: 4px;
+  border-radius: 2px;
+  background: #000;
+}
+#menu > span {
+  margin: 26%;
+  position: absolute;
+  top: 65%;
+  display: block;
+  width: $line-w;
+  height: $line-h;
+  margin-top: -0.5em;
+  border-radius: 3px;
+  background-color: $white;
+}
+
+.menu-c > span:before,
+.menu-c > span:after {
+  content: '';
+  position: absolute;
+  width: $line-w;
+  height: $line-h;
+  background-color: $white;
+  border-radius: 3px;
+  @include transition(all 0.1s);
+}
+.menu-c > span:before {
+  @include transform-translateY($line-p);
+}
+
+.menu-c > span:after {
+  @include transform-translateY($line-p2);
+}
+.menu-c.open {
+  @include transform-rotate(45);
+}
+
+.menu-c.open > span:before {
+  @include transform-rotate(90);
+}
+
+.menu-c.open > span:after {
   opacity: 0;
-  transform: translateY(-100%);
+  @include transform-rotate(90);
 }
-.nav_cont {
-  height: 100%;
-  overflow: hidden;
-}
-.nav_inr {
-  width: calc(100% + 17px);
-  height: 100%;
-  padding-right: 17px;
-  overflow-y: scroll;
-}
+
 .point {
+  &_list {
+    width: 90%;
+    padding: 5vmin;
+
+    br {
+      display: none;
+    }
+  }
   &_item {
     position: relative;
     display: flex;
-    opacity: 0;
+    justify-content: center;
     transition: opacity 0.3s ease-in;
-    color: $red;
     & + & {
       margin-top: 30px;
     }
@@ -145,7 +228,6 @@ export default Vue.extend({
       width: 100%;
     }
     &_svg {
-      display: none;
       position: absolute;
       top: 0;
       width: 100%;
@@ -154,11 +236,27 @@ export default Vue.extend({
   }
   &_num {
     font-size: 80%;
-    margin-bottom: 5px;
+  }
+  &_txt {
+    font-size: 3vmin;
   }
   &_btn {
-    color: $red;
+    color: var(--main-color);
     text-decoration: none;
   }
+}
+.link_top {
+  display: block;
+  position: absolute;
+  top: 80px;
+  right: 25px;
+  writing-mode: vertical-rl;
+  text-align: center;
+  text-decoration: none;
+  text-orientation: inherit;
+  transform: rotate(180deg);
+  font-size: 3vh;
+  font-family: 'Libre Baskerville', serif;
+  color: var(--main-color);
 }
 </style>

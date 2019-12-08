@@ -17,7 +17,7 @@
     "id": "3",
     "mainText": "ベタベタしても怒んない",
     "subText": "お互い様ね",
-    "bgFile": "",
+    "bgFile": "IMG_8270.jpg",
     "bgRotate": 0
   },
   {
@@ -255,7 +255,7 @@
     "id": "37",
     "mainText": "大きい犬みたい",
     "subText": "何度も言ってるけど褒めてます",
-    "bgFile": "IMG_8270.jpg",
+    "bgFile": "IMG_5044.JPG",
     "bgRotate": 90
   },
   {
@@ -290,7 +290,7 @@
     "id": "42",
     "mainText": "毛が濃くない",
     "subText": "",
-    "bgFile": "",
+    "bgFile": "IMG_4510.JPG",
     "bgRotate": 0
   },
   {
@@ -304,7 +304,7 @@
     "id": "44",
     "mainText": "そしてその感想を教えてくれる（笑）",
     "subText": "同じの買ってるのね（笑）",
-    "bgFile": "",
+    "bgFile": "IMG_8270.jpg",
     "bgRotate": 0
   },
   {
@@ -640,7 +640,7 @@
     "id": "92",
     "mainText": "スーツも似合ってる",
     "subText": "",
-    "bgFile": "",
+    "bgFile": "IMG_5146.JPG",
     "bgRotate": 0
   },
   {
@@ -675,7 +675,7 @@
     "id": "97",
     "mainText": "私があまり名前を呼ばないことを|気にしないでいてくれる",
     "subText": "ごめんね、なんか未だに恥ずかしいんです…",
-    "bgFile": "",
+    "bgFile": "IMG_5059.JPG",
     "bgRotate": 0
   },
   {
@@ -696,7 +696,7 @@
     "id": "100",
     "mainText": "私に愛想尽かさず|好きでいてくれるところ",
     "subText": "これからもよろしくお願いします。",
-    "bgFile": "",
+    "bgFile": "IMG_5171.JPG",
     "bgRotate": 0
   }
 ]

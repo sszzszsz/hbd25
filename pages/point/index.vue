@@ -1,5 +1,8 @@
 <template>
-  <main class="main">
+  <nav class="main">
+    <div id="menu" class="menu-c">
+      <span />
+    </div>
     <div class="cont">
       <div id="scrollArea" class="inr">
         <p>point</p>
@@ -29,7 +32,7 @@
         <mousePointer :pointer-txt="linkTxt" />
       </div>
     </div>
-  </main>
+  </nav>
 </template>
 
 <script>
@@ -120,6 +123,111 @@ export default Vue.extend({
   height: 100%;
   padding-right: 17px;
   overflow-y: scroll;
+}
+
+/* menu icon */
+
+/* color */
+$body: #6e8282;
+$back: #fff;
+$btn_back: #e73f3f;
+$cardback: #e8ebeb;
+$navbar: #57c7aa;
+
+/* margins */
+
+$line-w: 25px;
+$line-h: 2px;
+$line-p: -6px;
+$line-p2: 6px;
+
+/* mixins */
+
+@mixin transform-rotate($deg) {
+  -moz-transform: rotate($deg + deg);
+  -ms-transform: rotate($deg + deg);
+  -webkit-transform: rotate($deg + deg);
+  -o-transform: rotate($deg + deg);
+  transform: rotate($deg + deg);
+}
+
+@mixin transform-translateY($color) {
+  -moz-transform: translateY($color);
+  -ms-transform: translateY($color);
+  -webkit-transform: translateY($color);
+  -o-transform: translateY($color);
+  transform: translateY($color);
+}
+
+@mixin transform-translate($pos, $pos2) {
+  -moz-transform: translate($pos, $pos2);
+  -ms-transform: translate($pos, $pos2);
+  -webkit-transform: translate($pos, $pos2);
+  -o-transform: translate($pos, $pos2);
+  transform: translate($pos, $pos2);
+}
+
+@mixin transform-scale($val) {
+  -moz-transform: scale($val);
+  -ms-transform: scale($val);
+  -webkit-transform: scale($val);
+  -o-transform: scale($val);
+  transform: scale($val);
+}
+
+@mixin transition($val) {
+  -webkit-transition: ($val);
+  -moz-transition: ($val);
+  -ms-transition: ($val);
+  -o-transition: ($val);
+  transition: ($val);
+}
+#menu {
+  position: absolute;
+  cursor: pointer;
+  margin: 20px;
+  width: 50px;
+  height: 50px;
+  right: 0;
+  bottom: 0;
+  background: $btn_back;
+  @include transition(all 0.2s);
+}
+.line {
+  margin: 20px auto;
+  width: 30px;
+  height: 4px;
+  border-radius: 2px;
+  background: #000;
+}
+#menu > span {
+  margin: 26%;
+  position: absolute;
+  top: 65%;
+  display: block;
+  width: $line-w;
+  height: $line-h;
+  margin-top: -0.5em;
+  border-radius: 3px;
+  background-color: $white;
+}
+
+.menu-c > span:before,
+.menu-c > span:after {
+  content: '';
+  position: absolute;
+  width: $line-w;
+  height: $line-h;
+  background-color: $white;
+  border-radius: 3px;
+  @include transition(all 0.1s);
+}
+.menu-c > span:before {
+  @include transform-translateY($line-p);
+}
+
+.menu-c > span:after {
+  @include transform-translateY($line-p2);
 }
 .point {
   &_item {
