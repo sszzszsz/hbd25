@@ -44,17 +44,6 @@ export default Vue.extend({
   mounted() {
     console.log('point')
     this.setJsonData()
-    const scrollArea = document.getElementById('scrollArea')
-    this.scrollItem = document.querySelectorAll('.js-scroll')
-    const _this = this
-    scrollArea.addEventListener(
-      'scroll',
-      function() {
-        _this.scr = scrollArea.scrollTop
-        console.log(scrollArea.scrollTop)
-      },
-      { passive: true }
-    )
   },
   methods: {
     setJsonData() {
@@ -63,8 +52,6 @@ export default Vue.extend({
         const targetTxt = this.pointData[i].mainText.replace('|', '')
         pointItem.text = targetTxt
         pointItem.id = i + 1
-        // this.pontTxtList[i].id = i + 1
-        // this.pointData.splice()
         this.pontTxtList.push(pointItem)
         pointItem = {}
       }
@@ -85,15 +72,7 @@ export default Vue.extend({
         TweenMax.set(this.scrollItem[i], {
           y: transrateY
         })
-        console.log(transrateY)
       }
-    },
-    test(evt, el) {
-      console.log(window.scrollY)
-      if (window.scrollY > 50) {
-        el.setAttribute('style', 'opacity: 1; transform: translate3d(0, -10px, 0)')
-      }
-      return window.scrollY > 100
     }
   }
 })
