@@ -2,10 +2,12 @@
   <div
     :class="[
       this.$route.name,
+      this.$route.params.id,
       [$ua.browser() == 'Internet Explorer' ? 'IE' : $ua.browser()],
       [$ua.isFromPc() == true ? 'PC' : null],
       [$ua.isFromTablet() == true ? 'TB' : null],
-      [$ua.isFromSmartphone() == true ? 'SP' : null]
+      [$ua.isFromSmartphone() == true ? 'SP' : null],
+      [this.$store.state.global.gNaviOpen == true ? 'navOpen' : null]
     ]"
     class="wrap"
   >

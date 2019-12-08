@@ -1,13 +1,11 @@
 <template>
-  <main ref="main" class="main">
+  <main ref="main" :class="[this.$route.params.id]" class="main">
     <div ref="cont" @touchstart="touchStart($event)" @touchend="touchEnd($event)" class="cont">
       <div
         ref="bgBox"
         :class="[bgRotate == 90 ? 'rotate90' : bgRotate == 180 ? 'rotate180' : '']"
         class="bgBox"
-      >
-        <!-- <img :src="imgRender(bgFile)" /> -->
-      </div>
+      />
       <div ref="inr" class="inr">
         <p ref="ttl" class="ttl">
           <span>HAPPY</span>
@@ -208,20 +206,6 @@ export default Vue.extend({
   background-size: cover;
   background-color: #fff;
 
-  &.rotate90 {
-    // transform: rotate(90deg);
-    // height: 100vw;
-    @include tablet {
-      transform: rotate(0);
-      height: 100%;
-    }
-  }
-  &.rotate180 {
-    // transform: rotate(180deg);
-    @include tablet {
-      transform: rotate(0);
-    }
-  }
   img {
     max-width: 100%;
     height: auto;
@@ -278,6 +262,9 @@ export default Vue.extend({
   height: 100%;
   display: table;
   z-index: 100;
+  @include tablet {
+    display: none;
+  }
 }
 .link_item {
   display: table-cell;
