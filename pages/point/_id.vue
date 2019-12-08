@@ -19,16 +19,8 @@
         <pagination :all-num="dataLen" :current-num="targetId + 1" />
         <scrollArrow />
         <div @mousemove="changeText($event)" class="link_box">
-          <nuxt-link
-            :to="{ name: 'point-id', params: { id: prevId } }"
-            class="link_item link_item-prev"
-            >PREV</nuxt-link
-          >
-          <nuxt-link
-            :to="{ name: 'point-id', params: { id: nextId } }"
-            class="link_item link_item-next"
-            >NEXT</nuxt-link
-          >
+          <nuxt-link :to="'/point/' + prevId" class="link_item link_item-prev">PREV</nuxt-link>
+          <nuxt-link :to="'/point/' + nextId" class="link_item link_item-next">NEXT</nuxt-link>
         </div>
       </div>
     </div>
@@ -85,12 +77,6 @@ export default Vue.extend({
       touchEndTest: ''
     }
   },
-  beforeRouteUpdate(to, from, next) {
-    // ルート変更に反応する
-    this.targetId = Number(to.params.id) - 1
-    this.nextId = Number(to.params.id) + 1
-    next()
-  },
   async asyncData({ params }) {
     const jsonData = await import(`~/assets/data/point.json`)
     return {
@@ -113,7 +99,7 @@ export default Vue.extend({
     setData() {
       this.dataLen = this.jsonData.default.length
       this.targetId = Number(this.params.id) - 1
-      this.nextId = Number(this.params.id) + 1 > this.dataLen ? 1 : Number(this.params.id) + 1
+      this.nextId = Number(this.params.id) + 1 > this.dataLen ? 'end/' : Number(this.params.id) + 1
       this.prevId = Number(this.params.id) - 1 < 1 ? 100 : Number(this.params.id) - 1
       this.targetData = this.jsonData[this.targetId]
       this.mainText = this.jsonData[this.targetId].mainText
@@ -140,7 +126,7 @@ export default Vue.extend({
       // 増えるとき
       if (flag === true) {
         this.nextId > this.dataLen
-          ? this.$router.push({ path: `/point/1` })
+          ? this.$router.push({ path: `/end/` })
           : this.$router.push({ path: `/point/${this.nextId}` })
       } else {
         this.targetId === 0
