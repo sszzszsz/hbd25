@@ -88,6 +88,7 @@ export default Vue.extend({
     this.setData()
     this.makeColor()
   },
+
   mounted() {
     console.log('mounted')
     this.setColor()
