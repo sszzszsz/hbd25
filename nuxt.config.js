@@ -91,6 +91,17 @@ export default {
       families: ['Sawarabi+Gothic', 'Libre+Baskerville']
     }
   },
+  pageTransition: {
+    name: 'fade-up',
+    mode: 'out-in',
+    beforeEnter(el) {
+      console.log('Before enter...')
+    }
+  },
+  layoutTransition: {
+    name: 'fade-down',
+    mode: 'out-in'
+  },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options

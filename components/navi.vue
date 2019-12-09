@@ -104,21 +104,68 @@ export default Vue.extend({
   }
 }
 
-/* menu icon */
-$body: #6e8282;
-$back: #fff;
-$btn_back: #e73f3f;
-$cardback: #e8ebeb;
-$navbar: #57c7aa;
+.point {
+  &_list {
+    width: 90%;
+    padding: 5vmin;
+
+    br {
+      display: none;
+    }
+  }
+  &_item {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    transition: opacity 0.3s ease-in;
+    & + & {
+      margin-top: 30px;
+    }
+    &.in_view {
+      opacity: 1;
+    }
+    &_inr {
+      position: relative;
+      width: 100%;
+    }
+    &_svg {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: auto;
+    }
+  }
+  &_num {
+    font-size: 80%;
+  }
+  &_txt {
+    font-size: 3vmin;
+  }
+  &_btn {
+    color: var(--main-color);
+    text-decoration: none;
+  }
+}
+.link_top {
+  display: block;
+  position: absolute;
+  top: 80px;
+  right: 25px;
+  writing-mode: vertical-rl;
+  text-align: center;
+  text-decoration: none;
+  text-orientation: inherit;
+  transform: rotate(180deg);
+  font-size: 3vh;
+  font-family: 'Libre Baskerville', serif;
+  color: var(--main-color);
+}
 
 /* margins */
-
 $line-w: 25px;
 $line-h: 2px;
 $line-p: -6px;
 $line-p2: 6px;
-
-/* mixins */
 
 #menu {
   position: absolute;
@@ -180,62 +227,5 @@ $line-p2: 6px;
 .menu-c.open > span:after {
   opacity: 0;
   @include transform-rotate(90);
-}
-
-.point {
-  &_list {
-    width: 90%;
-    padding: 5vmin;
-
-    br {
-      display: none;
-    }
-  }
-  &_item {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    transition: opacity 0.3s ease-in;
-    & + & {
-      margin-top: 30px;
-    }
-    &.in_view {
-      opacity: 1;
-    }
-    &_inr {
-      position: relative;
-      width: 100%;
-    }
-    &_svg {
-      position: absolute;
-      top: 0;
-      width: 100%;
-      height: auto;
-    }
-  }
-  &_num {
-    font-size: 80%;
-  }
-  &_txt {
-    font-size: 3vmin;
-  }
-  &_btn {
-    color: var(--main-color);
-    text-decoration: none;
-  }
-}
-.link_top {
-  display: block;
-  position: absolute;
-  top: 80px;
-  right: 25px;
-  writing-mode: vertical-rl;
-  text-align: center;
-  text-decoration: none;
-  text-orientation: inherit;
-  transform: rotate(180deg);
-  font-size: 3vh;
-  font-family: 'Libre Baskerville', serif;
-  color: var(--main-color);
 }
 </style>
