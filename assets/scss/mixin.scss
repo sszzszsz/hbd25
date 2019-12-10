@@ -245,15 +245,4 @@ $fullhd: 1600px !default;
   &-enter-active {
     transition: all 0.7s ease;
   }
-  &-leave-to {
-    transform: scale(0.9);
-    opacity: 0;
-  }
-  &-enter {
-    transform: scale(0.9);
-    opacity: 0;
-  }
-  &-enter-active {
-    transition: all 0.6s ease;
-  }
 }
