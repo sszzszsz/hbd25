@@ -95,9 +95,6 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .cursor {
   pointer-events: none;
-  @include tablet {
-    display: none;
-  }
   &_small {
     pointer-events: none;
     position: fixed;
