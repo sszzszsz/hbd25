@@ -4,6 +4,10 @@ import StylelintPlugin from 'stylelint-webpack-plugin'
 
 export default {
   mode: 'universal',
+  server: {
+    port: 8000, // デフォルト: 3000
+    host: '0.0.0.0' // デフォルト: localhost
+  },
   /*
    ** Headers of the page
    */
@@ -19,7 +23,7 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: process.env.npm_package_description || ''
+        content: 'BIRTHDAY 25th BIRTHDAY'
       },
       {
         hid: 'msapplication-TileColor',
@@ -92,7 +96,7 @@ export default {
     }
   },
   pageTransition: {
-    name: 'fade-up',
+    name: 'zoom-out',
     mode: 'out-in',
     beforeEnter(el) {
       console.log('Before enter...')

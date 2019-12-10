@@ -6,7 +6,7 @@
     <div :class="{ is_active: menuFlag }" class="nav_cont">
       <div id="scrollArea" class="nav_inr">
         <ul class="point_list">
-          <li v-for="point in pontTxtList" v-bind:key="point.id" class="point_item">
+          <li v-for="point in pontTxtList" v-bind:key="point.id" :id="point.id" class="point_item">
             <div class="point_item_inr">
               <div class="point_box">
                 <nuxt-link :to="{ name: 'point-id', params: { id: point.id } }" class="point_btn">
@@ -90,7 +90,7 @@ export default Vue.extend({
     overflow: hidden;
     background: #fff;
     transform: translateX(-125%);
-    transition: transform 0.5s ease-in-out;
+    transition: transform 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955);
     // border-bottom-right-radius: 50%;
     &.is_active {
       transform: translateX(0);
@@ -168,7 +168,7 @@ $line-p: -6px;
 $line-p2: 6px;
 
 #menu {
-  position: absolute;
+  position: fixed;
   cursor: pointer;
   margin: 20px;
   width: 50px;
@@ -176,7 +176,7 @@ $line-p2: 6px;
   right: 0;
   top: 0;
   background: var(--main-color);
-  @include transition(all 0.2s);
+  transition: all 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
   z-index: 100;
   border-radius: 50%;
 }
