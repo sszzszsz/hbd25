@@ -16,6 +16,10 @@ export default {
   router: {
     base: baseDir // ←これも忘れずに入れる！
   },
+  server: {
+    port: 8000, // デフォルト: 3000
+    host: '0.0.0.0' // デフォルト: localhost
+  },
   /*
    ** Headers of the page
    */
@@ -180,7 +184,7 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    ['@nuxtjs/pwa', { icon: false }],
+    '@nuxtjs/pwa',
     '@nuxtjs/style-resources',
     'nuxt-user-agent',
     'nuxt-webfontloader'
@@ -197,7 +201,7 @@ export default {
    ** ページ遷移アニメーション
    */
   pageTransition: {
-    name: 'fade-up',
+    name: 'zoom-out',
     mode: 'out-in',
     beforeEnter(el) {
       console.log('Before enter...')
