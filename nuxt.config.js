@@ -31,7 +31,7 @@ export default {
     },
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1.0, viewport-fit=cover' },
       { name: 'format-detection', content: 'telephone=no, email=no, address=no' },
       { hid: 'description', name: 'description', content: siteDesc },
       {
@@ -43,14 +43,7 @@ export default {
         hid: 'theme-color',
         name: 'theme-color',
         content: '#ffffff'
-      }
-    ],
-    link: [
-      // ogp関連
-      { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
-      { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
-      { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
-      { rel: 'mask-icon', href: 'safari-pinned-tab.svg', color: maincolor },
+      },
       // ogp関連
       { hid: 'og:site_name', property: 'og:site_name', content: siteName },
       { hid: 'og:type', property: 'og:type', content: 'website' },
@@ -60,7 +53,14 @@ export default {
       { name: 'twitter:card', content: 'summary_large_image' },
       // pwa iOS
       { name: 'apple-mobile-web-app-capable', content: 'yes' },
-      { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
+      { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' }
+    ],
+    link: [
+      // ogp関連
+      { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
+      { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
+      { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
+      { rel: 'mask-icon', href: 'safari-pinned-tab.svg', color: maincolor },
       // iOS splashscreens
       {
         href: '/splashscreens/iphone5_splash.png',
