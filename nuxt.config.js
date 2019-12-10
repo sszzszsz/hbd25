@@ -142,7 +142,8 @@ export default {
     ]
   },
   workbox: {
-    dev: true // 開発環境でもPWA
+    // 開発環境でもPWA
+    // dev: true
   },
   /*
    ** Customize the progress-bar color
