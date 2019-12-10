@@ -216,7 +216,6 @@ $fullhd: 1600px !default;
 
 .zoom-in {
   &-leave-active {
-<<<<<<< HEAD
     transition: all 0.5s cubic-bezier(1.0, 0.5, 0.8, 1.0);
   }
   &-leave-to {
@@ -245,8 +244,6 @@ $fullhd: 1600px !default;
   }
   &-enter-active {
     transition: all 0.7s ease;
-=======
-    transition: all 0.8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
   }
   &-leave-to {
     transform: scale(0.9);
@@ -258,6 +255,5 @@ $fullhd: 1600px !default;
   }
   &-enter-active {
     transition: all 0.6s ease;
->>>>>>> remotes/origin/feature-brushup
   }
 }

@@ -51,7 +51,15 @@ export default Vue.extend({
   },
   head() {
     return {
-      title: '好きなところ' + this.id
+      title: '好きなところ' + this.id,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: `好きなところ${this.id} -${this.mainText}-`
+        },
+        { hid: 'og:type', property: 'og:type', content: 'article' }
+      ]
       // titleTemplate: '', hide titleTemplate
     }
   },
