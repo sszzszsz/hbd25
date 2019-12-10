@@ -4,10 +4,13 @@ import StylelintPlugin from 'stylelint-webpack-plugin'
 
 export default {
   mode: 'universal',
+<<<<<<< HEAD
   server: {
     port: 8000, // デフォルト: 3000
     host: '0.0.0.0' // デフォルト: localhost
   },
+=======
+>>>>>>> remotes/origin/feature-brushup
   /*
    ** Headers of the page
    */
@@ -23,7 +26,11 @@ export default {
       {
         hid: 'description',
         name: 'description',
+<<<<<<< HEAD
         content: 'BIRTHDAY 25th BIRTHDAY'
+=======
+        content: process.env.npm_package_description || ''
+>>>>>>> remotes/origin/feature-brushup
       },
       {
         hid: 'msapplication-TileColor',
@@ -96,7 +103,11 @@ export default {
     }
   },
   pageTransition: {
+<<<<<<< HEAD
     name: 'zoom-out',
+=======
+    name: 'fade-up',
+>>>>>>> remotes/origin/feature-brushup
     mode: 'out-in',
     beforeEnter(el) {
       console.log('Before enter...')

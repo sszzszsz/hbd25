@@ -90,7 +90,11 @@ export default Vue.extend({
     overflow: hidden;
     background: #fff;
     transform: translateX(-125%);
+<<<<<<< HEAD
     transition: transform 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+=======
+    transition: transform 0.5s ease-in-out;
+>>>>>>> remotes/origin/feature-brushup
     // border-bottom-right-radius: 50%;
     &.is_active {
       transform: translateX(0);
@@ -168,7 +172,11 @@ $line-p: -6px;
 $line-p2: 6px;
 
 #menu {
+<<<<<<< HEAD
   position: fixed;
+=======
+  position: absolute;
+>>>>>>> remotes/origin/feature-brushup
   cursor: pointer;
   margin: 20px;
   width: 50px;
@@ -176,7 +184,11 @@ $line-p2: 6px;
   right: 0;
   top: 0;
   background: var(--main-color);
+<<<<<<< HEAD
   transition: all 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+=======
+  @include transition(all 0.2s);
+>>>>>>> remotes/origin/feature-brushup
   z-index: 100;
   border-radius: 50%;
 }
