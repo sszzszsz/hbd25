@@ -53,6 +53,10 @@ export default Vue.extend({
 .wrap {
   margin: 0 auto;
   min-height: 100vh;
-  position: relative;
+  min-height: calc(var(--vh, 1vh) * 100);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
 }
 </style>

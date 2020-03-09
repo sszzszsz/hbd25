@@ -51,7 +51,21 @@ export default Vue.extend({
   },
   head() {
     return {
-      title: '好きなところ' + this.id
+      title: '好きなところ' + this.id,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: `好きなところ${this.id} ～ ${this.mainText} ～`
+        },
+        { hid: 'og:type', property: 'og:type', content: 'article' },
+        { hid: 'og:title', property: 'og:title', content: '好きなところ' + this.id },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content: `好きなところ${this.id} ～ ${this.mainText} ～`
+        }
+      ]
       // titleTemplate: '', hide titleTemplate
     }
   },
@@ -88,6 +102,7 @@ export default Vue.extend({
     this.setData()
     this.makeColor()
   },
+
   mounted() {
     console.log('mounted')
     this.setColor()
@@ -165,7 +180,6 @@ export default Vue.extend({
   height: 100vh;
   height: calc(var(--vh, 1vh) * 100);
   --main-color: $white;
-  // background-image: repeating-linear-gradient(45deg, var(--main-color) 0px 15px, #fff 15px 30px);
 }
 
 .cont {
@@ -231,7 +245,8 @@ export default Vue.extend({
     position: static;
     opacity: 1;
     color: var(--main-color);
-    font-size: 9vw;
+    font-size: 5vmax;
+    line-height: 1.5;
     height: auto;
     text-align: center;
   }
@@ -241,6 +256,9 @@ export default Vue.extend({
   width: 100%;
   display: flex;
   align-items: center;
+  @include tablet {
+    max-height: 70vh;
+  }
 }
 .link_box {
   position: absolute;
@@ -248,9 +266,6 @@ export default Vue.extend({
   height: 100%;
   display: table;
   z-index: 100;
-  @include tablet {
-    display: none;
-  }
 }
 .link_item {
   display: table-cell;

@@ -6,7 +6,7 @@
     <div :class="{ is_active: menuFlag }" class="nav_cont">
       <div id="scrollArea" class="nav_inr">
         <ul class="point_list">
-          <li v-for="point in pontTxtList" v-bind:key="point.id" class="point_item">
+          <li v-for="point in pontTxtList" v-bind:key="point.id" :id="point.id" class="point_item">
             <div class="point_item_inr">
               <div class="point_box">
                 <nuxt-link :to="{ name: 'point-id', params: { id: point.id } }" class="point_btn">
@@ -90,7 +90,7 @@ export default Vue.extend({
     overflow: hidden;
     background: #fff;
     transform: translateX(-125%);
-    transition: transform 0.5s ease-in-out;
+    transition: transform 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955);
     // border-bottom-right-radius: 50%;
     &.is_active {
       transform: translateX(0);
@@ -102,84 +102,6 @@ export default Vue.extend({
     padding-right: 17px;
     overflow-y: scroll;
   }
-}
-
-/* menu icon */
-$body: #6e8282;
-$back: #fff;
-$btn_back: #e73f3f;
-$cardback: #e8ebeb;
-$navbar: #57c7aa;
-
-/* margins */
-
-$line-w: 25px;
-$line-h: 2px;
-$line-p: -6px;
-$line-p2: 6px;
-
-/* mixins */
-
-#menu {
-  position: absolute;
-  cursor: pointer;
-  margin: 20px;
-  width: 50px;
-  height: 50px;
-  right: 0;
-  top: 0;
-  background: var(--main-color);
-  @include transition(all 0.2s);
-  z-index: 100;
-  border-radius: 50%;
-}
-.line {
-  margin: 20px auto;
-  width: 30px;
-  height: 4px;
-  border-radius: 2px;
-  background: #000;
-}
-#menu > span {
-  margin: 26%;
-  position: absolute;
-  top: 65%;
-  display: block;
-  width: $line-w;
-  height: $line-h;
-  margin-top: -0.5em;
-  border-radius: 3px;
-  background-color: $white;
-}
-
-.menu-c > span:before,
-.menu-c > span:after {
-  content: '';
-  position: absolute;
-  width: $line-w;
-  height: $line-h;
-  background-color: $white;
-  border-radius: 3px;
-  @include transition(all 0.1s);
-}
-.menu-c > span:before {
-  @include transform-translateY($line-p);
-}
-
-.menu-c > span:after {
-  @include transform-translateY($line-p2);
-}
-.menu-c.open {
-  @include transform-rotate(45);
-}
-
-.menu-c.open > span:before {
-  @include transform-rotate(90);
-}
-
-.menu-c.open > span:after {
-  opacity: 0;
-  @include transform-rotate(90);
 }
 
 .point {
@@ -237,5 +159,73 @@ $line-p2: 6px;
   font-size: 3vh;
   font-family: 'Libre Baskerville', serif;
   color: var(--main-color);
+}
+
+/* margins */
+$line-w: 25px;
+$line-h: 2px;
+$line-p: -6px;
+$line-p2: 6px;
+
+#menu {
+  position: fixed;
+  cursor: pointer;
+  margin: 20px;
+  width: 50px;
+  height: 50px;
+  right: 0;
+  top: 0;
+  background: var(--main-color);
+  transition: all 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  z-index: 100;
+  border-radius: 50%;
+}
+.line {
+  margin: 20px auto;
+  width: 30px;
+  height: 4px;
+  border-radius: 2px;
+  background: #000;
+}
+#menu > span {
+  margin: 26%;
+  position: absolute;
+  top: 65%;
+  display: block;
+  width: $line-w;
+  height: $line-h;
+  margin-top: -0.5em;
+  border-radius: 3px;
+  background-color: $white;
+}
+
+.menu-c > span:before,
+.menu-c > span:after {
+  content: '';
+  position: absolute;
+  width: $line-w;
+  height: $line-h;
+  background-color: $white;
+  border-radius: 3px;
+  @include transition(all 0.1s);
+}
+.menu-c > span:before {
+  @include transform-translateY($line-p);
+}
+
+.menu-c > span:after {
+  @include transform-translateY($line-p2);
+}
+.menu-c.open {
+  @include transform-rotate(45);
+}
+
+.menu-c.open > span:before {
+  @include transform-rotate(90);
+}
+
+.menu-c.open > span:after {
+  opacity: 0;
+  @include transform-rotate(90);
 }
 </style>

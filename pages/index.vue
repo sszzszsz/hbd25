@@ -1,7 +1,13 @@
 <template>
   <main class="main">
+    <loading />
     <mousePointer />
-    <div class="cont">
+    <div
+      :class="{
+        'is-ready': this.$store.state.global.loadingEnd === true
+      }"
+      class="cont"
+    >
       <h1 class="title">
         <span class="ttl_s">
           すきな
@@ -23,10 +29,12 @@
 
 <script>
 import Vue from 'vue'
+import loading from '~/components/Theloading.vue'
 import mousePointer from '~/components/mousePointer.vue'
 
 export default Vue.extend({
   components: {
+    loading,
     mousePointer
   }
 })
