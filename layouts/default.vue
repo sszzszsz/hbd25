@@ -2,7 +2,6 @@
   <div
     :class="[
       this.$route.name,
-      this.$route.params.id,
       [$ua.browser() == 'Internet Explorer' ? 'IE' : $ua.browser()],
       [$ua.isFromPc() == true ? 'PC' : null],
       [$ua.isFromTablet() == true ? 'TB' : null],
@@ -54,9 +53,6 @@ export default Vue.extend({
   margin: 0 auto;
   min-height: 100vh;
   min-height: calc(var(--vh, 1vh) * 100);
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
 }
 </style>

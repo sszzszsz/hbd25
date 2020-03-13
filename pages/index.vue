@@ -21,7 +21,7 @@
         <span class="sp">TAP</span>
       </p>
       <div class="link">
-        <nuxt-link to="/point/1" class="link_item">point</nuxt-link>
+        <nuxt-link to="/point/" class="link_item">point</nuxt-link>
       </div>
     </div>
   </main>
@@ -48,7 +48,6 @@ export default Vue.extend({
   height: calc(var(--vh, 1vh) * 100);
   overflow: hidden;
   --main-color: #bf4040;
-  // background-image: repeating-linear-gradient(45deg, $red 0px 10px, #fff 10px 20px);
 }
 .cont {
   margin: 0 auto;

@@ -37,6 +37,7 @@
             "each",
             "include",
             "mixin",
+            "return",
             "content"
           ]
         }

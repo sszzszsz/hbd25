@@ -194,7 +194,7 @@ export default {
   },
   webfontloader: {
     google: {
-      families: ['Sawarabi+Gothic', 'Libre+Baskerville']
+      families: ['Sawarabi+Gothic', 'Libre+Baskerville', 'Quattrocento']
     }
   },
   /*

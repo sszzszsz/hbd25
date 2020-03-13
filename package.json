@@ -25,6 +25,7 @@
     "nuxt-webfontloader": "^1.1.0",
     "sass-loader": "^8.0.0",
     "stylelint-config-recommended-scss": "^4.1.0",
+    "three": "^0.114.0",
     "vue-scrollmagic": "^1.2.0"
   },
   "devDependencies": {

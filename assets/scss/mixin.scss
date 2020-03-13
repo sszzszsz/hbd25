@@ -1,6 +1,28 @@
 $red: #bf4040;
 $white: #fff;
+$pcWidth: 1366px;
+$spWidth: 375px;
 
+@function pcvw($num, $width: $pcWidth) {
+  @return (1vw * $num / $width * 100);
+}
+
+@function spvw($num, $width: $spWidth) {
+  @return (1vw * $num / $width * 100);
+}
+
+@function pcfz($size, $viewport: $pcWidth) {
+  $rate: 100 / $viewport;
+  @return $rate * $size * 1vw;
+}
+@function spfz($size, $viewport: $spWidth) {
+  $rate: 100 / $viewport;
+  @return $rate * $size * 1vw;
+}
+
+@mixin fontLB {
+  font-family: 'Libre Baskerville', serif;
+}
 
 /* --------------------
  animation
@@ -90,7 +112,6 @@ $fullhd: 1600px !default;
   }
 }
 
-
 @mixin transform-rotate($deg) {
   -moz-transform: rotate($deg + deg);
   -ms-transform: rotate($deg + deg);
@@ -133,7 +154,7 @@ $fullhd: 1600px !default;
 
 .fade {
   &-leave-active {
-    transition: all 0.8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
   }
   &-leave-to {
     opacity: 0;
@@ -148,7 +169,7 @@ $fullhd: 1600px !default;
 
 .fade-up {
   &-leave-active {
-    transition: all 0.5s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    transition: all 0.5s cubic-bezier(1, 0.5, 0.8, 1);
   }
   &-leave-to {
     transform: translateY(-10px);
@@ -165,7 +186,7 @@ $fullhd: 1600px !default;
 
 .fade-down {
   &-leave-active {
-    transition: all 0.5s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    transition: all 0.5s cubic-bezier(1, 0.5, 0.8, 1);
   }
   &-leave-to {
     transform: translateY(10px);
@@ -182,7 +203,7 @@ $fullhd: 1600px !default;
 
 .fade-right {
   &-leave-active {
-    transition: all 0.8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
   }
   &-leave-to {
     transform: translateX(-10px);
@@ -199,7 +220,7 @@ $fullhd: 1600px !default;
 
 .fade-left {
   &-leave-active {
-    transition: all 0.8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
   }
   &-leave-to {
     transform: translateX(10px);
@@ -216,7 +237,7 @@ $fullhd: 1600px !default;
 
 .zoom-in {
   &-leave-active {
-    transition: all 0.5s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    transition: all 0.5s cubic-bezier(1, 0.5, 0.8, 1);
   }
   &-leave-to {
     transform: scale(0.98);
