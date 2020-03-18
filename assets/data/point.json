@@ -10,8 +10,8 @@
     "id": "2",
     "mainText": "テキストです。テキストです。テキストです。",
     "subText": "サブテキストです。サブテキストです。サブテキストです。",
-    "bgFile": "IMG_0935.JPG",
-    "bgRotate": 90
+    "bgFile": "IMG_0935.jpg",
+    "bgRotate": 0
   },
   {
     "id": "3",
@@ -31,7 +31,7 @@
     "id": "5",
     "mainText": "テキストです。テキストです。テキストです。",
     "subText": "",
-    "bgFile": "IMG_1178.JPG",
+    "bgFile": "IMG_1178.jpg",
     "bgRotate": 90
   },
   {
@@ -52,7 +52,7 @@
     "id": "8",
     "mainText": "テキストです。テキストです。テキストです。",
     "subText": "",
-    "bgFile": "IMG_2307.JPG",
+    "bgFile": "IMG_2307.jpg",
     "bgRotate": 180
   },
   {
@@ -66,21 +66,21 @@
     "id": "10",
     "mainText": "テキストです。テキストです。テキストです。",
     "subText": "",
-    "bgFile": "IMG_2311.JPG",
+    "bgFile": "IMG_2311.jpg",
     "bgRotate": 0
   },
   {
     "id": "11",
     "mainText": "テキストです。テキストです。テキストです。",
     "subText": "",
-    "bgFile": "IMG_8788.JPG",
+    "bgFile": "IMG_8788.jpg",
     "bgRotate": 90
   },
   {
     "id": "12",
     "mainText": "テキストです。テキストです。テキストです。",
     "subText": "",
-    "bgFile": "IMG_0090.JPG",
+    "bgFile": "IMG_0090.jpg",
     "bgRotate": 0
   },
   {
@@ -94,7 +94,7 @@
     "id": "14",
     "mainText": "テキストです。テキストです。テキストです。テキストです。テキストです。テキストです。",
     "subText": "サブテキストです。サブテキストです。サブテキストです。",
-    "bgFile": "IMG_0048.JPG",
+    "bgFile": "IMG_0048.jpg",
     "bgRotate": 90
   },
   {
@@ -108,7 +108,7 @@
     "id": "16",
     "mainText": "テキストです。テキストです。テキストです。",
     "subText": "",
-    "bgFile": "IMG_1837.JPG",
+    "bgFile": "IMG_1837.jpg",
     "bgRotate": 90
   },
   {
@@ -122,7 +122,7 @@
     "id": "18",
     "mainText": "テキストです。テキストです。テキストです。",
     "subText": "",
-    "bgFile": "IMG_2640.JPG",
+    "bgFile": "IMG_2640.jpg",
     "bgRotate": 0
   },
   {
@@ -136,14 +136,14 @@
     "id": "20",
     "mainText": "テキストです。テキストです。テキストです。",
     "subText": "",
-    "bgFile": "IMG_2094.JPG",
+    "bgFile": "IMG_2094.jpg",
     "bgRotate": 90
   },
   {
     "id": "21",
     "mainText": "テキストです。テキストです。テキストです。",
     "subText": "サブテキストです。サブテキストです。サブテキストです。...",
-    "bgFile": "IMG_2111.JPG",
+    "bgFile": "IMG_2111.jpg",
     "bgRotate": 90
   },
   {
@@ -157,21 +157,21 @@
     "id": "23",
     "mainText": "テキストです。テキストです。テキストです。",
     "subText": "",
-    "bgFile": "IMG_1008.JPG",
+    "bgFile": "IMG_1008.jpg",
     "bgRotate": 0
   },
   {
     "id": "24",
     "mainText": "テキストです。テキストです。テキストです。",
     "subText": "",
-    "bgFile": "IMG_1268.JPG",
+    "bgFile": "IMG_1268.jpg",
     "bgRotate": 90
   },
   {
     "id": "25",
     "mainText": "テキストです。テキストです。テキストです。",
     "subText": "",
-    "bgFile": "IMG_9120.JPG",
+    "bgFile": "IMG_9120.jpg",
     "bgRotate": 0
   },
   {
@@ -192,7 +192,7 @@
     "id": "28",
     "mainText": "テキストです。テキストです。テキストです。",
     "subText": "サブテキストです。サブテキストです。サブテキストです。",
-    "bgFile": "IMG_2694.JPG",
+    "bgFile": "IMG_2694.jpg",
     "bgRotate": 0
   },
   {
@@ -206,14 +206,14 @@
     "id": "30",
     "mainText": "テキストです。テキストです。テキストです。",
     "subText": "",
-    "bgFile": "IMG_9960.JPG",
+    "bgFile": "IMG_9960.jpg",
     "bgRotate": 90
   },
   {
     "id": "31",
     "mainText": "テキストです。テキストです。テキストです。",
     "subText": "",
-    "bgFile": "IMG_2968.png",
+    "bgFile": "IMG_2968.jpg",
     "bgRotate": 0
   },
   {
@@ -227,21 +227,21 @@
     "id": "33",
     "mainText": "テキストです。テキストです。テキストです。",
     "subText": "サブテキストです。サブテキストです。サブテキストです。",
-    "bgFile": "IMG_0190.JPG",
+    "bgFile": "IMG_0190.jpg",
     "bgRotate": 0
   },
   {
     "id": "34",
     "mainText": "テキストです。テキストです。テキストです。",
     "subText": "サブテキストです。サブテキストです。サブテキストです。",
-    "bgFile": "IMG_2327.JPG",
+    "bgFile": "IMG_2327.jpg",
     "bgRotate": 180
   },
   {
     "id": "35",
     "mainText": "テキストです。テキストです。テキストです。",
     "subText": "",
-    "bgFile": "IMG_9194.JPG",
+    "bgFile": "IMG_9194.jpg",
     "bgRotate": 0
   },
   {
@@ -255,28 +255,28 @@
     "id": "37",
     "mainText": "テキストです。テキストです。テキストです。",
     "subText": "サブテキストです。サブテキストです。サブテキストです。",
-    "bgFile": "IMG_5044.JPG",
+    "bgFile": "IMG_5044.jpg",
     "bgRotate": 90
   },
   {
     "id": "38",
     "mainText": "テキストです。テキストです。テキストです。",
     "subText": "",
-    "bgFile": "IMG_1210.JPG",
+    "bgFile": "IMG_1210.jpg",
     "bgRotate": 90
   },
   {
     "id": "39",
     "mainText": "テキストです。テキストです。テキストです。",
     "subText": "サブテキストです。サブテキストです。サブテキストです。",
-    "bgFile": "IMG_0579.JPG",
+    "bgFile": "IMG_0579.jpg",
     "bgRotate": 0
   },
   {
     "id": "40",
     "mainText": "テキストです。テキストです。テキストです。",
     "subText": "サブテキストです。サブテキストです。サブテキストです。",
-    "bgFile": "IMG_1297.JPG",
+    "bgFile": "IMG_1297.jpg",
     "bgRotate": 90
   },
   {
@@ -290,14 +290,14 @@
     "id": "42",
     "mainText": "テキストです。テキストです。テキストです。",
     "subText": "",
-    "bgFile": "IMG_4510.JPG",
+    "bgFile": "IMG_4510.jpg",
     "bgRotate": 0
   },
   {
     "id": "43",
     "mainText": "テキストです。テキストです。テキストです。",
     "subText": "",
-    "bgFile": "IMG_9859.JPG",
+    "bgFile": "IMG_9859.jpg",
     "bgRotate": 90
   },
   {
@@ -325,7 +325,7 @@
     "id": "47",
     "mainText": "テキストです。テキストです。テキストです。",
     "subText": "",
-    "bgFile": "IMG_2646.JPG",
+    "bgFile": "IMG_2646.jpg",
     "bgRotate": 0
   },
   {
@@ -409,7 +409,7 @@
     "id": "59",
     "mainText": "テキストです。テキストです。テキストです。",
     "subText": "というか、お酒一緒に飲んでくれるようになったね！",
-    "bgFile": "IMG_2097.JPG",
+    "bgFile": "IMG_2097.jpg",
     "bgRotate": 90
   },
   {
@@ -444,7 +444,7 @@
     "id": "64",
     "mainText": "テキストです。テキストです。テキストです。",
     "subText": "",
-    "bgFile": "IMG_2655.JPG",
+    "bgFile": "IMG_2655.jpg",
     "bgRotate": 0
   },
   {
@@ -472,7 +472,7 @@
     "id": "68",
     "mainText": "テキストです。テキストです。テキストです。",
     "subText": "",
-    "bgFile": "IMG_4615.JPG",
+    "bgFile": "IMG_4615.jpg",
     "bgRotate": 0
   },
   {
@@ -500,21 +500,21 @@
     "id": "72",
     "mainText": "テキストです。テキストです。テキストです。",
     "subText": "とだけ言っておきます（笑）",
-    "bgFile": "IMG_2558.JPG",
+    "bgFile": "IMG_2558.jpg",
     "bgRotate": 90
   },
   {
     "id": "73",
     "mainText": "テキストです。テキストです。テキストです。",
     "subText": "",
-    "bgFile": "IMG_9973.JPG",
+    "bgFile": "IMG_9973.jpg",
     "bgRotate": 180
   },
   {
     "id": "74",
     "mainText": "テキストです。テキストです。テキストです。",
     "subText": "",
-    "bgFile": "IMG_5149.JPG",
+    "bgFile": "IMG_5149.jpg",
     "bgRotate": 0
   },
   {
@@ -528,7 +528,7 @@
     "id": "76",
     "mainText": "テキストです。テキストです。テキストです。",
     "subText": "",
-    "bgFile": "IMG_9285.JPG",
+    "bgFile": "IMG_9285.jpg",
     "bgRotate": 0
   },
   {
@@ -556,7 +556,7 @@
     "id": "80",
     "mainText": "テキストです。テキストです。テキストです。",
     "subText": "サブテキストです。サブテキストです。サブテキストです。",
-    "bgFile": "IMG_2301.JPG",
+    "bgFile": "IMG_2301.jpg",
     "bgRotate": 90
   },
   {
@@ -570,14 +570,14 @@
     "id": "82",
     "mainText": "テキストです。テキストです。テキストです。",
     "subText": "",
-    "bgFile": "IMG_2729.png",
+    "bgFile": "IMG_2729.jpg",
     "bgRotate": 0
   },
   {
     "id": "83",
     "mainText": "テキストです。テキストです。テキストです。",
     "subText": "",
-    "bgFile": "IMG_9281.JPG",
+    "bgFile": "IMG_9281.jpg",
     "bgRotate": 0
   },
   {
@@ -626,7 +626,7 @@
     "id": "90",
     "mainText": "テキストです。テキストです。テキストです。",
     "subText": "サブテキストです。サブテキストです。サブテキストです。",
-    "bgFile": "IMG_3721.JPG",
+    "bgFile": "IMG_3721.jpg",
     "bgRotate": 90
   },
   {
@@ -640,21 +640,21 @@
     "id": "92",
     "mainText": "テキストです。テキストです。テキストです。",
     "subText": "今度スーツでデートしよ（笑）",
-    "bgFile": "IMG_5146.JPG",
+    "bgFile": "IMG_5146.jpg",
     "bgRotate": 0
   },
   {
     "id": "93",
     "mainText": "テキストです。テキストです。テキストです。",
     "subText": "サブテキストです。サブテキストです。サブテキストです。",
-    "bgFile": "IMG_0003.JPG",
+    "bgFile": "IMG_0003.jpg",
     "bgRotate": 0
   },
   {
     "id": "94",
     "mainText": "テキストです。テキストです。テキストです。",
     "subText": "",
-    "bgFile": "IMG_0818.JPG",
+    "bgFile": "IMG_0818.jpg",
     "bgRotate": 0
   },
   {
@@ -668,14 +668,14 @@
     "id": "96",
     "mainText": "テキストです。テキストです。テキストです。",
     "subText": "",
-    "bgFile": "IMG_4797.JPG",
+    "bgFile": "IMG_4797.jpg",
     "bgRotate": 90
   },
   {
     "id": "97",
     "mainText": "テキストです。テキストです。テキストです。",
     "subText": "サブテキストです。サブテキストです。サブテキストです。",
-    "bgFile": "IMG_5059.JPG",
+    "bgFile": "IMG_5059.jpg",
     "bgRotate": 0
   },
   {
@@ -689,14 +689,14 @@
     "id": "99",
     "mainText": "テキストです。テキストです。テキストです。",
     "subText": "サブテキストです。サブテキストです。サブテキストです。",
-    "bgFile": "IMG_4523.JPG",
+    "bgFile": "IMG_4523.jpg",
     "bgRotate": 0
   },
   {
     "id": "100",
     "mainText": "テキストです。テキストです。テキストです。",
     "subText": "サブテキストです。サブテキストです。サブテキストです。",
-    "bgFile": "IMG_5171.JPG",
+    "bgFile": "IMG_5171.jpg",
     "bgRotate": 0
   }
 ]

@@ -166,7 +166,7 @@ export default {
       mode: 'client'
     },
     {
-      src: '~/plugins/vue-scrollmagic.js',
+      src: '~/plugins/vue-lazyload.js',
       mode: 'client'
     }
   ],
