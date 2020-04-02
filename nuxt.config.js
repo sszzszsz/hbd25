@@ -201,7 +201,7 @@ export default {
    ** ページ遷移アニメーション
    */
   pageTransition: {
-    name: 'zoom-out',
+    name: 'fade',
     mode: 'out-in',
     beforeEnter(el) {
       console.log('Before enter...')

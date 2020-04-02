@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import ArtworkGL from './js/ArtworkGL'
+import ArtworkGL from './js/artworkGL'
 
 export default {
   name: 'Artwork',

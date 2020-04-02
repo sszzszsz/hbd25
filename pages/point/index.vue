@@ -2,114 +2,8 @@
   <main class="main">
     <mousePointer />
     <div class="cont">
-      <div class="bg_cont">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          width="1370.718"
-          height="1225.018"
-          viewBox="0 0 1370.718 1225.018"
-          class="svg_pale"
-        >
-          <defs>
-            <filter
-              id="a"
-              x="0"
-              y="0"
-              width="1370.718"
-              height="1225.018"
-              filterUnits="userSpaceOnUse"
-            >
-              <feOffset dy="3" input="SourceAlpha" />
-              <feGaussianBlur stdDeviation="3" result="b" />
-              <feFlood flood-color="#2c2c2c" flood-opacity="0.161" />
-              <feComposite operator="in" in2="b" />
-              <feComposite in="SourceGraphic" />
-            </filter>
-          </defs>
-          <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#a)">
-            <path
-              d="M1081.773,4838.157c115.7-37.7,206.7,63.7,239.1-194.187s214.871-133.158,235.188-310.518,40.635-276.216,196.4-302.384S1912.51,3869.878,1933,3808.153s138.694-111.45,138.694-111.45h0V5049.42H864.673S966.073,4875.857,1081.773,4838.157Z"
-              transform="translate(-3687.7 2077.69) rotate(-90)"
-              fill="#e5cece"
-            >
-              <animate
-                attributeName="d"
-                values="
-M1081.773,4838.157c115.7-37.7,206.7,63.7,239.1-194.187s214.871-133.158,235.188-310.518,40.635-276.216,196.4-302.384S1912.51,3869.878,1933,3808.153s138.694-111.45,138.694-111.45h0V5049.42H864.673S966.073,4875.857,1081.773,4838.157Z;
-            M844.666,4938.96c20-61,138.646-15.322,327.952-120.24s54.144-396.4,191.932-451.835,311.886-3.713,323.028-200.5,33.417-237.628,204.211-271.044,179.9-198.638,179.9-198.638h0V5049.42H864.673S824.666,4999.96,844.666,4938.96Z;
-            M1081.773,4838.157c115.7-37.7,206.7,63.7,239.1-194.187s214.871-133.158,235.188-310.518,40.635-276.216,196.4-302.384S1912.51,3869.878,1933,3808.153s138.694-111.45,138.694-111.45h0V5049.42H864.673S966.073,4875.857,1081.773,4838.157Z"
-                dur="15s"
-                repeatCount="indefinite"
-              />
-            </path>
-          </g>
-        </svg>
-
-        <!-- <svg
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          width="1370.718"
-          height="1250.625"
-          viewBox="0 0 1370.718 1250.625"
-        >
-          <defs>
-            <filter
-              id="a"
-              x="0"
-              y="0"
-              width="1370.718"
-              height="1250.625"
-              filterUnits="userSpaceOnUse"
-            >
-              <feOffset dy="3" input="SourceAlpha" />
-              <feGaussianBlur stdDeviation="3" result="b" />
-              <feFlood flood-color="#2c2c2c" flood-opacity="0.161" />
-              <feComposite operator="in" in2="b" />
-              <feComposite in="SourceGraphic" />
-            </filter>
-          </defs>
-          <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#a)">
-            <path
-              d="M844.666,4938.96c20-61,138.646-15.322,327.952-120.24s54.144-396.4,191.932-451.835,311.886-3.713,323.028-200.5,33.417-237.628,204.211-271.044,179.9-198.638,179.9-198.638h0V5049.42H864.673S824.666,4999.96,844.666,4938.96Z"
-              transform="translate(-3687.7 2077.69) rotate(-90)"
-              fill="#e5cece"
-            />
-          </g>
-        </svg> -->
-
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          width="693.776"
-          height="552.406"
-          viewBox="0 0 693.776 552.406"
-          class="svg_dark"
-        >
-          <defs>
-            <filter
-              id="a"
-              x="0"
-              y="0"
-              width="693.776"
-              height="552.406"
-              filterUnits="userSpaceOnUse"
-            >
-              <feOffset dy="3" input="SourceAlpha" />
-              <feGaussianBlur stdDeviation="3" result="b" />
-              <feFlood flood-color="#570000" flood-opacity="0.349" />
-              <feComposite operator="in" in2="b" />
-              <feComposite in="SourceGraphic" />
-            </filter>
-          </defs>
-          <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#a)">
-            <path
-              d="M1237.865,4708.665s-13.476-145.563,89.583-175.922,233.281-51.929,222.1-223.694,222.148-276.16,222.148-276.16-1.36,675.385,0,675.776Z"
-              transform="translate(-4023.89 1777.69) rotate(-90)"
-              fill="#d5a9a9"
-            />
-          </g>
-        </svg>
+      <div id="canvasCont">
+        <div id="app" />
       </div>
       <div
         :class="{
@@ -127,14 +21,15 @@ M1081.773,4838.157c115.7-37.7,206.7,63.7,239.1-194.187s214.871-133.158,235.188-3
             HAPPY BIRTHDAY
           </span>
         </h1>
-        <ul class="point_list">
+        <ul id="itemsWrapper" class="point_list">
           <li
             v-for="point in pointData"
             v-bind:key="point.id"
             :id="['point-' + point.id]"
             class="point_item"
           >
-            <nuxt-link :to="'/point/' + point.id" class="point_item_inr">
+            <div class="point_item_inr">
+              <!-- <nuxt-link :to="'/point/' + point.id" class="point_item_inr"> -->
               <!-- <p class="point_num">No. {{ point.id }}</p>
               <p v-html="point.mainText" class="point_txt" />
               <p>{{ point.subText }}</p> -->
@@ -146,17 +41,14 @@ M1081.773,4838.157c115.7-37.7,206.7,63.7,239.1-194.187s214.871-133.158,235.188-3
                 }"
                 class="point_box point_box-img"
               >
+                <img :data-src="imgRender(point.bgFile)" :alt="point.mainText" class="sumb" />
                 <img :data-src="imgRender(point.bgFile)" :alt="point.mainText" />
               </div>
-            </nuxt-link>
+              <!-- </nuxt-link> -->
+            </div>
           </li>
         </ul>
       </div>
-      <p class="link_txt">
-        back to
-        <span class="pc">HOME</span>
-        <span class="sp">HOME</span>
-      </p>
       <div class="link">
         <nuxt-link to="/" class="link_item">TOP</nuxt-link>
       </div>
@@ -166,10 +58,14 @@ M1081.773,4838.157c115.7-37.7,206.7,63.7,239.1-194.187s214.871-133.158,235.188-3
 
 <script>
 import Vue from 'vue'
+// import ArtworkGL from '../../components/webgl/js/artworkGL'
+import GridToFullscreenEffect from '../../components/webgl/js/GridToFullscreenEffect'
 import mousePointer from '~/components/mousePointer.vue'
 import pointJson from '~/assets/data/point.json'
 
 export default Vue.extend({
+  // name: ['Artwork', 'GridToFullscreenEffect'],
+  name: 'GridToFullscreenEffect',
   components: {
     mousePointer
   },
@@ -206,6 +102,63 @@ export default Vue.extend({
     console.log('point')
     this.setJsonData()
     this.interSect()
+
+    // canvas要素を渡す。
+    const artworkGL = new GridToFullscreenEffect(
+      document.getElementById('app'),
+      document.getElementById('itemsWrapper'),
+      {
+        duration: 1,
+        timing: { type: 'sections', props: { latestStart: 0 } },
+        activation: { type: 'radial', props: { onMouse: true } },
+        transformation: {
+          type: 'fluid',
+          props: { amplitude: 2, frequency: 1.6, progressLimit: 0.1 }
+        },
+        randomizeSeed: 'tweenUnique',
+        easings: { toFullscreen: 'Power2.easeOut', toGrid: 'Power2.easeIn' }
+      }
+    )
+
+    // 写真を配列にしてテクスチャ生成
+    const images = []
+    for (let i = 0, imageSet = {}; i < document.querySelectorAll('img').length; i++) {
+      const image = {
+        element: document.querySelectorAll('img')[i],
+        image: document.querySelectorAll('img')[i]
+      }
+      if (i % 2 === 0) {
+        imageSet = {}
+        imageSet.small = image
+      }
+      if (i % 2 === 1) {
+        imageSet.large = image
+        images.push(imageSet)
+      }
+    }
+
+    artworkGL.createTextures(images)
+    artworkGL.init()
+
+    // クリックしたらフルサイズにするか判定し実行
+    const targetImg = document.querySelectorAll('.point_item img.sumb')
+    for (let i = 0; i < targetImg.length; i++) {
+      const target = targetImg[i]
+      target.addEventListener('click', function() {
+        console.log('click')
+        if (artworkGL.isFullscreen) {
+          artworkGL.toGrid()
+        }
+      })
+    }
+
+    const canvasWrap = document.getElementById('canvasCont')
+    canvasWrap.addEventListener('click', function() {
+      console.log(artworkGL.isFullscreen)
+      if (artworkGL.isFullscreen) {
+        artworkGL.toGrid()
+      }
+    })
   },
   methods: {
     interSect() {
@@ -288,9 +241,17 @@ export default Vue.extend({
     top: calc(100vh - 10px);
   }
 }
-
+.artwork__canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+}
 .cont {
   position: relative;
+  background: var(--main-color);
   background: url('~assets/img/bg_paper.jpg');
   overflow-y: auto;
   -ms-overflow-style: none; /* IE, Edge 対応 */
@@ -329,6 +290,7 @@ export default Vue.extend({
   z-index: 3;
 
   svg {
+    display: none;
     position: fixed;
     top: 0;
     right: -10px;
@@ -346,10 +308,10 @@ export default Vue.extend({
   position: relative;
   z-index: 5;
   &:after {
-    content: '';
+    // content: '';
     display: block;
-    background: #8c3a27;
-    opacity: 0.1;
+    background: var(--main-color);
+    opacity: 1;
     position: absolute;
     z-index: 1;
     top: 0;
@@ -369,7 +331,7 @@ export default Vue.extend({
     position: absolute;
     left: 0;
     line-height: 1;
-    font-family: 'Quattrocento', cursive;
+    font-family: 'Libre Baskerville', serif;
 
     svg {
       stroke: var(--main-color);
@@ -398,8 +360,7 @@ export default Vue.extend({
   &_item {
     opacity: 0;
     position: relative;
-    box-shadow: rgba(110, 93, 93, 0.5) 0 0 10px;
-    transform: translateY(10px);
+    transform: translateY(5px);
     transition: opacity 1.4s ease, transform 0.8s ease;
     &.is-intersected {
       opacity: 1;
@@ -408,8 +369,10 @@ export default Vue.extend({
     &_inr {
       display: block;
       background: #fff;
+      box-shadow: rgba(110, 93, 93, 0.5) 0 0 10px;
       height: 100%;
-      padding: 1vw 1vw 4vw;
+      border-radius: 50%;
+      overflow: hidden;
     }
   }
   &_box {
@@ -422,10 +385,13 @@ export default Vue.extend({
         width: 100%;
         height: 100%;
         opacity: 0.05;
-        transform: translateY(10px);
+        transform: translateY(5px);
         transition: opacity 1s ease, transform 0.8s ease;
         transition-delay: 0.1s;
         object-fit: cover;
+        &:last-child {
+          // display: none;
+        }
       }
       img[lazy='loading'] {
         opacity: 0;
@@ -439,5 +405,30 @@ export default Vue.extend({
       }
     }
   }
+}
+#canvasCont {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  opacity: 0;
+  // background: #000;
+}
+#app {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  width: 80vw;
+  height: 80vh;
+  // width: 100vw;
+  // height: 100vh;
+  overflow: hidden;
+  // pointer-events: none;
+}
+.link {
+  position: absolute;
+  bottom: 0;
 }
 </style>
