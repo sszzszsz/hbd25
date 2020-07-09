@@ -2,9 +2,7 @@
   <main class="main">
     <mousePointer />
     <div class="cont">
-      <div id="canvasCont">
-        <div id="app" />
-      </div>
+      <gridToFullscreenEffect />
       <div
         :class="{
           'is-ready': this.$store.state.global.loadingEnd === true
@@ -23,26 +21,32 @@
         </h1>
         <ul id="itemsWrapper" class="point_list">
           <li
+            @click="clickImg($event)"
             v-for="point in pointData"
             v-bind:key="point.id"
             :id="['point-' + point.id]"
             class="point_item"
           >
-            <div class="point_item_inr">
+            <div
+              v-lazy-container="{
+                selector: 'img',
+                error: imgRender('bg_paper.jpg'),
+                loading: imgRender('bg_paper.jpg')
+              }"
+              class="point_item_inr"
+            >
               <!-- <nuxt-link :to="'/point/' + point.id" class="point_item_inr"> -->
               <!-- <p class="point_num">No. {{ point.id }}</p>
               <p v-html="point.mainText" class="point_txt" />
               <p>{{ point.subText }}</p> -->
-              <div
-                v-lazy-container="{
-                  selector: 'img',
-                  error: imgRender('bg_paper.jpg'),
-                  loading: imgRender('bg_paper.jpg')
-                }"
-                class="point_box point_box-img"
-              >
-                <img :data-src="imgRender(point.bgFile)" :alt="point.mainText" class="sumb" />
-                <img :data-src="imgRender(point.bgFile)" :alt="point.mainText" />
+              <div v-on:click="clickImg($event)" class="point_box point_box-img">
+                <img
+                  @click="clickImg($event)"
+                  :data-src="imgRender(point.bgFile)"
+                  :alt="point.mainText"
+                  class="small"
+                />
+                <img :data-src="imgRender(point.bgFile)" :alt="point.mainText" class="large" />
               </div>
               <!-- </nuxt-link> -->
             </div>
@@ -58,16 +62,14 @@
 
 <script>
 import Vue from 'vue'
-// import ArtworkGL from '../../components/webgl/js/artworkGL'
-import GridToFullscreenEffect from '../../components/webgl/js/GridToFullscreenEffect'
 import mousePointer from '~/components/mousePointer.vue'
+import gridToFullscreenEffect from '~/components/gridToFullscreenEffect.vue'
 import pointJson from '~/assets/data/point.json'
 
 export default Vue.extend({
-  // name: ['Artwork', 'GridToFullscreenEffect'],
-  name: 'GridToFullscreenEffect',
   components: {
-    mousePointer
+    mousePointer,
+    gridToFullscreenEffect
   },
 
   head() {
@@ -103,62 +105,7 @@ export default Vue.extend({
     this.setJsonData()
     this.interSect()
 
-    // canvas要素を渡す。
-    const artworkGL = new GridToFullscreenEffect(
-      document.getElementById('app'),
-      document.getElementById('itemsWrapper'),
-      {
-        duration: 1,
-        timing: { type: 'sections', props: { latestStart: 0 } },
-        activation: { type: 'radial', props: { onMouse: true } },
-        transformation: {
-          type: 'fluid',
-          props: { amplitude: 2, frequency: 1.6, progressLimit: 0.1 }
-        },
-        randomizeSeed: 'tweenUnique',
-        easings: { toFullscreen: 'Power2.easeOut', toGrid: 'Power2.easeIn' }
-      }
-    )
-
-    // 写真を配列にしてテクスチャ生成
-    const images = []
-    for (let i = 0, imageSet = {}; i < document.querySelectorAll('img').length; i++) {
-      const image = {
-        element: document.querySelectorAll('img')[i],
-        image: document.querySelectorAll('img')[i]
-      }
-      if (i % 2 === 0) {
-        imageSet = {}
-        imageSet.small = image
-      }
-      if (i % 2 === 1) {
-        imageSet.large = image
-        images.push(imageSet)
-      }
-    }
-
-    artworkGL.createTextures(images)
-    artworkGL.init()
-
-    // クリックしたらフルサイズにするか判定し実行
-    const targetImg = document.querySelectorAll('.point_item img.sumb')
-    for (let i = 0; i < targetImg.length; i++) {
-      const target = targetImg[i]
-      target.addEventListener('click', function() {
-        console.log('click')
-        if (artworkGL.isFullscreen) {
-          artworkGL.toGrid()
-        }
-      })
-    }
-
-    const canvasWrap = document.getElementById('canvasCont')
-    canvasWrap.addEventListener('click', function() {
-      console.log(artworkGL.isFullscreen)
-      if (artworkGL.isFullscreen) {
-        artworkGL.toGrid()
-      }
-    })
+    // const img = document.querySelectorAll('.small')
   },
   methods: {
     interSect() {
@@ -212,6 +159,9 @@ export default Vue.extend({
     },
     imgRender(filename) {
       return require(`@/assets/img/${filename}`)
+    },
+    clickImg(e) {
+      console.log(e.target)
     }
   }
 })
@@ -228,7 +178,7 @@ export default Vue.extend({
     content: '';
     display: block;
     position: fixed;
-    z-index: 5;
+    z-index: 100;
     width: 100%;
     border-top: 10px solid;
     left: 0;
@@ -268,7 +218,7 @@ export default Vue.extend({
     content: '';
     display: block;
     position: fixed;
-    z-index: 5;
+    z-index: 100;
     width: 10px;
     height: 100vh;
     border-left: 10px solid;
@@ -351,19 +301,27 @@ export default Vue.extend({
   }
   &_list {
     position: relative;
-    z-index: 2;
+    // z-index: 2;
     padding: 5vh 2vw;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 5vh 1.5vw;
+    gap: 10vh 3.5vw;
+
+    @include tablet {
+      padding: 5vh 2vw;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3vh 3vw;
+    }
   }
   &_item {
     opacity: 0;
     position: relative;
-    transform: translateY(5px);
+    transform: translateY(10px);
     transition: opacity 1.4s ease, transform 0.8s ease;
+    cursor: pointer;
     &.is-intersected {
-      opacity: 1;
+      opacity: 0.5;
       transform: translateY(0px);
     }
     &_inr {
@@ -371,7 +329,7 @@ export default Vue.extend({
       background: #fff;
       box-shadow: rgba(110, 93, 93, 0.5) 0 0 10px;
       height: 100%;
-      border-radius: 50%;
+      // border-radius: 50%;
       overflow: hidden;
     }
   }
@@ -381,11 +339,14 @@ export default Vue.extend({
       position: relative;
       width: 100%;
       height: 18.07vw;
+      @include tablet {
+        height: 35vw;
+      }
       img {
         width: 100%;
         height: 100%;
-        opacity: 0.05;
-        transform: translateY(5px);
+        // opacity: 0.05;
+        // transform: translateY(5px);
         transition: opacity 1s ease, transform 0.8s ease;
         transition-delay: 0.1s;
         object-fit: cover;
@@ -401,31 +362,10 @@ export default Vue.extend({
       }
       img[lazy='loaded'] {
         transform: translateY(0);
-        opacity: 0.1;
+        opacity: 1;
       }
     }
   }
-}
-#canvasCont {
-  width: 100%;
-  height: 100vh;
-  position: fixed;
-  opacity: 0;
-  // background: #000;
-}
-#app {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin: auto;
-  width: 80vw;
-  height: 80vh;
-  // width: 100vw;
-  // height: 100vh;
-  overflow: hidden;
-  // pointer-events: none;
 }
 .link {
   position: absolute;

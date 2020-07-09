@@ -96,6 +96,9 @@ export default class GridToFullscreenEffect {
     this.reset = this.reset.bind(this)
   }
 
+  /***************************************
+  /* オプションの設定受付
+  ***************************************/
   setOptions(partialOptions = {}, override) {
     let options = this.options
 
@@ -222,11 +225,12 @@ export default class GridToFullscreenEffect {
   }
 
   /***************************************
-    Sets the correct textures to the uniforms. And renders if not in a loop
+    対象のテクスチャを設置
+    And renders if not in a loop
   ***************************************/
   setCurrentTextures() {
     if (this.currentImageIndex === -1) return
-    const textureSet = this.textures[this.currentImageIndex]
+    const textureSet = this.textures[0]
     if (!textureSet) return
     this.uniforms.uImage.value = textureSet.small.texture
     this.uniforms.uImageRes.value.x = textureSet.small.texture.image.naturalWidth
@@ -366,8 +370,25 @@ export default class GridToFullscreenEffect {
       }
       if (this.options.onItemClick) this.options.onItemClick(itemIndex)
       this.recalculateUniforms(ev)
-      // this.setTextures();
-      this.setCurrentTextures()
+      console.log(this.itemsWrapper.children[itemIndex].children[0])
+      const targtItem = this.itemsWrapper.children[itemIndex].children[0]
+      const images = []
+      for (let i = 0, imageSet = {}; i < targtItem.querySelectorAll('img').length; i++) {
+        const image = {
+          element: targtItem.querySelectorAll('img')[i],
+          image: targtItem.querySelectorAll('img')[i]
+        }
+        if (i % 2 === 0) {
+          imageSet = {}
+          imageSet.small = image
+        }
+        if (i % 2 === 1) {
+          imageSet.large = image
+          images.push(imageSet)
+        }
+      }
+      this.createTextures(images)
+      // this.setCurrentTextures()
       this.toFullscreen()
     }
   }
@@ -390,6 +411,8 @@ export default class GridToFullscreenEffect {
     ) {
       this.uniforms.uSeed.value = Math.floor(Math.random() * 10000)
     }
+    const canvasCont = document.getElementById('canvasCont')
+
     this.tween = TweenMax.to(this.uniforms.uProgress, this.options.duration, {
       value: 0,
       ease: this.options.easings.toGrid,
@@ -397,18 +420,13 @@ export default class GridToFullscreenEffect {
         if (this.options.onProgressTween) {
           this.options.onProgressTween(this.uniforms.uProgress.value)
         }
-
         this.render()
       },
       onComplete: () => {
         this.isAnimating = false
         this.isFullscreen = false
         this.tween = null
-        this.itemsWrapper.style.zIndex = 0
-        this.container.style.zIndex = 0
-        const canvasWrap = document.getElementById('canvasCont')
-        canvasWrap.style.zIndex = 0
-        canvasWrap.style.opacity = 0
+        this.itemsWrapper.style.zIndex = 6
         this.render()
         if (this.options.onToGridFinish) {
           this.options.onToGridFinish({
@@ -419,10 +437,16 @@ export default class GridToFullscreenEffect {
         // this.currentImageIndex = -1;
       }
     })
+    TweenMax.to(canvasCont, this.options.duration / 2, {
+      ease: this.options.easings.toGrid,
+      zIndex: 0,
+      opacity: 0,
+      delay: this.options.duration / 2
+    })
   }
 
   /***************************************
-    XXXXX
+    マウスの位置を計算する
   ***************************************/
   calculateMouse(ev) {
     const rect = this.itemsWrapper.children[
@@ -438,7 +462,7 @@ export default class GridToFullscreenEffect {
   }
 
   /***************************************
-    XXXXX
+    Uniformsを再計算する
   ***************************************/
   recalculateUniforms(ev) {
     if (this.currentImageIndex === -1) return
@@ -513,12 +537,8 @@ export default class GridToFullscreenEffect {
     if (this.isFullscreen || this.isAnimating) return
 
     this.isAnimating = true
-
-    this.itemsWrapper.style.zIndex = 0
-    this.container.style.zIndex = 20
-    const canvasWrap = document.getElementById('canvasCont')
-    canvasWrap.style.opacity = 1
-    canvasWrap.style.zIndex = 20
+    const canvasCont = document.getElementById('canvasCont')
+    canvasCont.style.zIndex = 20
 
     if (this.options.onToFullscreenStart) {
       this.options.onToFullscreenStart({ index: this.currentImageIndex })
@@ -547,6 +567,28 @@ export default class GridToFullscreenEffect {
         }
       }
     })
+    TweenMax.fromTo(
+      canvasCont,
+      this.options.duration / 2,
+      {
+        opacity: 0.5
+      },
+      {
+        opacity: 1,
+        ease: this.options.easings.toFullscreen
+      }
+    )
+    TweenMax.fromTo(
+      this.container,
+      this.options.duration / 2,
+      {
+        opacity: 0
+      },
+      {
+        opacity: 1,
+        ease: this.options.easings.toFullscreen
+      }
+    )
   }
 
   /***************************************
@@ -556,7 +598,6 @@ export default class GridToFullscreenEffect {
     @property {number} height
 
     @return {Size} The size of the camera's view
-
   ***************************************/
   getViewSize() {
     const fovInRadians = (this.camera.fov * Math.PI) / 180

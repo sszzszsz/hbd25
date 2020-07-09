@@ -11,9 +11,25 @@ Vue.use(VueLazyload, {
   // スクロールイベントやリサイズイベントに対するコールバックの最小実行間隔
   // コールバックの実行が過密にならないように設定する
   throttleWait: 100,
+  // set observer to true
   observer: true,
+
+  // optional
   observerOptions: {
-    rootMargin: '0px 0px -150px',
+    rootMargin: '0px',
     threshold: 0.1
+  },
+  adapter: {
+    loaded({ bindType, el, naturalHeight, naturalWidth, $parent, src, loading, error, Init }) {
+      // do something here
+      // example for call LoadedHandler
+      // console.log(el)
+    },
+    loading(listender, Init) {
+      // do something here
+    },
+    error(listender, Init) {
+      // do something here
+    }
   }
 })
