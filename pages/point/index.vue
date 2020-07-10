@@ -497,7 +497,7 @@ export default Vue.extend({
           filter: contrast(0.8);
         }
       }
-      img.small[lazy='loading'] {
+      img[lazy='loading'] {
         opacity: 0;
       }
       img[lazy='error'] {
@@ -506,6 +506,10 @@ export default Vue.extend({
       img.small[lazy='loaded'] {
         transform: translateY(0);
         opacity: 0.5;
+      }
+      img.large[lazy='loaded'] {
+        transform: translateY(0);
+        opacity: 1;
       }
     }
   }
