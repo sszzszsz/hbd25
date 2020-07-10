@@ -39,7 +39,7 @@ export default Vue.extend({
           props: { amplitude: 0.6, frequency: 1 }
         },
         seed: 800,
-        easings: { toFullscreen: 'Power2.easeOut', toGrid: 'Power3.easeOut' }
+        easings: { toFullscreen: 'Power2.easeOut', toGrid: 'Power2.easeOut' }
       }
     )
     // {
@@ -58,38 +58,7 @@ export default Vue.extend({
     //   "seed":800,
     //   "easings":{"toFullscreen":"Quart.easeOut","toGrid":"Quart.easeOut"}
     //   }
-
-    // 写真を配列にしてテクスチャ生成
-    const images = []
-    for (let i = 0, imageSet = {}; i < document.querySelectorAll('img').length; i++) {
-      const image = {
-        element: document.querySelectorAll('img')[i],
-        image: document.querySelectorAll('img')[i]
-      }
-      if (i % 2 === 0) {
-        imageSet = {}
-        imageSet.small = image
-      }
-      if (i % 2 === 1) {
-        imageSet.large = image
-        images.push(imageSet)
-      }
-    }
-
-    // this.artworkGL.createTextures(images)
     this.artworkGL.init()
-
-    // クリックしたらフルサイズにするか判定し実行
-    // const targetImg = document.querySelectorAll('.point_item img.sumb')
-    // for (let i = 0; i < targetImg.length; i++) {
-    //   const target = targetImg[i]
-    //   target.addEventListener('click', function() {
-    //     console.log('click')
-    //     if (artworkGL.isFullscreen) {
-    //       artworkGL.toGrid()
-    //     }
-    //   })
-    // }
   },
   methods: {
     clickToGrid() {

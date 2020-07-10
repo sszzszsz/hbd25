@@ -195,6 +195,8 @@ export default class GridToFullscreenEffect {
     const textures = []
     for (let i = 0; i < images.length; i++) {
       const imageSet = images[i]
+      console.log(imageSet.large.image)
+      // 画像を読み込む
       const largeTexture = new THREE.Texture(imageSet.large.image)
 
       // So It doesnt get resized to the power of 2
@@ -221,6 +223,7 @@ export default class GridToFullscreenEffect {
       textures.push(textureSet)
     }
     this.textures = textures
+    console.log(this.textures)
     this.setCurrentTextures()
   }
 
@@ -359,37 +362,47 @@ export default class GridToFullscreenEffect {
   }
 
   /***************************************
-    Creates a listener that sends item to fullscreen when activated.
+    サムネイルクリック時に各画像を取得する
     @return {function} Event listener
   ***************************************/
   createOnMouseDown(itemIndex) {
     return (ev) => {
+      const self = this
       this.currentImageIndex = itemIndex
       if (this.options.randomizeSeed === 'itemUnique') {
         this.uniforms.uSeed.value = itemIndex * 1000
       }
       if (this.options.onItemClick) this.options.onItemClick(itemIndex)
       this.recalculateUniforms(ev)
-      console.log(this.itemsWrapper.children[itemIndex].children[0])
       const targtItem = this.itemsWrapper.children[itemIndex].children[0]
-      const images = []
-      for (let i = 0, imageSet = {}; i < targtItem.querySelectorAll('img').length; i++) {
-        const image = {
-          element: targtItem.querySelectorAll('img')[i],
-          image: targtItem.querySelectorAll('img')[i]
-        }
-        if (i % 2 === 0) {
-          imageSet = {}
-          imageSet.small = image
-        }
-        if (i % 2 === 1) {
-          imageSet.large = image
-          images.push(imageSet)
-        }
+      if (targtItem.querySelectorAll('.large')[0].style.display === 'block') {
+        getImg()
+      } else {
+        targtItem.querySelectorAll('.large')[0].style.display = 'block'
+        targtItem.querySelectorAll('.large')[0].addEventListener('load', getImg)
       }
-      this.createTextures(images)
-      // this.setCurrentTextures()
-      this.toFullscreen()
+
+      function getImg() {
+        const images = []
+        for (let i = 0, imageSet = {}; i < targtItem.querySelectorAll('img').length; i++) {
+          const image = {
+            element: targtItem.querySelectorAll('img')[i],
+            image: targtItem.querySelectorAll('img')[i]
+          }
+          if (i % 2 === 0) {
+            imageSet = {}
+            imageSet.small = image
+          }
+          if (i % 2 === 1) {
+            imageSet.large = image
+            images.push(imageSet)
+          }
+        }
+        self.createTextures(images)
+        console.log(images)
+        // this.setCurrentTextures()
+        self.toFullscreen()
+      }
     }
   }
 

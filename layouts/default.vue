@@ -10,19 +10,24 @@
     ]"
     class="wrap"
   >
-    <nuxt />
+    <div ref="scrWrap">
+      <nuxt />
+    </div>
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
+// import TweenMax from 'gsap/umd/TweenMax'
 
 export default Vue.extend({
   data() {
     return {
       ipadFlag: false,
       browser: '',
-      classList: ''
+      classList: '',
+      scrPos: 0,
+      winScr: 0
     }
   },
   created() {
