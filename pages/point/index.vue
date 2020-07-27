@@ -1,7 +1,9 @@
 <template>
   <main class="main">
     <mousePointer />
-    <gridToFullscreenEffect />
+    <!-- <gridToFullscreenEffect /> -->
+    <mousePointer />
+    <canvasText />
     <div ref="scrCont" class="cont js-scrCont">
       <div
         ref="scrContInr"
@@ -62,13 +64,15 @@
 import Vue from 'vue'
 import TweenMax from 'gsap/umd/TweenMax'
 import mousePointer from '~/components/mousePointer.vue'
-import gridToFullscreenEffect from '~/components/gridToFullscreenEffect.vue'
+// import gridToFullscreenEffect from '~/components/gridToFullscreenEffect.vue'
+import canvasText from '~/components/webgl/text.vue'
 import pointJson from '~/assets/data/point.json'
 
 export default Vue.extend({
   components: {
     mousePointer,
-    gridToFullscreenEffect
+    canvasText
+    // gridToFullscreenEffect
   },
 
   head() {
@@ -173,6 +177,9 @@ export default Vue.extend({
     clickImg(e) {
       console.log('clickImg')
     },
+    /* ------------------------------
+    * 見出しのリピート
+    ------------------------------ */
     setHbdTtl() {
       const pageTtl = this.$refs.pageTtl
       const pageTtlH = pageTtl.offsetHeight
@@ -196,8 +203,8 @@ export default Vue.extend({
     },
 
     /* ------------------------------
-      * スクロールでぬるっとさせるためのstyle指定
-      ------------------------------ */
+    * スクロールでぬるっとさせるためのstyle指定
+    ------------------------------ */
     setScrollStyle() {
       this.winScr = window.scrollY || window.pageYOffset
       this.scrPos = this.winScr
@@ -256,15 +263,15 @@ export default Vue.extend({
           _this.ttlYpos = _this.$refs.pageTtlTxt.style.transform.split(' ')[5].replace(')', '')
         }
 
-        if (_this.scrPos - _this.winScr > 0) {
-          TweenMax.set(_this.$refs.pageTtlTxt, {
-            y: Number(_this.ttlYpos) - 5
-          })
-        } else if (_this.scrPos - _this.winScr < 0) {
-          TweenMax.set(_this.$refs.pageTtlTxt, {
-            y: Number(_this.ttlYpos) + 5
-          })
-        }
+        // if (_this.scrPos - _this.winScr > 0) {
+        //   TweenMax.set(_this.$refs.pageTtlTxt, {
+        //     y: Number(_this.ttlYpos) - 5
+        //   })
+        // } else if (_this.scrPos - _this.winScr < 0) {
+        //   TweenMax.set(_this.$refs.pageTtlTxt, {
+        //     y: Number(_this.ttlYpos) + 5
+        //   })
+        // }
         _this.scrPos = _this.winScr
       }
       this.id = requestAnimationFrame(scrollAnimation)
@@ -392,15 +399,13 @@ export default Vue.extend({
     left: 0;
     line-height: 1;
     font-family: 'Libre Baskerville', serif;
-
-    svg {
-      stroke: var(--main-color);
-      stroke-width: 1;
-      fill: transparent;
+    font-weight: 400;
+    @include tablet {
+      font-size: spfz(75px);
     }
     span {
       display: inline-block;
-      -webkit-text-stroke: 0.1px var(--main-color);
+      -webkit-text-stroke: 1px var(--main-color);
       color: transparent;
       white-space: nowrap;
       transition: transform 0.3s ease;
@@ -444,19 +449,22 @@ export default Vue.extend({
     gap: 2.5vh 2vw;
 
     @include tablet {
-      padding: 5vh 2vw;
+      padding: 5vh 5vw 100vw 0vw;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1vh 1vw;
+      gap: 1vh 2vw;
     }
   }
   &_item {
     position: relative;
     cursor: pointer;
     align-self: flex-start;
+    &:nth-child(even) {
+      padding: 50% 0 0;
+    }
     &_inr {
       display: block;
-      background: #fff;
+      background: #fffbfb;
       box-shadow: rgba(110, 93, 93, 0.5) 0 0 2px;
       height: 100%;
       overflow: hidden;
@@ -477,7 +485,7 @@ export default Vue.extend({
       width: 100%;
       height: 18.07vw;
       @include tablet {
-        height: 43vmin;
+        height: 38vmin;
       }
       img {
         width: 100%;

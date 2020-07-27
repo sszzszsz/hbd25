@@ -1,195 +1,194 @@
 import * as THREE from 'three'
-import { TweenLite } from 'gsap'
-
-export default class GridToFullscreenEffect {
-  constructor(container, items) {
-    this.container = container
-    this.items = items
-    this.camera = null
-    this.scene = null
-    this.renderer = null
-
-    this.uniforms = {
-      uProgress: new THREE.Uniform(0),
-      uMeshScale: new THREE.Uniform(new THREE.Vector2(1, 1)),
-      uMeshPosition: new THREE.Uniform(new THREE.Vector2(0, 0)),
-      uViewSize: new THREE.Uniform(new THREE.Vector2(1, 1)),
-      uColor: new THREE.Uniform(new THREE.Vector3(20, 20, 20))
-    }
-    this.animating = false
-    this.state = 'grid'
+import { TweenMax } from 'gsap'
+export default class ImgEffect {
+  constructor(param) {
+    this.canvasId = param.id
+    this.w = document.body.clientWidth
+    this.h = document.body.clientHeight
+    this.imgPath = param.path
+    this.uniforms = {}
+    this.texture = null
+    this.mesh = null
   }
-  toGrid() {
-    if (this.state === 'grid' || this.isAnimating) return
 
-    this.animating = true
-    this.tween = TweenLite.to(this.uniforms.uProgress, 1, {
-      value: 0,
-      onUpdate: this.render.bind(this),
-      onComplete: () => {
-        this.isAnimating = false
-        this.state = 'grid'
-        this.container.style.zIndex = -1
-      }
-    })
-  }
-  toFullscreen() {
-    if (this.state === 'fullscreen' || this.isAnimating) return
-
-    this.animating = true
-    this.container.style.zIndex = 2
-    this.tween = TweenLite.to(this.uniforms.uProgress, 1, {
-      value: 1,
-      onUpdate: this.render.bind(this),
-      onComplete: () => {
-        this.isAnimating = false
-        this.state = 'fullscreen'
-        this.toGrid()
-      }
-    })
-  }
+  /* ------------------------------
+  // カメラ・レンダラー・ライトの作成
+  ------------------------------ */
   init() {
+    console.log('imgEffect')
+
+    // シーン
+    this.scene = new THREE.Scene()
+
+    // レンダラー
     this.renderer = new THREE.WebGLRenderer({
       alpha: true,
-      antialias: true
+      antialias: true,
+      canvas: document.getElementById(this.canvasId)
     })
-    this.renderer.setPixelRatio(window.devicePixelRatio)
-    this.renderer.setSize(window.innerWidth, window.innerHeight)
-    this.container.appendChild(this.renderer.domElement)
+    this.renderer.setClearColor(0xffffff, 1)
+    this.renderer.setSize(this.w, this.h)
+    this.renderer.setPixelRatio(window.devicePixelRatio ? window.devicePixelRatio : 1)
 
-    this.scene = new THREE.Scene()
-    this.camera = new THREE.PerspectiveCamera(
-      45,
-      window.innerWidth / window.innerHeight,
-      0.1,
-      10000
-    )
-    this.camera.position.z = 50
-    this.camera.lookAt = this.scene.position
+    // カメラ
+    this.camera = new THREE.PerspectiveCamera(50, this.w / this.h, 1, 1000)
+    this.camera.position.set(0, 0, 10)
 
-    const viewSize = this.getViewSize()
-    this.uniforms.uViewSize.value.x = viewSize.width
-    this.uniforms.uViewSize.value.y = viewSize.height
+    // ライト
+    var light = new THREE.AmbientLight(0xffffff)
+    this.scene.add(light)
 
-    const segments = 128
-    const geometry = new THREE.PlaneBufferGeometry(1, 1, segments, segments)
-    // We'll be using the shader material later on ;)
+    this.createMesh(this.imgPath)
+    this.render()
+    this.setEventListner()
+  }
+
+  /* ------------------------------
+  // メッシュを作成する
+  ------------------------------ */
+  createMesh(imgPath) {
+    // 頂点シェーダーのソース
+    const vertexSource = `
+        varying vec2 vUv;
+
+        void main(void) {
+          vUv = uv;
+          gl_Position = vec4(position, 1.0);
+        }
+    `
+
+    // フラグメントシェーダ
+    const fragmentSource = `
+    varying vec2 vUv;
+
+    #define PI 3.14159265359
+
+    uniform vec2 resolution;
+    uniform vec2 imageResolution;
+    uniform sampler2D texture1; // メインの画像
+    uniform sampler2D texture2; // エフェクト用の画像
+    uniform float dispFactor;
+
+    // uv座標を回転させる
+    mat2 rotate2d(float _angle){
+      return mat2(cos(_angle),-sin(_angle),
+                  sin(_angle),cos(_angle));
+                }
+
+
+    void main(void) {
+    // windowサイズいっぱいに広げたPlaneのテクスチャにbackground-size:coverのような挙動をさせる
+    vec2 ratio = vec2(
+        min((resolution.x / resolution.y) / (imageResolution.x / imageResolution.y), 1.0),
+        min((resolution.y / resolution.x) / (imageResolution.y / imageResolution.x), 1.0)
+      );
+    vec2 uv = vec2(
+        vUv.x * ratio.x + (1.0 - ratio.x) * 0.5,
+        vUv.y * ratio.y + (1.0 - ratio.y) * 0.5
+      );
+
+    // エフェクト用の画像の色情報（rgbaのvec4の四次元配列）
+    vec4 disp = texture2D(texture2, uv);
+
+    // uv座標にこのrgba情報のうちdisp.rとdisp.gを掛け算
+    vec2 calcPosition = uv + rotate2d(PI) * vec2(disp.r,disp.g) * (1.0 - dispFactor) * 0.5;
+
+    vec4 _texture = texture2D(texture1, calcPosition);
+    gl_FragColor = _texture;
+    }
+    `
+
+    // 平面
+    const geometry = new THREE.PlaneBufferGeometry(2, 2)
+    // 画像を読み込む
+    this.texture = new THREE.TextureLoader().load(imgPath)
+
+    // uniform変数を定義
+    this.uniforms = {
+      resolution: { // 画面の解像度
+        type: 'v2',
+        value: new THREE.Vector2(window.innerWidth, window.innerHeight)
+      },
+      imageResolution: { // 背景画像の解像度
+        type: 'v2',
+        value: new THREE.Vector2(2560, 1440)
+      },
+      texture1: { // テクスチャの読み込み
+        type: 't',
+        value: this.texture
+      },
+      texture2: { // テクスチャの読み込み
+        type: 't',
+        value: new THREE.TextureLoader().load('/assets/img/effect.jpeg')
+      },
+      dispFactor: {
+        type: 'f',
+        value: 1
+      }
+    }
+
     const material = new THREE.ShaderMaterial({
       uniforms: this.uniforms,
-      vertexShader,
-      fragmentShader,
-      side: THREE.DoubleSide
+      // シェーダーを割り当てる
+      vertexShader: vertexSource,
+      fragmentShader: fragmentSource,
+      transparent: true
     })
-    this.mesh = new THREE.Mesh(geometry, material)
-    this.scene.add(this.mesh)
-    window.addEventListener('resize', this.onResize.bind(this))
 
-    for (let i = 0; i < this.items.length; i++) {
-      const element = this.items[i]
-      element.addEventListener('mousedown', (ev) => this.onGridImageClick(ev, i))
+    this.plane = new THREE.Mesh(geometry, material)
+    this.scene.add(this.plane)
+  }
+
+  /* ------------------------------
+  // レンダリング
+  ------------------------------ */
+  render() {
+    const _this = this
+    test()
+    function test() {
+      requestAnimationFrame(test)
+      _this.renderer.render(_this.scene, _this.camera)
     }
   }
-  updateMesh() {
-    if (this.itemIndex === -1) return
 
-    const item = this.items[this.itemIndex]
-    const rect = item.getBoundingClientRect()
-    const viewSize = this.getViewSize()
+  /* ------------------------------
+  // リサイズ時の処理
+  ------------------------------ */
+  resizeWindow() {
+    this.w = document.body.clientWidth
+    this.h = document.body.clientHeight
+    const canvas = document.getElementById(this.canvasId)
+    canvas.width = this.w
+    canvas.height = this.h
 
-    // 1. Transform pixel units to camera's view units
-    const widthViewUnit = (rect.width * viewSize.width) / window.innerWidth
-    const heightViewUnit = (rect.height * viewSize.height) / window.innerHeight
-    let xViewUnit = (rect.left * viewSize.width) / window.innerWidth
-    let yViewUnit = (rect.top * viewSize.height) / window.innerHeight
-
-    // 2. Make units relative to center instead of the top left.
-    xViewUnit = xViewUnit - viewSize.width / 2
-    yViewUnit = yViewUnit - viewSize.height / 2
-
-    // 3. Make the origin of the plane's position to be the center instead of top Left.
-    const x = xViewUnit + widthViewUnit / 2
-    const y = -yViewUnit - heightViewUnit / 2
-
-    // 4. Scale and position mesh
-    const mesh = this.mesh
-    // Since the geometry's size is 1. The scale is equivalent to the size.
-    mesh.scale.x = widthViewUnit
-    mesh.scale.y = heightViewUnit
-    mesh.position.x = x
-    mesh.position.y = y
-
-    this.uniforms.uMeshPosition.value.x = x / widthViewUnit
-    this.uniforms.uMeshPosition.value.y = y / heightViewUnit
-    this.uniforms.uMeshScale.value.x = widthViewUnit
-    this.uniforms.uMeshScale.value.y = heightViewUnit
-
-    const styles = window.getComputedStyle(item)
-    let color = styles.getPropertyValue('background-color')
-    color = color.substring(color.indexOf('(') + 1, color.indexOf(')'))
-
-    const rgbColors = color.split(',', 3).map((c) => parseInt(c))
-    this.uniforms.uColor.value.x = rgbColors[0]
-    this.uniforms.uColor.value.y = rgbColors[1]
-    this.uniforms.uColor.value.z = rgbColors[2]
-  }
-  onGridImageClick(ev, itemIndex) {
-    this.itemIndex = itemIndex
-    this.updateMesh()
-    // getBoundingClientRect gives pixel units relative to the top left of the pge
-
-    // this.render();
-    this.toFullscreen()
-  }
-  render() {
-    this.renderer.render(this.scene, this.camera)
-  }
-
-  getViewSize() {
-    const fovInRadians = (this.camera.fov * Math.PI) / 180
-    const height = Math.abs(this.camera.position.z * Math.tan(fovInRadians / 2) * 2)
-
-    return { width: height * this.camera.aspect, height }
-  }
-  onResize() {
-    this.camera.aspect = window.innerWidth / window.innerHeight
+    this.camera.aspect = this.w / this.h
     this.camera.updateProjectionMatrix()
-    this.renderer.setSize(window.innerWidth, window.innerHeight)
-    this.updateMesh()
-    this.render()
+    this.plane.material.uniforms.resolution.value.set(this.w, this.h)
+    this.renderer.setSize(this.w, this.h)
+  }
+
+  /* ------------------------------
+  // イベントハンドラー
+  ------------------------------ */
+  setEventListner() {
+    const self = this
+    const canvas = document.getElementById(this.canvasId)
+    window.addEventListener('resize', function () {
+      self.resizeWindow()
+      console.log('resize')
+    })
+    canvas.addEventListener('mouseenter', function () {
+      console.log('mouseenter')
+      TweenMax.to(self.uniforms.dispFactor, 2, {
+        value: 0.5,
+        repeat: -1,
+        yoyo: true
+      })
+    })
+    canvas.addEventListener('mouseleave', function () {
+      TweenMax.to(self.uniforms.dispFactor, 1.5, {
+        value: 1
+      })
+    })
   }
 }
-const vertexShader = `
-	uniform float uProgress;
-	uniform vec2 uMeshScale;
-	uniform vec2 uMeshPosition;
-	uniform vec2 uViewSize;
-
-	void main(){
-	    vec3 pos = position.xyz;
-
-		// Scale to page view size/page size
-	    vec2 scaleToViewSize = uViewSize / uMeshScale - 1.;
-        vec2 scale = vec2(
-          1. + scaleToViewSize * uProgress
-        );
-        pos.xy *= scale;
-
-        // Move towards center
-        pos.y += -uMeshPosition.y * uProgress;
-        pos.x += -uMeshPosition.x * uProgress;
-
-         gl_Position = projectionMatrix * modelViewMatrix * vec4(pos,1.);
-	}
-`
-const fragmentShader = `
-uniform vec3 uColor;
-	void main(){
-    vec3 color = uColor;
-         gl_FragColor = vec4(color/255.,1.);
-	}
-`
-const effect = new GridToFullscreenEffect(
-  document.getElementById('app'),
-  Array.from(document.getElementsByClassName('item'))
-)
-effect.init()

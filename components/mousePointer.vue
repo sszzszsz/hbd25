@@ -12,7 +12,7 @@
 
 <script>
 import Vue from 'vue'
-import * as TweenMax from 'gsap/umd/TweenMax'
+import TweenMax from 'gsap/umd/TweenMax'
 
 export default Vue.extend({
   props: {
