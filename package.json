@@ -1,8 +1,8 @@
 {
-  "name": "hpb25",
+  "name": "hbd25th",
   "version": "1.0.0",
-  "description": "My delightful Nuxt.js project",
-  "author": "suzu nagano",
+  "description": "Happy 25th Birthday",
+  "author": "Suzu Nagano",
   "private": true,
   "scripts": {
     "dev": "nuxt",

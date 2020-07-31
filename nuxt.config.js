@@ -56,11 +56,11 @@ export default {
       { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' }
     ],
     link: [
-      // ogp関連
-      { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
-      { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
-      { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
-      { rel: 'mask-icon', href: 'safari-pinned-tab.svg', color: maincolor },
+      // icon
+      { rel: 'apple-touch-icon', sizes: '180x180', href: '/icon/apple-touch-icon.png' },
+      { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/icon/favicon-32x32.png' },
+      { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/icon/favicon-16x16.png' },
+      { rel: 'mask-icon', href: '/icon/safari-pinned-tab.svg', color: maincolor },
       // iOS splashscreens
       {
         href: '/splashscreens/iphone5_splash.png',
@@ -129,7 +129,7 @@ export default {
    */
   manifest: {
     name: siteName,
-    short_name: siteName,
+    short_name: 'HBD25th',
     description: siteDesc,
     lang: 'ja',
     theme_color: maincolor,
@@ -139,7 +139,7 @@ export default {
     orientation: 'portrait',
     icons: [
       {
-        src: '/icon-1024.png',
+        src: '/icon/icon-1024.png',
         sizes: '1024x1024',
         type: 'image/png'
       }

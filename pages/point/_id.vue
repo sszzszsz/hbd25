@@ -56,9 +56,15 @@ export default Vue.extend({
         {
           hid: 'description',
           name: 'description',
-          content: `好きなところ${this.id} -${this.mainText}-`
+          content: `好きなところ${this.id} ～ ${this.mainText} ～`
         },
-        { hid: 'og:type', property: 'og:type', content: 'article' }
+        { hid: 'og:type', property: 'og:type', content: 'article' },
+        { hid: 'og:title', property: 'og:title', content: '好きなところ' + this.id },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content: `好きなところ${this.id} ～ ${this.mainText} ～`
+        }
       ]
       // titleTemplate: '', hide titleTemplate
     }
