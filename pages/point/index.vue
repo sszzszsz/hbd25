@@ -3,7 +3,6 @@
     <mousePointer />
     <!-- <gridToFullscreenEffect /> -->
     <mousePointer />
-    <canvasText />
     <div ref="scrCont" class="cont js-scrCont">
       <div
         ref="scrContInr"
@@ -31,22 +30,24 @@
                 error: imgRender('bg_paper.jpg'),
                 loading: imgRender('bg_paper.jpg')
               }"
-              class="point_item_inr"
+              class="point_item_cont"
             >
               <!-- <nuxt-link :to="'/point/' + point.id" class="point_item_inr"> -->
               <!-- <p v-html="point.mainText" class="point_txt" />
               <p>{{ point.subText }}</p> -->
-              <p class="point_num">
-                <span>{{ point.id }}</span>
-              </p>
-              <div v-on:click="clickImg($event)" class="point_box point_box-img">
-                <img
-                  @click="clickImg($event)"
-                  :data-src="imgRender(point.bgFile)"
-                  :alt="point.mainText"
-                  class="small"
-                />
-                <img :alt="point.mainText" :data-src="imgRender2(point.bgFile)" class="large" />
+              <div class="point_item_inr">
+                <p class="point_num">
+                  <span>{{ point.id }}</span>
+                </p>
+                <div v-on:click="clickImg($event)" class="point_box point_box-img">
+                  <img
+                    @click="clickImg($event)"
+                    :data-src="imgRender(point.bgFile)"
+                    :alt="point.mainText"
+                    class="small"
+                  />
+                  <img :alt="point.mainText" :data-src="imgRender2(point.bgFile)" class="large" />
+                </div>
               </div>
               <!-- </nuxt-link> -->
             </div>
@@ -56,6 +57,7 @@
       <div class="link">
         <nuxt-link to="/" class="link_item">TOP</nuxt-link>
       </div>
+      <canvasText />
     </div>
   </main>
 </template>
@@ -120,7 +122,7 @@ export default Vue.extend({
 
   methods: {
     interSect() {
-      const scrollItems = document.querySelectorAll('.point_item_inr')
+      const scrollItems = document.querySelectorAll('.point_item_cont')
       const options = {
         root: null,
         rootMargin: '-10% 0px',
@@ -285,25 +287,7 @@ export default Vue.extend({
   position: relative;
   --main-color: #bf4040;
   overflow: hidden;
-  // height: 100vh;
   overflow-y: auto;
-  &:before,
-  &:after {
-    // content: '';
-    // display: block;
-    // position: fixed;
-    // z-index: 100;
-    // width: 100%;
-    // border-top: 10px solid;
-    // left: 0;
-    // border-color: var(--main-color);
-  }
-  &:before {
-    top: 0;
-  }
-  &:after {
-    top: calc(100vh - 10px);
-  }
 }
 .artwork__canvas {
   position: fixed;
@@ -432,10 +416,10 @@ export default Vue.extend({
       // background: rgba(251, 250, 246, 0.6);
       // border: 1px solid #fff;
       padding: 10px;
+      border-radius: 50%;
       @include fontLB;
       font-size: pcfz(80px);
       color: $red;
-      // display: none;
       color: #1a243a7d;
       border: 1px solid #1a243a7d;
       mix-blend-mode: screen;
@@ -460,33 +444,39 @@ export default Vue.extend({
     cursor: pointer;
     align-self: flex-start;
     &:nth-child(even) {
-      padding: 50% 0 0;
+      padding: 55% 0 0;
     }
-    &_inr {
+
+    &_cont {
       display: block;
-      background: #fffbfb;
-      box-shadow: rgba(110, 93, 93, 0.5) 0 0 2px;
-      height: 100%;
-      overflow: hidden;
       opacity: 0;
       transform: translateY(10px);
       transition: opacity 1.4s ease, transform 0.8s ease;
-
+      height: 18.07vw;
+      @include tablet {
+        height: 38vmin;
+      }
       &.is-intersected {
         opacity: 1;
         transform: translateY(0px);
       }
     }
+
+    &_inr {
+      position: relative;
+      background: #fffbfb;
+      box-shadow: rgba(110, 93, 93, 0.5) 0 0 2px;
+      margin: 0 auto;
+      border-radius: 50%;
+    }
   }
+
   &_box {
     color: $red;
     &-img {
       position: relative;
       width: 100%;
-      height: 18.07vw;
-      @include tablet {
-        height: 38vmin;
-      }
+      height: 100%;
       img {
         width: 100%;
         height: 100%;
@@ -495,12 +485,14 @@ export default Vue.extend({
         object-fit: cover;
         filter: blur(1.5px) contrast(0.8);
 
+        &.small {
+          border-radius: 50%;
+        }
+
         &.large {
           display: none;
           position: absolute;
           top: 0;
-          width: 100%;
-          height: 100%;
           left: 0;
           filter: contrast(0.8);
         }
@@ -522,8 +514,19 @@ export default Vue.extend({
     }
   }
 }
+
+@for $i from 1 through 100 {
+  #point-#{$i} {
+    .point_item_inr {
+      $rondomNum: minMaxRondom(80, 110, 1%);
+      width: $rondomNum;
+      height: $rondomNum;
+    }
+  }
+}
 .link {
   position: absolute;
   bottom: 0;
 }
+
 </style>

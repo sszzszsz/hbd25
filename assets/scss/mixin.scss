@@ -19,7 +19,17 @@ $spWidth: 375px;
   $rate: 100 / $viewport;
   @return $rate * $size * 1vw;
 }
+// 指定した最小値($min)と最大値($max)の間のランダムな数を返す
+// 単位は$unitに指定（px,%,vw,vh,vmax,vmin）
+// minMaxRondom(80, 100, 1%)
+@function minMaxRondom($min: 1, $max: 100, $unit: 1%) {
+  $num: random($max);
 
+  @while ($num/($num * 0 + 1) < $min) {
+    $num: random($max);
+  }
+  @return $num * $unit;
+}
 @mixin fontLB {
   font-family: 'Libre Baskerville', serif;
 }

@@ -50,22 +50,32 @@ export default Vue.extend({
   position: fixed;
   width: 100%;
   height: 100%;
-  z-index: 5;
+  z-index: 100;
   background: #bf4040;
+  top: 0;
+  left: 0;
+  transform: translateY(-100%);
 }
 #app {
   margin: auto;
-  width: 100%;
+  // width: 100%;
   height: 100%;
+  width: minMaxRondom(80, 100, 1%);
 }
 
-.point_num {
-  -webkit-text-stroke: 1px #fff;
-  color: transparent;
-  font-family: 'Libre Baskerville', serif;
-  font-weight: 400;
-  @include tablet {
-    font-size: spfz(75px);
+.point {
+  &_num {
+    -webkit-text-stroke: 1px #fff;
+    color: transparent;
+    font-family: 'Libre Baskerville', serif;
+    font-weight: 400;
+    @include tablet {
+      font-size: spfz(75px);
+    }
+  }
+  &_text_wrap {
+    padding: 10px;
+    color: #fff;
   }
 }
 </style>
